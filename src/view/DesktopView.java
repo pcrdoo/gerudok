@@ -14,6 +14,7 @@ import model.Project;
 import model.Workspace;
 
 import java.awt.Color;
+import java.beans.PropertyVetoException;
 import java.util.*;
 
 import javax.swing.JDesktopPane;
@@ -39,10 +40,14 @@ public class DesktopView extends JDesktopPane implements GObserver{
 	@Override
 	public void update(GObserverNotification notification, Object obj) {
 		if(notification == GObserverNotification.ADD) {
-			ProjectView projectView = new ProjectView((Project)obj);
+			ProjectView projectView = new ProjectView((Project)obj, projectViews.size());
 			projectViews.add(projectView);
 			add(projectView);
-			System.out.println("DODATO");
+			try {
+				projectView.setSelected(true);
+			} catch (PropertyVetoException e) {
+				e.printStackTrace();
+			}
 		}
 	}
    

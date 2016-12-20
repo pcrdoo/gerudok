@@ -18,11 +18,11 @@ public class ProjectView extends JInternalFrame {
    private ProjectController projectController;
    private Project project;
    
-   public ProjectView(Project project) {
-	   super("Project #X", true, false, true, true);
+   public ProjectView(Project project, int sz) {
+	   super(project.getName(), true, false, true, true);
 	   this.project = project;
-	   setSize(400, 400);
-	   setLocation(20, 20);
+	   setSize(500, 400);
+	   setLocation(20 + sz * 30, 20 + sz * 30);
 	   setVisible(true);
    }
 

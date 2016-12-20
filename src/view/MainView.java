@@ -19,6 +19,9 @@ import java.util.*;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 public class MainView extends JFrame implements Observer {
 	
@@ -96,12 +99,21 @@ public class MainView extends JFrame implements Observer {
 		
 		this.mainController = new MainController(this.model, this);
 		
-		System.out.println("KRECEM DA DODAJEM DJECU");
-		this.model.getWorkspace().addNewChild();
 
-		this.model.getWorkspace().addNewChild();
-
-		this.model.getWorkspace().addNewChild();
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		    	System.out.println(info.getName());
+		        if ("Nimbus".equals(info.getName())) {
+		        	System.out.println("EEEEE");
+		            UIManager.setLookAndFeel(info.getClassName());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    pack();
+		            break;
+		        }
+		    }
+		} catch (Exception e) {
+		    // If Nimbus is not available, you can set the GUI to another look and feel.
+		}
 	}
 	
 	@Override
