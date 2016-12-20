@@ -17,7 +17,8 @@ public class Workspace extends GNode {
 	
 	public Workspace() {
 		
-		//TODO
+		// TODO
+		// TEST
 		this.setName("workspace 1");
 	}
 	
