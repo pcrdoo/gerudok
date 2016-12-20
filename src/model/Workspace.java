@@ -8,8 +8,8 @@ package model;
 
 import java.util.*;
 
-import gerudok_observer.GeRuDokObserver;
-import gerudok_observer.GeRuDokObserverNotification;
+import gerudok_observer.GObserver;
+import gerudok_observer.GObserverNotification;
 import gerudok_observer.ObserverList;
 import model.tree.GNode;
 
@@ -17,7 +17,6 @@ import model.tree.GNode;
 public class Workspace extends GNode {
 	
 	private static Workspace instance = null;
-	private ObserverList observerList;
 	
 	private Workspace() {
 		
@@ -34,17 +33,10 @@ public class Workspace extends GNode {
 		}
 		return instance;
 	}
-
-	
-	public void addObserver(GeRuDokObserver observer) {
-		observerList.addObserver(observer);
-	}
 	
 	public void addNewChild() {
 		Project child = new Project("Project"+this.getNewChildCount());
 		this.add(child);
-		observerList.notifyObservers(GeRuDokObserverNotification.PROJECT_ADD, child);
-		System.out.println("OBSERVER");
 	}
 	   
 	

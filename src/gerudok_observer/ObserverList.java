@@ -3,19 +3,19 @@ package gerudok_observer;
 import java.util.ArrayList;
 
 public class ObserverList {
-	private ArrayList<GeRuDokObserver> observers;
+	private ArrayList<GObserver> observers;
 	
 	public ObserverList() {
 		observers = new ArrayList<>();
 	}
 	
-	public void notifyObservers(GeRuDokObserverNotification notification, Object obj) {
-		for(GeRuDokObserver obs : observers) {
+	public void notifyObservers(GObserverNotification notification, Object obj) {
+		for(GObserver obs : observers) {
 			obs.update(notification, obj);
 		}
 	}
 	
-	public void addObserver(GeRuDokObserver observer) {
+	public void addObserver(GObserver observer) {
 		observers.add(observer);
 	}
 }

@@ -7,8 +7,8 @@
 package view;
 
 import controler.DesktopController;
-import gerudok_observer.GeRuDokObserver;
-import gerudok_observer.GeRuDokObserverNotification;
+import gerudok_observer.GObserver;
+import gerudok_observer.GObserverNotification;
 import model.Model;
 import model.Project;
 import model.Workspace;
@@ -21,7 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class DesktopView extends JDesktopPane implements GeRuDokObserver{
+public class DesktopView extends JDesktopPane implements GObserver{
   
    private ArrayList<ProjectView> projectViews;
    private DesktopController desktopController;
@@ -37,8 +37,8 @@ public class DesktopView extends JDesktopPane implements GeRuDokObserver{
    }
 
 	@Override
-	public void update(GeRuDokObserverNotification notification, Object obj) {
-		if(notification == GeRuDokObserverNotification.PROJECT_ADD) {
+	public void update(GObserverNotification notification, Object obj) {
+		if(notification == GObserverNotification.ADD) {
 			ProjectView projectView = new ProjectView((Project)obj);
 			projectViews.add(projectView);
 			add(projectView);

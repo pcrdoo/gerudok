@@ -6,12 +6,17 @@ import java.util.Enumeration;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
+import gerudok_observer.GObserver;
+import gerudok_observer.GObserverNotification;
+import gerudok_observer.ObserverList;
+
 public class GNode implements MutableTreeNode{
 	
 	private String name;
 	private GNode parent;
 	private ArrayList<GNode> children;
 	private int newChildCount;
+	protected ObserverList observerList;
 	
 	public GNode() {
 		this.setName(null);
@@ -25,16 +30,21 @@ public class GNode implements MutableTreeNode{
 		this.parent = null;
 		this.children = new ArrayList<>();
 	}
+
+	public void addObserver(GObserver observer) {
+		observerList.addObserver(observer);
+	}
 	
 	public void add(GNode child) {
 		child.parent = this;
 		this.children.add(child);
+		observerList.notifyObservers(GObserverNotification.ADD, child);
 	}
 	
 	public void addNewChild() {
-		GNode child = new GNode("test1");
-		child.parent = this;
-		this.children.add(child);
+//		GNode child = new GNode("test1");
+//		child.parent = this;
+//		this.children.add(child);
 	}
 
 	@Override
