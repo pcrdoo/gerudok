@@ -31,7 +31,7 @@ public class GPopupMenuController {
 //			System.out.println(model.getTreeModel());
 //			System.out.println(view);
 //			System.out.println(view.getSelectedNode());
-			view.getSelectedNode().add(new GNode("TESTNODE"));
+			view.getSelectedNode().addNewChild();
 			model.getTreeModel().reload();
 		}
 	}

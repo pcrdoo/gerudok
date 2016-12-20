@@ -9,13 +9,15 @@ import javax.swing.tree.TreeNode;
 public class GNode implements MutableTreeNode{
 	
 	private String name;
-	GNode parent;
-	ArrayList<GNode> children;
+	private GNode parent;
+	private ArrayList<GNode> children;
+	private int newChildCount;
 	
 	public GNode() {
 		this.setName(null);
 		this.parent = null;
 		this.children = new ArrayList<>();
+		this.newChildCount = 0;
 	}
 	
 	public GNode(String name) {
@@ -25,6 +27,12 @@ public class GNode implements MutableTreeNode{
 	}
 	
 	public void add(GNode child) {
+		child.parent = this;
+		this.children.add(child);
+	}
+	
+	public void addNewChild() {
+		GNode child = new GNode("test1");
 		child.parent = this;
 		this.children.add(child);
 	}
@@ -112,4 +120,7 @@ public class GNode implements MutableTreeNode{
 		this.name = name;
 	}
 
+	protected int getNewChildCount() {
+		return this.newChildCount++;
+	}
 }

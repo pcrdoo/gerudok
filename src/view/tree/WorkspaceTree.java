@@ -16,7 +16,7 @@ public class WorkspaceTree extends JTree implements TreeSelectionListener{
 	
 	@Override
 	public void valueChanged(TreeSelectionEvent e) {
-		System.out.println(e.getPath());
+		//System.out.println(e.getPath());
 		//this.setSelectionPath(e.getPath());
 	}
 	
