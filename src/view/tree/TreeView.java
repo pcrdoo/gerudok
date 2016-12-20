@@ -65,8 +65,6 @@ public class TreeView extends JPanel{
 	   this.tree.setEditable(true);
 	   this.tree.setShowsRootHandles(true);
 	   
-	   
-
 	   //MOCK
 	   this.setBackground(Color.BLACK);
 	   

@@ -49,9 +49,7 @@ public class MainView extends JFrame {
 	private void setLookAndFeel() {
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		    	System.out.println(info.getName());
 		        if ("Nimbus".equals(info.getName())) {
-		        	System.out.println("EEEEE");
 		            UIManager.setLookAndFeel(info.getClassName());
                     SwingUtilities.updateComponentTreeUI(this);
                     pack();
