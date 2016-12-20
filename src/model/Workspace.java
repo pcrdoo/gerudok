@@ -29,7 +29,6 @@ public class Workspace extends GNode {
 		if(instance == null) {
 			instance = new Workspace();
 			instance.setName("workspace 1");
-			instance.observerList = new ObserverList();
 		}
 		return instance;
 	}

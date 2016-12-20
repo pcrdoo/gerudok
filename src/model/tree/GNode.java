@@ -1,16 +1,18 @@
 package model.tree;
 
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
+import gerudok_observer.GObservable;
 import gerudok_observer.GObserver;
 import gerudok_observer.GObserverNotification;
 import gerudok_observer.ObserverList;
 
-public class GNode implements MutableTreeNode{
+public class GNode implements MutableTreeNode, GObservable {
 	
 	private String name;
 	private GNode parent;
@@ -23,14 +25,15 @@ public class GNode implements MutableTreeNode{
 		this.parent = null;
 		this.children = new ArrayList<>();
 		this.newChildCount = 0;
+		this.observerList = new ObserverList();
 	}
 	
 	public GNode(String name) {
+		this();
 		this.setName(name);
-		this.parent = null;
-		this.children = new ArrayList<>();
 	}
 
+	@Override
 	public void addObserver(GObserver observer) {
 		observerList.addObserver(observer);
 	}

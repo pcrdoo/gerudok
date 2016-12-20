@@ -8,6 +8,7 @@ package model;
 
 import java.util.*;
 
+import gerudok_observer.ObserverList;
 import model.tree.GNode;
 
 /** @pdOid 715d801c-8af9-4037-9476-707272b9ea66 */

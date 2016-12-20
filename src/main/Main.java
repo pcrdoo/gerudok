@@ -11,8 +11,6 @@ public class Main {
 	public static void main(String[] args) {
 		MainView mainView = MainView.getInstance();
 		mainView.setVisible(true);
-		mainView.setLocation(100, 100);
-		mainView.setSize(1500, 700);
 	}
 
 }

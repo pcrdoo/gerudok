@@ -46,7 +46,27 @@ public class MainView extends JFrame implements Observer {
 		return instance;
 	}
 	
+	private void setLookAndFeel() {
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		    	System.out.println(info.getName());
+		        if ("Nimbus".equals(info.getName())) {
+		        	System.out.println("EEEEE");
+		            UIManager.setLookAndFeel(info.getClassName());
+                    SwingUtilities.updateComponentTreeUI(this);
+                    pack();
+		            break;
+		        }
+		    }
+		} catch (Exception e) {
+		    // If Nimbus is not available, you can set the GUI to another look and feel.
+		}
+	}
+	
 	private void initialize() {
+		
+		setLookAndFeel();
+		
 		// Retrieves the model and subscribes to changes.
 		this.model = new Model();
 		this.model.addObserver(this);
@@ -57,18 +77,20 @@ public class MainView extends JFrame implements Observer {
 		
 		//this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
-		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
-		this.setSize(500, 500);
-		//this.setSize((int) screenSize.getWidth(), (int) screenSize.getHeight());
-	    
-		this.setUndecorated(false);		
+		//this.setSize(500, 500);
+
+		this.setSize(1500, 800);
+		
+		//this.setUndecorated(false);		
 	    this.setLocationRelativeTo(null);
 
-		this.setResizable(true);
+		//this.setResizable(true);
 		// Adds three main panels.
 		this.setLayout(new BorderLayout());
+
+		//this.setSize((int) screenSize.getWidth(), (int) screenSize.getHeight());
 		
 		//TODO
 		//ResourceBundle bundle = ResourceBundle.getBundle("strings.MessageResources", Locale.getDefault());
@@ -98,22 +120,12 @@ public class MainView extends JFrame implements Observer {
 		//this.add(panel);
 		
 		this.mainController = new MainController(this.model, this);
+
+
+		
+		
 		
 
-		try {
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		    	System.out.println(info.getName());
-		        if ("Nimbus".equals(info.getName())) {
-		        	System.out.println("EEEEE");
-		            UIManager.setLookAndFeel(info.getClassName());
-                    SwingUtilities.updateComponentTreeUI(this);
-                    pack();
-		            break;
-		        }
-		    }
-		} catch (Exception e) {
-		    // If Nimbus is not available, you can set the GUI to another look and feel.
-		}
 	}
 	
 	@Override
