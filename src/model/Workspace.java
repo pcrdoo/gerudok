@@ -33,9 +33,10 @@ public class Workspace extends GNode {
 		return instance;
 	}
 	
-	public void addNewChild() {
+	public GNode addNewChild() {
 		Project child = new Project("Project"+this.getNewChildCount());
 		this.add(child);
+		return child;
 	}
 	   
 	

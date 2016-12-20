@@ -68,7 +68,6 @@ public class TreeView extends JPanel{
 	   //MOCK
 	   this.setBackground(Color.BLACK);
 	   
-	   JScrollPane scrollPane = new JScrollPane(tree);
 	   this.setLayout(new BorderLayout());
 	   this.setMinimumSize(new Dimension(1000, 1000));
 	   this.add(new JScrollPane(tree), BorderLayout.CENTER);

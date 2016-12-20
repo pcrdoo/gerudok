@@ -17,9 +17,10 @@ public class Page extends GNode{
 		super(name);
 	}
 	
-	public void addNewChild() {
+	public GNode addNewChild() {
 		Slot child = new Slot("Slot"+this.getNewChildCount());;
 		this.add(child);
+		return child;
 	}
 
 }

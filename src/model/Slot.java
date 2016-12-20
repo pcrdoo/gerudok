@@ -17,9 +17,10 @@ public class Slot extends GNode{
 		super(name);
 	}
 	
-	public void addNewChild() {
+	public GNode addNewChild() {
 		//Element child = new Element("Element"+this.getNewChildCount());;
 		//this.add(child);
+		return null;
 	}
 
 }

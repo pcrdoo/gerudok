@@ -63,11 +63,11 @@ public class MainView extends JFrame {
 	
 	private void initialize() {
 		
-		setLookAndFeel();
 		
 		// Retrieves the model and subscribes to changes.
 		this.model = new Model();
 		
+		setLookAndFeel();
 		// Sets global layout properties.
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("GeRuDok");//TODO maybe smthing

@@ -40,7 +40,8 @@ public class WorkspaceTree extends JTree implements TreeSelectionListener, GObse
 	public void update(GObserverNotification notification, Object obj) {
 		switch(notification) {
 		case SELECT_NODE:
-			//this.setExpandedState(path, state);
+			this.setExpandedState(((GNode)obj).getPath(), true);
+			this.setSelectionPath(((GNode)obj).getPath());
 		}
 	}
 

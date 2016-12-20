@@ -39,7 +39,6 @@ public class Model implements GObservable{
 	@Override
 	public void addObserver(GObserver obs) {
 		this.observerList.addObserver(obs);
-		
 	}
 	
 }

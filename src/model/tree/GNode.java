@@ -3,9 +3,11 @@ package model.tree;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 
 import gerudok_observer.GObservable;
 import gerudok_observer.GObserver;
@@ -45,10 +47,24 @@ public class GNode implements MutableTreeNode, GObservable {
 		observerList.notifyObservers(GObserverNotification.ADD, child);
 	}
 	
-	public void addNewChild() {
-//		GNode child = new GNode("test1");
-//		child.parent = this;
-//		this.children.add(child);
+	public TreePath getPath() {
+		
+		TreeNode node = this;
+		
+		List<Object> nodes = new ArrayList<Object>();
+		nodes.add(node);
+		node = node.getParent();
+	      
+	      while (node != null) {
+	        nodes.add(0, node);
+	        node = node.getParent();
+	    }
+	
+	    return nodes.isEmpty() ? null : new TreePath(nodes.toArray());
+	}
+	
+	public GNode addNewChild() {
+		return null;
 	}
 
 	@Override

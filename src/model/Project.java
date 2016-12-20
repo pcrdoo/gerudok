@@ -18,8 +18,9 @@ public class Project extends GNode{
 	   super(name);
    }
    
-   public void addNewChild() {
+   public GNode addNewChild() {
 		Document child = new Document("Document"+this.getNewChildCount());
 		this.add(child);
+		return child;
    }
 }
