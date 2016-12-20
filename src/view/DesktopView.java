@@ -76,10 +76,11 @@ public class DesktopView extends JDesktopPane implements GObserver{
 	@Override
 	public void update(GObserverNotification notification, Object obj) {
 		if(notification == GObserverNotification.ADD) {
+			System.out.println("BRE");
 			Point p = new Point(20 + getAllFrames().length * 30, 20 + getAllFrames().length * 30);
 			ProjectView projectView = new ProjectView((Project)obj, p);
-			//projectViews.add(projectView);
 			add(projectView);
+            repaint();
 			try {
 				projectView.setSelected(true);
 			} catch (PropertyVetoException e) {

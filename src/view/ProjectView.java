@@ -36,6 +36,7 @@ public class ProjectView extends JInternalFrame implements GObserver {
 	   // Tabbed Pane
 	   documentTabs = new JTabbedPane();
 	   documentTabs.setAlignmentX(0.0f);
+	   add(documentTabs);
    }
 
 
@@ -52,12 +53,12 @@ public class ProjectView extends JInternalFrame implements GObserver {
 		if(notification == GObserverNotification.ADD) {
 			DocumentView documentView = new DocumentView((Document)obj);
 			documentTabs.addTab(documentView.getDocument().getName(), documentView);
-			documentTabs.repaint();
+			repaint();
 		} else if(notification == GObserverNotification.DELETE) {
 			int totalTabs = documentTabs.getTabCount();
 			for(int i = 0; i < totalTabs; i++)
 			{
-			   Component tab = documentTabs.getTabComponentAt(i);
+			   Component tab = documentTabs.getComponentAt(i);
 			   DocumentView documentView = (DocumentView)tab;
 			   if(documentView.getDocument() == (Document)obj) {
 				   documentTabs.remove(tab);
