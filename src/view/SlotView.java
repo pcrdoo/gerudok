@@ -6,16 +6,16 @@
 
 package view;
 
-import controler.SoltController;
+import controler.SlotController;
 import model.Slot;
 import java.util.*;
 
 /** @pdOid 9d5d961c-8484-4b1f-9204-c2daa677e3c3 */
-public class SoltView {
+public class SlotView {
    /** @pdRoleInfo migr=no name=ElementView assc=association8 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Composition */
    public java.util.Collection<ElementView> elementView;
    /** @pdRoleInfo migr=no name=SoltController assc=association9 mult=1..1 type=Composition */
-   public SoltController soltController;
+   public SlotController soltController;
    /** @pdRoleInfo migr=no name=Slot assc=association18 mult=1..1 */
    public Slot slot;
    

@@ -7,7 +7,11 @@
 package view;
 
 import controler.DesktopController;
+import gerudok_observer.GeRuDokObserver;
+import gerudok_observer.GeRuDokObserverNotification;
 import model.Model;
+import model.Project;
+import model.Workspace;
 
 import java.awt.Color;
 import java.util.*;
@@ -16,67 +20,31 @@ import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-/** @pdOid 1f8d9318-ae76-41ca-a08e-b8dddac09e76 */
-public class DesktopView extends JPanel{
-   /** @pdRoleInfo migr=no name=ProjectView assc=association9 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Composition */
-   public java.util.Collection<ProjectView> projectView;
-   /** @pdRoleInfo migr=no name=DesktopController assc=association5 mult=1..1 type=Composition */
-   public DesktopController desktopController;
-   /** @pdRoleInfo migr=no name=Model assc=association14 mult=1..1 */
-   public Model model;
+@SuppressWarnings("serial")
+public class DesktopView extends JDesktopPane implements GeRuDokObserver{
+  
+   private ArrayList<ProjectView> projectViews;
+   private DesktopController desktopController;
+   private Workspace workspace;
    
-   public DesktopView(Model model) {
-	   this.model = model;
-	   this.setBackground(Color.yellow);
-	   this.add(new JLabel("RADNi PROSTOR"));
-   }
-   /** @pdGenerated default getter */
-   public java.util.Collection<ProjectView> getProjectView() {
-      if (projectView == null)
-         projectView = new java.util.HashSet<ProjectView>();
-      return projectView;
-   }
-   
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorProjectView() {
-      if (projectView == null)
-         projectView = new java.util.HashSet<ProjectView>();
-      return projectView.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newProjectView */
-   public void setProjectView(java.util.Collection<ProjectView> newProjectView) {
-      removeAllProjectView();
-      for (java.util.Iterator iter = newProjectView.iterator(); iter.hasNext();)
-         addProjectView((ProjectView)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newProjectView */
-   public void addProjectView(ProjectView newProjectView) {
-      if (newProjectView == null)
-         return;
-      if (this.projectView == null)
-         this.projectView = new java.util.HashSet<ProjectView>();
-      if (!this.projectView.contains(newProjectView))
-         this.projectView.add(newProjectView);
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldProjectView */
-   public void removeProjectView(ProjectView oldProjectView) {
-      if (oldProjectView == null)
-         return;
-      if (this.projectView != null)
-         if (this.projectView.contains(oldProjectView))
-            this.projectView.remove(oldProjectView);
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllProjectView() {
-      if (projectView != null)
-         projectView.clear();
+   public DesktopView(Workspace workspace) {
+	   this.workspace = workspace;
+	   this.workspace.addObserver(this);
+	   this.setBackground(Color.CYAN);
+	   this.add(new JLabel("RADNI PROSTOR"));
+	   setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
+	   projectViews = new ArrayList<>();
    }
 
+	@Override
+	public void update(GeRuDokObserverNotification notification, Object obj) {
+		if(notification == GeRuDokObserverNotification.PROJECT_ADD) {
+			ProjectView projectView = new ProjectView((Project)obj);
+			projectViews.add(projectView);
+			add(projectView);
+			System.out.println("DODATO");
+		}
+	}
+   
+   
 }

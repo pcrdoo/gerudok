@@ -16,6 +16,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.*;
 
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -88,12 +89,19 @@ public class MainView extends JFrame implements Observer {
 		this.add(this.treeView, BorderLayout.LINE_START);
 		
 		// Add Desktop view
-		this.desktopView = new DesktopView(this.model);
+		this.desktopView = new DesktopView(this.model.getWorkspace());
 		this.add(this.desktopView, BorderLayout.CENTER);
 		
 		//this.add(panel);
 		
 		this.mainController = new MainController(this.model, this);
+		
+		System.out.println("KRECEM DA DODAJEM DJECU");
+		this.model.getWorkspace().addNewChild();
+
+		this.model.getWorkspace().addNewChild();
+
+		this.model.getWorkspace().addNewChild();
 	}
 	
 	@Override

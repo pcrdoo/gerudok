@@ -16,4 +16,9 @@ public class Model extends Observable {
 	public GTreeModel getTreeModel() {
 		return this.treeModel;
 	}
+	
+	public Workspace getWorkspace() {
+		return Workspace.getInstance();
+	}
+	
 }
