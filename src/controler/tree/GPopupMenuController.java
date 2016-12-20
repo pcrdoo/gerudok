@@ -32,7 +32,7 @@ public class GPopupMenuController {
 //			System.out.println(view);
 //			System.out.println(view.getSelectedNode());
 			view.getSelectedNode().addNewChild();
-			//model.getTreeModel().reload();
+			model.getTreeModel().reload();
 		}
 	}
 	
@@ -41,7 +41,9 @@ public class GPopupMenuController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			//TODO ovo dole ne radi
-			model.getTreeModel().removeNodeFromParent(view.getSelectedNode());
+			view.getSelectedNode().removeFromParent();
+			//model.getTreeModel().se
+			model.getTreeModel().reload();
 		}
 	}
 	

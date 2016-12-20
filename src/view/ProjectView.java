@@ -31,12 +31,13 @@ public class ProjectView extends JInternalFrame implements GObserver {
 	   this.project.addObserver(this);
 	   setSize(500, 400);
 	   setLocation(p);
-	   //setVisible(true);
+	   setVisible(true);
 	   
 	   // Tabbed Pane
 	   documentTabs = new JTabbedPane();
 	   documentTabs.setAlignmentX(0.0f);
    }
+
 
 	public Project getProject() {
 		return project;

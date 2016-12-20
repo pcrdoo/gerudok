@@ -27,13 +27,12 @@ public class GTreeCellRendered extends DefaultTreeCellRenderer{
 		
 		String iconPath;
 		
-		System.out.println(value.getClass());
 		
 		if(value instanceof Workspace) {
 			iconPath = "/res/workspace_icon.png";
 		} else if(value instanceof Project) {
 			iconPath = "/res/project_icon.png";
-		} else if(value instanceof Document) { System.out.println("AAA");
+		} else if(value instanceof Document) {
 			iconPath = "/res/document_icon.png";
 		} else if(value instanceof Page) {
 			iconPath = "/res/page_icon.png";

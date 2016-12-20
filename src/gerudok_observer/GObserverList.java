@@ -2,10 +2,10 @@ package gerudok_observer;
 
 import java.util.ArrayList;
 
-public class ObserverList {
+public class GObserverList {
 	private ArrayList<GObserver> observers;
 	
-	public ObserverList() {
+	public GObserverList() {
 		observers = new ArrayList<>();
 	}
 	

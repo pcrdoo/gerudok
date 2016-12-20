@@ -85,17 +85,16 @@ public class DesktopView extends JDesktopPane implements GObserver{
 			} catch (PropertyVetoException e) {
 				e.printStackTrace();
 			}
-			tileHorizontally();
-		} else if(notification == GObserverNotification.DELETE) {
-			for(JInternalFrame internalFrame : getAllFrames()) {
-				ProjectView projectView = (ProjectView)internalFrame;
-				if(projectView.getProject() == (Project)obj) {
-					remove(projectView);
-					repaint();
-					break;
-				}
-			}
-		}
+		}else if(notification == GObserverNotification.DELETE) {
+            for(JInternalFrame internalFrame : getAllFrames()) {
+                ProjectView projectView = (ProjectView)internalFrame;
+                if(projectView.getProject() == (Project)obj) {
+                    remove(projectView);
+                    repaint();
+                    break;
+                }
+            }
+        }
 	}
    
    

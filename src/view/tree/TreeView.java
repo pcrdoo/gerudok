@@ -47,16 +47,16 @@ public class TreeView extends JPanel{
 	   GNode root = Workspace.getInstance();
 	   
 	   //MOCK
-	   for(int i =0;i<5;i++) {
-		   GNode ngn = new GNode("mock_child_" + i); 
-		   root.add(ngn);
-	   }
+//	   for(int i =0;i<5;i++) {
+//		   GNode ngn = new GNode("mock_child_" + i); 
+//		   root.add(ngn);
+//	   }
 	   //
 	   
 	   this.treeModel = new GTreeModel();
 	   this.treeModel.setRoot(root);
 	   
-	   this.tree = new WorkspaceTree();
+	   this.tree = new WorkspaceTree(this.model);
 	   this.tree.setModel(treeModel);
 	   
 	   GTreeCellRendered gtcr = new GTreeCellRendered();

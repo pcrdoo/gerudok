@@ -10,22 +10,23 @@ import javax.swing.tree.TreeNode;
 import gerudok_observer.GObservable;
 import gerudok_observer.GObserver;
 import gerudok_observer.GObserverNotification;
-import gerudok_observer.ObserverList;
+import gerudok_observer.GObserverList;
+import model.Project;
 
 public class GNode implements MutableTreeNode, GObservable {
 	
 	private String name;
-	private GNode parent;
-	private ArrayList<GNode> children;
+	protected GNode parent;
+	protected ArrayList<GNode> children;
 	private int newChildCount;
-	protected ObserverList observerList;
+	protected GObserverList observerList;
 	
 	public GNode() {
 		this.setName(null);
 		this.parent = null;
 		this.children = new ArrayList<>();
 		this.newChildCount = 0;
-		this.observerList = new ObserverList();
+		this.observerList = new GObserverList();
 	}
 	
 	public GNode(String name) {
@@ -107,6 +108,7 @@ public class GNode implements MutableTreeNode, GObservable {
 	@Override
 	public void removeFromParent() {
 		this.parent.children.remove(this);
+		this.parent.observerList.notifyObservers(GObserverNotification.DELETE, this);
 	}
 
 	@Override

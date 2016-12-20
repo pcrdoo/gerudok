@@ -23,7 +23,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
-public class MainView extends JFrame implements Observer {
+public class MainView extends JFrame {
 	
 	private ToolBarView toolBarView;
 	private MenuBarView menuBarView;
@@ -69,7 +69,6 @@ public class MainView extends JFrame implements Observer {
 		
 		// Retrieves the model and subscribes to changes.
 		this.model = new Model();
-		this.model.addObserver(this);
 		
 		// Sets global layout properties.
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -122,14 +121,5 @@ public class MainView extends JFrame implements Observer {
 		this.mainController = new MainController(this.model, this);
 
 
-		
-		
-		
-
-	}
-	
-	@Override
-	public void update(Observable o, Object arg) {
-	// TODO Auto-generated method stub
 	}
 }
