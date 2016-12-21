@@ -7,9 +7,13 @@
 package controler;
 
 import model.Model;
+import view.DocumentView;
 import view.ProjectView;
 import java.util.*;
 
+import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 
@@ -22,6 +26,18 @@ public class ProjectController {
 		this.model = model;
 		this.projectView = view;
 		projectView.attachFrameListener(new FrameListener());
+		projectView.attachTabChangeListener(new TabChangeListener());
+	}
+	      
+	class TabChangeListener implements ChangeListener {
+		@Override
+		public void stateChanged(ChangeEvent e) {
+	          JTabbedPane sourceTabbedPane = (JTabbedPane) e.getSource();
+	          DocumentView documentView = (DocumentView)sourceTabbedPane.getSelectedComponent();
+	          System.out.println("iz desktopa selektovan dokument");
+	          model.doTreeSelection(documentView.getDocument());
+		}
+		
 	}
 	
 	class FrameListener implements InternalFrameListener {
@@ -34,7 +50,6 @@ public class ProjectController {
 		@Override
 		public void internalFrameClosed(InternalFrameEvent e) {
 			// TODO Auto-generated method stub
-			
 		}
 
 		@Override

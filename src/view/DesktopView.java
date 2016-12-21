@@ -35,8 +35,8 @@ public class DesktopView extends JDesktopPane implements GObserver{
    
    public DesktopView(Model model) {
 	   this.model = model;
-	   this.workspace = this.model.getWorkspace();
 	   this.model.addObserver(this);
+	   this.workspace = this.model.getWorkspace();
 	   this.workspace.addObserver(this);
 	   this.setBackground(Color.CYAN);
 	   this.add(new JLabel("RADNI PROSTOR"));
@@ -47,6 +47,7 @@ public class DesktopView extends JDesktopPane implements GObserver{
    }
    
    public void cascade() {
+	   // TODO: pozvati ovu funkciju bar nekad
 	   int sz = getAllFrames().length;
 	   for(int i = 0; i < sz; i++) {
 		   getAllFrames()[i].setLocation(20 + i * 30, 20 + i * 30);
@@ -54,13 +55,13 @@ public class DesktopView extends JDesktopPane implements GObserver{
 		   try {
 			  getAllFrames()[i].setSelected(true);
 		} catch (PropertyVetoException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	   }
    }
    
    public void tileVertically() {
+	   // TODO: pozvati ovu funkciju bar nekad
 	   Dimension d = getSize();
 	   int sz = getAllFrames().length;
 	   int unitHeight = (int)(d.getHeight() / sz);
@@ -71,6 +72,7 @@ public class DesktopView extends JDesktopPane implements GObserver{
    }
    
    public void tileHorizontally() {
+	   // TODO: pozvati ovu funkciju bar nekad
 	   Dimension d = getSize();
 	   int sz = getAllFrames().length;
 	   int unitWidth = (int)(d.getWidth() / sz);

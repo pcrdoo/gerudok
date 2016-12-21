@@ -30,6 +30,7 @@ public class DocumentView extends JPanel implements GObserver {
    
    public DocumentView(Model model, Document document) {
 	   this.model = model;
+	   this.model.addObserver(this);
 	   this.setDocument(document);
 	   this.document.addObserver(this);
 	   this.setBackground(Color.GREEN);

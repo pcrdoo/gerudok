@@ -20,6 +20,7 @@ import java.util.*;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.InternalFrameListener;
 
 public class ProjectView extends JInternalFrame implements GObserver {
@@ -31,6 +32,7 @@ public class ProjectView extends JInternalFrame implements GObserver {
 	public ProjectView(Model model, Project project, Point p) {
 		super(project.getName(), true, false, true, true);
 		this.model = model;
+		this.model.addObserver(this);
 		this.setProject(project);
 		this.project.addObserver(this);
 		setSize(500, 400);
@@ -98,5 +100,9 @@ public class ProjectView extends JInternalFrame implements GObserver {
 
 	public void attachFrameListener(InternalFrameListener frameListener) {
 		this.addInternalFrameListener(frameListener);
+	}
+	
+	public void attachTabChangeListener(ChangeListener tabChangeListener) {
+		this.documentTabs.addChangeListener(tabChangeListener);
 	}
 }
