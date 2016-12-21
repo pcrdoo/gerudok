@@ -35,6 +35,10 @@ public class Model implements GObservable{
 	public void treeSelectionChanged(GNode node) {
 		this.observerList.notifyObservers(GObserverNotification.SELECT_NODE, node);
 	}
+	
+	public void doProjectClose(GNode node) {
+		this.observerList.notifyObservers(GObserverNotification.PROJECT_CLOSE, node);
+	}
 
 	@Override
 	public void addObserver(GObserver obs) {

@@ -27,10 +27,6 @@ public class GPopupMenuController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-//			System.out.println(model);
-//			System.out.println(model.getTreeModel());
-//			System.out.println(view);
-//			System.out.println(view.getSelectedNode());
 			GNode newNode = view.getSelectedNode().addNewChild();
 			model.getTreeModel().reload();
 			model.treeSelectionChanged(newNode);
@@ -41,9 +37,7 @@ public class GPopupMenuController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//TODO ovo dole ne radi
 			view.getSelectedNode().removeFromParent();
-			//model.getTreeModel().se
 			model.getTreeModel().reload();
 		}
 	}
@@ -63,6 +57,14 @@ public class GPopupMenuController {
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			
+		}
+	}
+	
+	class CloseListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			model.doProjectClose(view.getSelectedNode());
 		}
 	}
 }

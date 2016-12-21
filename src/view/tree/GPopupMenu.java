@@ -1,12 +1,21 @@
 package view.tree;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
 import controler.tree.GPopupMenuController;
+import model.Document;
+import model.Element;
 import model.Model;
+import model.Page;
+import model.Project;
+import model.Slot;
 import model.Workspace;
 import model.tree.GNode;
 
@@ -19,22 +28,15 @@ public class GPopupMenu extends JPopupMenu {
 	JMenuItem delete;
 	JMenuItem rename;
 	JMenuItem switchWorkspace;
+	JMenuItem close;
+	HashMap<Class, List<JMenuItem>> menuItems;
 	
 	public GPopupMenu(Model model, GNode node) {
 		super();
 		this.model = model;
 		this.node = node;
+		
 		this.initialize();
-		
-		if(node instanceof Workspace) {
-			this.initWorkSpace();
-		} else if(node instanceof GNode) {
-			this.initOther();
-		} else {
-			//TODO
-			System.err.println("OgiException: Unknown node type in tree");
-		}
-		
 		this.controller = new GPopupMenuController(this.model, this);
 	}
 	
@@ -44,17 +46,25 @@ public class GPopupMenu extends JPopupMenu {
 		this.delete = new JMenuItem("Delete");
 		this.rename = new JMenuItem("Rename");
 		this.switchWorkspace = new JMenuItem("Switch Workspace");
-	}
-	
-	private void initOther() {
-		this.add(this.addNew);
-		this.add(this.delete);
-		this.add(this.rename);
-	}
-	
-	private void initWorkSpace() {
-		this.add(this.addNew);
-		this.add(this.switchWorkspace);
+		this.close = new JMenuItem("Close");
+		
+		this.menuItems = new HashMap<Class, List<JMenuItem>>(){{
+
+			put(Workspace.class, Arrays.asList(addNew, delete, rename, switchWorkspace));
+			put(Project.class, Arrays.asList(addNew, delete, rename, close));
+			put(Document.class, Arrays.asList(addNew, delete, rename));
+			put(Page.class, Arrays.asList(addNew, delete, rename));
+			put(Slot.class, Arrays.asList(addNew, delete, rename));
+			put(Element.class, Arrays.asList(addNew, delete, rename));
+			
+			}};
+		
+		if(this.menuItems.containsKey(node.getClass())) {
+			for(JMenuItem item : this.menuItems.get(node.getClass()))
+				this.add(item);
+		} else {
+			System.err.println("OgiException: Unknown node type in tree");
+		}
 	}
 	
 	public GNode getSelectedNode() {
@@ -72,8 +82,12 @@ public class GPopupMenu extends JPopupMenu {
 	public void setRenameListener(ActionListener l) {
 		this.rename.addActionListener(l);
 	}
-	
+
 	public void setSwitchWorkspaceListener(ActionListener l) {
 		this.switchWorkspace.addActionListener(l);
+	}
+	
+	public void setCloseListener(ActionListener l) {
+		this.close.addActionListener(l);
 	}
 }
