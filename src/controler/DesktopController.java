@@ -10,11 +10,11 @@ import model.Model;
 import view.DesktopView;
 import java.util.*;
 
-/** @pdOid 74a00726-f117-44b6-b1d3-d04b394308c2 */
-public class DesktopController {
-   /** @pdRoleInfo migr=no name=Model assc=association15 mult=1..1 */
-   public Model model;
-   /** @pdRoleInfo migr=no name=DesktopView assc=association5 mult=1..1 side=A */
-   public DesktopView desktopView;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.TreePath;
 
+public class DesktopController {
+   private Model model;
+   private DesktopView desktopView;
 }

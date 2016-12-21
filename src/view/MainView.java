@@ -111,7 +111,7 @@ public class MainView extends JFrame {
 		this.add(this.treeView, BorderLayout.LINE_START);
 		
 		// Add Desktop view
-		this.desktopView = new DesktopView(this.model.getWorkspace());
+		this.desktopView = new DesktopView(this.model);
 		this.add(this.desktopView, BorderLayout.CENTER);
 		
 		//this.add(panel);

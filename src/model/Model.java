@@ -3,6 +3,8 @@ package model;
 
 import java.util.*;
 
+import javax.swing.tree.TreePath;
+
 import gerudok_observer.GObservable;
 import gerudok_observer.GObserver;
 import gerudok_observer.GObserverList;
@@ -31,9 +33,9 @@ public class Model implements GObservable{
 		return Workspace.getInstance();
 	}
 	
-	
-	public void treeSelectionChanged(GNode node) {
-		this.observerList.notifyObservers(GObserverNotification.SELECT_NODE, node);
+	// Desktop -> Tree
+	public void doTreeSelection(GNode node) {
+		this.observerList.notifyObservers(GObserverNotification.TREE_SELECT, node);
 	}
 	
 	public void doProjectClose(GNode node) {
@@ -43,6 +45,11 @@ public class Model implements GObservable{
 	@Override
 	public void addObserver(GObserver obs) {
 		this.observerList.addObserver(obs);
+	}
+
+	// Tree -> Desktop
+	public void doDesktopSelection(TreePath path) {
+		this.observerList.notifyObservers(GObserverNotification.DESKTOP_SELECT, path);
 	}
 	
 }

@@ -53,6 +53,9 @@ public class TreeView extends JPanel{
 //	   }
 	   //
 	   
+	   this.setPreferredSize(new Dimension(300, 800));
+	   
+	   
 	   this.treeModel = new GTreeModel();
 	   this.treeModel.setRoot(root);
 	   

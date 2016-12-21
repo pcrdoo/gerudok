@@ -29,7 +29,7 @@ public class GPopupMenuController {
 		public void actionPerformed(ActionEvent e) {
 			GNode newNode = view.getSelectedNode().addNewChild();
 			model.getTreeModel().reload();
-			model.treeSelectionChanged(newNode);
+			model.doTreeSelection(newNode);
 		}
 	}
 	

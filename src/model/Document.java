@@ -18,7 +18,7 @@ public class Document extends GNode{
 	}
    
    public GNode addNewChild() {
-		Page child = new Page("Page"+this.getNewChildCount());;
+		Page child = new Page("Page"+this.getNewChildCount());
 		this.add(child);
 		return child;
    }

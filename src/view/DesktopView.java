@@ -23,6 +23,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.tree.TreePath;
 
 @SuppressWarnings("serial")
 public class DesktopView extends JDesktopPane implements GObserver{
@@ -30,13 +31,19 @@ public class DesktopView extends JDesktopPane implements GObserver{
    //private ArrayList<ProjectView> projectViews;
    private DesktopController desktopController;
    private Workspace workspace;
+   private Model model;
    
-   public DesktopView(Workspace workspace) {
-	   this.workspace = workspace;
+   public DesktopView(Model model) {
+	   this.model = model;
+	   this.workspace = this.model.getWorkspace();
+	   this.model.addObserver(this);
 	   this.workspace.addObserver(this);
 	   this.setBackground(Color.CYAN);
 	   this.add(new JLabel("RADNI PROSTOR"));
 	   setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
+	   
+	   // Listener
+	   
    }
    
    public void cascade() {
@@ -76,9 +83,8 @@ public class DesktopView extends JDesktopPane implements GObserver{
 	@Override
 	public void update(GObserverNotification notification, Object obj) {
 		if(notification == GObserverNotification.ADD) {
-			System.out.println("BRE");
 			Point p = new Point(20 + getAllFrames().length * 30, 20 + getAllFrames().length * 30);
-			ProjectView projectView = new ProjectView((Project)obj, p);
+			ProjectView projectView = new ProjectView(model, (Project)obj, p);
 			add(projectView);
             repaint();
 			try {
@@ -87,15 +93,42 @@ public class DesktopView extends JDesktopPane implements GObserver{
 				e.printStackTrace();
 			}
 		}else if(notification == GObserverNotification.DELETE) {
-            for(JInternalFrame internalFrame : getAllFrames()) {
-                ProjectView projectView = (ProjectView)internalFrame;
-                if(projectView.getProject() == (Project)obj) {
-                    remove(projectView);
-                    repaint();
-                    break;
-                }
+			ProjectView projectView = findProjectView((Project)obj);
+			try {
+				remove(projectView);
+				repaint();
+			} catch(NullPointerException e) {
+				e.printStackTrace();
+			}
+        } else if(notification == GObserverNotification.DESKTOP_SELECT) {
+        	Object[] path = ((TreePath)obj).getPath();
+        	updateSelection(path, 1);
+        }
+	}
+
+	private void updateSelection(Object[] path, int idx) {
+		// I am a workspace, I contain projects, idx = 1
+		if(path.length > idx) {
+			ProjectView projectView = findProjectView((Project)path[idx]);
+			try {
+				projectView.setSelected(true);
+				projectView.updateSelection(path, idx + 1);
+			} catch(NullPointerException e) {
+				e.printStackTrace();
+			} catch (PropertyVetoException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private ProjectView findProjectView(Project project) {
+        for(JInternalFrame internalFrame : getAllFrames()) {
+            ProjectView projectView = (ProjectView)internalFrame;
+            if(projectView.getProject() == project) {
+                return projectView;
             }
         }
+        return null;
 	}
    
    

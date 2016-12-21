@@ -5,26 +5,21 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 
+import controler.TreeListener;
 import gerudok_observer.GObserver;
 import gerudok_observer.GObserverNotification;
 import model.Model;
 import model.tree.GNode;
 import model.tree.GTreeModel;
 
-public class WorkspaceTree extends JTree implements TreeSelectionListener, GObserver{
+public class WorkspaceTree extends JTree implements GObserver{
 	
 	Model model;
 	
 	public WorkspaceTree(Model model) {
-		addTreeSelectionListener(this);
 		this.model = model;
 		this.model.addObserver(this);
-	}
-	
-	@Override
-	public void valueChanged(TreeSelectionEvent e) {
-		//System.out.println(e.getPath());
-		//this.setSelectionPath(e.getPath());
+		addTreeSelectionListener(new TreeListener(model));
 	}
 	
 	public void addGNode(GNode node){
@@ -39,7 +34,7 @@ public class WorkspaceTree extends JTree implements TreeSelectionListener, GObse
 	@Override
 	public void update(GObserverNotification notification, Object obj) {
 		switch(notification) {
-		case SELECT_NODE:
+		case TREE_SELECT:
 			this.setExpandedState(((GNode)obj).getPath(), true);
 			this.setSelectionPath(((GNode)obj).getPath());
 		}
