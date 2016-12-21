@@ -4,7 +4,7 @@
  * Purpose: Defines the Class MainController
  ***********************************************************************/
 
-package controler;
+package controller;
 
 import model.Model;
 import view.MainView;

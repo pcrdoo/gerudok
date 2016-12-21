@@ -4,7 +4,7 @@
  * Purpose: Defines the Class ToolBarControler
  ***********************************************************************/
 
-package controler;
+package controller;
 
 import model.Model;
 import view.ToolBarView;

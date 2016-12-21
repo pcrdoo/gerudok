@@ -6,7 +6,6 @@
 
 package view;
 
-import controler.DocumentController;
 import gerudok_observer.GObserver;
 import gerudok_observer.GObserverNotification;
 import model.Document;
@@ -21,6 +20,8 @@ import java.beans.PropertyVetoException;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import controller.DocumentController;
 
 @SuppressWarnings("serial")
 public class DocumentView extends JPanel implements GObserver {

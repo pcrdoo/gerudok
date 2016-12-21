@@ -12,7 +12,7 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import controler.tree.GTreeCellEditorController;
+import controller.tree.GTreeCellEditorController;
 import model.tree.GNode;
 
 public class GTreeCellEditor extends DefaultTreeCellEditor{

@@ -4,7 +4,7 @@
  * Purpose: Defines the Class TreeController
  ***********************************************************************/
 
-package controler.tree;
+package controller.tree;
 
 import model.Model;
 import model.tree.GNode;

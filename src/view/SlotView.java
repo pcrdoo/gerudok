@@ -6,9 +6,10 @@
 
 package view;
 
-import controler.SlotController;
 import model.Slot;
 import java.util.*;
+
+import controller.SlotController;
 
 /** @pdOid 9d5d961c-8484-4b1f-9204-c2daa677e3c3 */
 public class SlotView {

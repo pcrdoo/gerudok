@@ -6,9 +6,10 @@
 
 package view;
 
-import controler.ElementController;
 import model.Element;
 import java.util.*;
+
+import controller.ElementController;
 
 /** @pdOid 7de39cf0-3021-4c7e-a79b-bd085f44937d */
 public class ElementView {

@@ -6,7 +6,7 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.TreePath;
 
-import controler.TreeListener;
+import controller.TreeListener;
 import gerudok_observer.GObserver;
 import gerudok_observer.GObserverNotification;
 import model.Model;

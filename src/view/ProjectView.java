@@ -6,7 +6,6 @@
 
 package view;
 
-import controler.ProjectController;
 import gerudok_observer.GObserver;
 import gerudok_observer.GObserverNotification;
 import model.Document;
@@ -22,6 +21,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.InternalFrameListener;
+
+import controller.ProjectController;
 
 public class ProjectView extends JInternalFrame implements GObserver {
 	private ProjectController projectController;

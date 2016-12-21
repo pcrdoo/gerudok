@@ -1,4 +1,4 @@
-package controler;
+package controller;
 
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;

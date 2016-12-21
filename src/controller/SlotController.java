@@ -4,7 +4,7 @@
  * Purpose: Defines the Class SoltController
  ***********************************************************************/
 
-package controler;
+package controller;
 
 import model.Model;
 import view.SlotView;

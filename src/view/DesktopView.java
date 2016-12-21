@@ -6,7 +6,6 @@
 
 package view;
 
-import controler.DesktopController;
 import gerudok_observer.GObserver;
 import gerudok_observer.GObserverNotification;
 import model.Model;
@@ -24,6 +23,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.tree.TreePath;
+
+import controller.DesktopController;
 
 @SuppressWarnings("serial")
 public class DesktopView extends JDesktopPane implements GObserver{

@@ -4,7 +4,7 @@
  * Purpose: Defines the Class DesktopController
  ***********************************************************************/
 
-package controler;
+package controller;
 
 import model.Model;
 import view.DesktopView;

@@ -1,4 +1,4 @@
-package controler.tree;
+package controller.tree;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -6,9 +6,10 @@
 
 package view;
 
-import controler.PageController;
 import model.Page;
 import java.util.*;
+
+import controller.PageController;
 
 /** @pdOid 5edaadb8-f0ba-42a2-8a9c-9fb37d8b725a */
 public class PageView {

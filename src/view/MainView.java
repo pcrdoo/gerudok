@@ -6,7 +6,6 @@
 
 package view;
 
-import controler.MainController;
 import model.Model;
 import view.tree.TreeView;
 
@@ -22,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
+
+import controller.MainController;
 
 public class MainView extends JFrame {
 	

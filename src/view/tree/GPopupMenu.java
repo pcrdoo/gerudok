@@ -9,7 +9,7 @@ import java.util.List;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
-import controler.tree.GPopupMenuController;
+import controller.tree.GPopupMenuController;
 import model.Document;
 import model.Element;
 import model.Model;

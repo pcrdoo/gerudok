@@ -4,7 +4,7 @@
  * Purpose: Defines the Class DocumentController
  ***********************************************************************/
 
-package controler;
+package controller;
 
 import model.Model;
 import view.DocumentView;

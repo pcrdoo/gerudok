@@ -27,7 +27,7 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
-import controler.tree.TreeController;
+import controller.tree.TreeController;
 
 public class TreeView extends JPanel{
 	

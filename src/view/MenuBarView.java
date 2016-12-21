@@ -6,11 +6,12 @@
 
 package view;
 
-import controler.MenuBarController;
 import model.Model;
 import java.util.*;
 
 import javax.swing.JMenuBar;
+
+import controller.MenuBarController;
 
 /** @pdOid 90d49140-4eb5-4916-b044-c9f452fdd3a2 */
 public class MenuBarView extends JMenuBar{
