@@ -27,6 +27,7 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
+import constants.Constants;
 import controller.tree.TreeController;
 
 public class TreeView extends JPanel{
@@ -53,8 +54,7 @@ public class TreeView extends JPanel{
 //	   }
 	   //
 	   
-	   this.setPreferredSize(new Dimension(300, 800));
-	   
+	   this.setPreferredSize(Constants.TREE_SIZE);
 	   
 	   this.treeModel = new GTreeModel();
 	   this.treeModel.setRoot(root);

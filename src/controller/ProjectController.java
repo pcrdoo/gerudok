@@ -35,7 +35,9 @@ public class ProjectController {
 	          JTabbedPane sourceTabbedPane = (JTabbedPane) e.getSource();
 	          DocumentView documentView = (DocumentView)sourceTabbedPane.getSelectedComponent();
 	          System.out.println("iz desktopa selektovan dokument");
-	          model.doTreeSelection(documentView.getDocument());
+	          if(documentView != null) {
+	        	  model.doTreeSelection(documentView.getDocument());
+	          }
 		}
 		
 	}

@@ -22,6 +22,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.InternalFrameListener;
 
+import constants.Constants;
 import controller.ProjectController;
 
 public class ProjectView extends JInternalFrame implements GObserver {
@@ -29,14 +30,14 @@ public class ProjectView extends JInternalFrame implements GObserver {
 	private Project project;
 	private JTabbedPane documentTabs;
 	private Model model;
-	
+
 	public ProjectView(Model model, Project project, Point p) {
 		super(project.getName(), true, false, true, true);
 		this.model = model;
 		this.model.addObserver(this);
 		this.setProject(project);
 		this.project.addObserver(this);
-		setSize(500, 400);
+		setSize(Constants.INTERNAL_FRAME_SIZE);
 		setLocation(p);
 		setVisible(true);
 
@@ -44,7 +45,7 @@ public class ProjectView extends JInternalFrame implements GObserver {
 		documentTabs = new JTabbedPane();
 		documentTabs.setAlignmentX(0.0f);
 		add(documentTabs);
-		
+
 		// Listener
 		projectController = new ProjectController(model, this);
 	}
@@ -71,25 +72,25 @@ public class ProjectView extends JInternalFrame implements GObserver {
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
-		} else if(notification == GObserverNotification.PROJECT_CLOSE) {
+		} else if (notification == GObserverNotification.PROJECT_CLOSE) {
 			try {
 				this.setIcon(true);
 			} catch (PropertyVetoException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if(notification == GObserverNotification.PROJECT_OPEN) {
+		} else if (notification == GObserverNotification.PROJECT_OPEN) {
 			try {
 				this.setIcon(false);
 			} catch (PropertyVetoException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if(notification == GObserverNotification.GNODE_RENAME) {
-			if(obj instanceof Project) {
+		} else if (notification == GObserverNotification.GNODE_RENAME) {
+			if (obj instanceof Project) {
 				this.setTitle(this.getProject().getName());
-			} else if(obj instanceof Document) { 
-				Document document = (Document)obj;
+			} else if (obj instanceof Document) {
+				Document document = (Document) obj;
 				Component c = findDocumentTab(document);
 				c.setName(document.getName());
 			}
@@ -98,10 +99,12 @@ public class ProjectView extends JInternalFrame implements GObserver {
 
 	public void updateSelection(Object[] path, int idx) {
 		if (path.length > idx) {
-			Component tab = findDocumentTab((Document)path[idx]);
+			Component tab = findDocumentTab((Document) path[idx]);
+			if (tab == null)
+				return;
 			try {
 				documentTabs.setSelectedComponent(tab);
-				((DocumentView)tab).updateSelection(path, idx + 1);
+				((DocumentView) tab).updateSelection(path, idx + 1);
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
@@ -112,9 +115,11 @@ public class ProjectView extends JInternalFrame implements GObserver {
 		int totalTabs = documentTabs.getTabCount();
 		for (int i = 0; i < totalTabs; i++) {
 			Component tab = documentTabs.getComponentAt(i);
-			DocumentView documentView = (DocumentView) tab;
-			if (documentView.getDocument() == document) {
-				return tab;
+			if (tab instanceof DocumentView) {
+				DocumentView documentView = (DocumentView) tab;
+				if (documentView.getDocument() == document) {
+					return tab;
+				}
 			}
 			// other stuff
 		}
@@ -124,7 +129,7 @@ public class ProjectView extends JInternalFrame implements GObserver {
 	public void attachFrameListener(InternalFrameListener frameListener) {
 		this.addInternalFrameListener(frameListener);
 	}
-	
+
 	public void attachTabChangeListener(ChangeListener tabChangeListener) {
 		this.documentTabs.addChangeListener(tabChangeListener);
 	}

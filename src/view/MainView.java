@@ -22,6 +22,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import constants.Constants;
 import controller.MainController;
 
 public class MainView extends JFrame {
@@ -79,7 +80,7 @@ public class MainView extends JFrame {
 		
 		//this.setSize(500, 500);
 
-		this.setSize(1500, 800);
+		this.setSize(Constants.WINDOW_SIZE);
 		
 		//this.setUndecorated(false);		
 	    this.setLocationRelativeTo(null);
