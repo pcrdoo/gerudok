@@ -46,12 +46,12 @@ public class GPopupMenu extends JPopupMenu {
 		this.delete = new JMenuItem("Delete");
 		this.rename = new JMenuItem("Rename");
 		this.switchWorkspace = new JMenuItem("Switch Workspace");
-		this.close = new JMenuItem("Close");
+		this.close = new JMenuItem(this.node instanceof Project && ((Project)this.node).isOpened() ? "Close" : "Open");
 		
 		this.menuItems = new HashMap<Class, List<JMenuItem>>(){{
 
-			put(Workspace.class, Arrays.asList(addNew, delete, rename, switchWorkspace));
-			put(Project.class, Arrays.asList(addNew, delete, rename, close));
+			put(Workspace.class, Arrays.asList(addNew, rename, switchWorkspace));
+			put(Project.class, node.getClass() == Project.class && ((Project)node).isOpened() ? Arrays.asList(addNew, delete, rename, close) : Arrays.asList(delete, close));
 			put(Document.class, Arrays.asList(addNew, delete, rename));
 			put(Page.class, Arrays.asList(addNew, delete, rename));
 			put(Slot.class, Arrays.asList(addNew, delete, rename));

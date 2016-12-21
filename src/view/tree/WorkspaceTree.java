@@ -4,11 +4,13 @@ import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.TreePath;
 
 import controler.TreeListener;
 import gerudok_observer.GObserver;
 import gerudok_observer.GObserverNotification;
 import model.Model;
+import model.Project;
 import model.tree.GNode;
 import model.tree.GTreeModel;
 
@@ -21,14 +23,13 @@ public class WorkspaceTree extends JTree implements GObserver{
 		this.model.addObserver(this);
 		addTreeSelectionListener(new TreeListener(model));
 	}
-	
-	public void addGNode(GNode node){
-		((GTreeModel)getModel()).addGNode(node);
-		SwingUtilities.updateComponentTreeUI(this);
-	}
-	
-	public void refresh() {
-		SwingUtilities.updateComponentTreeUI(this);
+
+	protected void setExpandedState(TreePath path, boolean state) {
+		Object o = path.getLastPathComponent();
+		if(o instanceof Project && !((Project)o).isOpened()) {
+			
+		} else
+			super.setExpandedState(path, state);
 	}
 
 	@Override

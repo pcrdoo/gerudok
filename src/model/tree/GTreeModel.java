@@ -12,12 +12,4 @@ public class GTreeModel extends DefaultTreeModel{
 		super(Workspace.getInstance());
 		// TODO
 	}
-	
-	public void add(GNode parent, GNode child) {
-		//TODO a mozda is ne
-	}
-	
-	public void addGNode(GNode node) {
-		((GNode)this.getRoot()).add(node);
-	}
 }

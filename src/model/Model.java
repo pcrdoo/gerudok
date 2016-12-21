@@ -35,11 +35,8 @@ public class Model implements GObservable{
 	
 	// Desktop -> Tree
 	public void doTreeSelection(GNode node) {
+		//TODO pitati Davida da presudi dal ovo da bude genericka funkcija
 		this.observerList.notifyObservers(GObserverNotification.TREE_SELECT, node);
-	}
-	
-	public void doProjectClose(GNode node) {
-		this.observerList.notifyObservers(GObserverNotification.PROJECT_CLOSE, node);
 	}
 
 	@Override
