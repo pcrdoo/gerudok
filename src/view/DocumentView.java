@@ -27,6 +27,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeListener;
@@ -92,14 +94,29 @@ public class DocumentView extends JPanel implements GObserver {
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
+		} else if (notification == GObserverNotification.GNODE_RENAME) {
+			JTabbedPane documentTabs = (JTabbedPane)SwingUtilities.getAncestorOfClass(JTabbedPane.class, this);
+			for(int i = 0; i < documentTabs.getTabCount(); i++) {
+			    if(documentTabs.getComponentAt(i) == this) {
+			    	documentTabs.setTitleAt(i, this.getDocument().getName());
+			    }
+			}
 		}
-		// Projekti i Dokumenti se renamuju iz ProjectView
-		// a Pagevi iz PageView, pa ne treba ovde rename
 	}
 
-	public void updateSelection(Object[] path, int i) {
-		// TODO Auto-generated method stub
-
+	public void updateSelection(Object[] path, int idx) {
+		if (path.length > idx) {
+			PageView pageView = findPage((Page) path[idx]);
+			if (pageView == null)
+				return;
+			try {
+				// TODO: Tree -> Model selekcija dokumenata - popraviti
+				pageView.scrollRectToVisible(pageView.getBounds());
+			    System.out.println("LOKACIJA " + pageView.getLocation());
+			} catch (NullPointerException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private PageView findPage(Page page) {
@@ -113,6 +130,8 @@ public class DocumentView extends JPanel implements GObserver {
 		}
 		return null;
 	}
+	
+	// TODO: Model -> Tree selekcija dokumenata implementirati (posle se prelazi na Page, ceo Document je gotov)
 
 	/*
 	 * public void updateSelection(Object[] path, int idx) { if (path.length >

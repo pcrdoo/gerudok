@@ -49,8 +49,4 @@ public class Model implements GObservable{
 		this.observerList.notifyObservers(GObserverNotification.DESKTOP_SELECT, path);
 	}
 	
-	public void doNodeRename(GNode node) {
-		this.observerList.notifyObservers(GObserverNotification.GNODE_RENAME, node);
-	}
-	
 }

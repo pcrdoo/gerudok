@@ -99,8 +99,11 @@ public class DesktopView extends JDesktopPane implements GObserver {
 		} else if (notification == GObserverNotification.DELETE) {
 			ProjectView projectView = findProjectView((Project) obj);
 			try {
+				System.out.println(this.getAllFrames().length);
+				System.out.println("NASAO");
 				remove(projectView);
 				repaint();
+				System.out.println(this.getAllFrames().length);
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}

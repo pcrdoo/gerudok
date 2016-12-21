@@ -65,9 +65,9 @@ public class ProjectView extends JInternalFrame implements GObserver {
 			documentTabs.addTab(documentView.getDocument().getName(), documentView);
 			repaint();
 		} else if (notification == GObserverNotification.DELETE) {
-			Component tab = findDocumentTab((Document) obj);
+			DocumentView documentView = findDocumentTab((Document) obj);
 			try {
-				documentTabs.remove(tab);
+				documentTabs.remove(documentView);
 				repaint();
 			} catch (NullPointerException e) {
 				e.printStackTrace();
@@ -87,38 +87,34 @@ public class ProjectView extends JInternalFrame implements GObserver {
 				e.printStackTrace();
 			}
 		} else if (notification == GObserverNotification.GNODE_RENAME) {
-			if (obj instanceof Project) {
 				this.setTitle(this.getProject().getName());
-			} else if (obj instanceof Document) {
-				Document document = (Document) obj;
-				Component c = findDocumentTab(document);
-				c.setName(document.getName());
-			}
 		}
 	}
 
 	public void updateSelection(Object[] path, int idx) {
 		if (path.length > idx) {
-			Component tab = findDocumentTab((Document) path[idx]);
-			if (tab == null)
+			DocumentView documentView = findDocumentTab((Document) path[idx]);
+			if (documentView == null)
 				return;
 			try {
-				documentTabs.setSelectedComponent(tab);
-				((DocumentView) tab).updateSelection(path, idx + 1);
+				documentTabs.setSelectedComponent(documentView);
+				documentView.updateSelection(path, idx + 1);
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
 		}
 	}
 
-	private Component findDocumentTab(Document document) {
+	private DocumentView findDocumentTab(Document document) {
+		System.out.println("trazimo ime " + document.getName());
 		int totalTabs = documentTabs.getTabCount();
 		for (int i = 0; i < totalTabs; i++) {
 			Component tab = documentTabs.getComponentAt(i);
 			if (tab instanceof DocumentView) {
 				DocumentView documentView = (DocumentView) tab;
+				System.out.println("trenutno ime " + documentView.getDocument().getName());
 				if (documentView.getDocument() == document) {
-					return tab;
+					return documentView;
 				}
 			}
 			// other stuff

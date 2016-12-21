@@ -33,7 +33,6 @@ public class GTreeCellEditorController {
 		@Override
 		public void focusLost(FocusEvent e) {
 			view.getNode().setName(view.getNameText());
-			model.doNodeRename(view.getNode());
 		}
 	}
 }

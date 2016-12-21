@@ -24,11 +24,11 @@ public class GNode implements MutableTreeNode, GObservable {
 	protected GObserverList observerList;
 	
 	public GNode() {
-		this.setName(null);
 		this.parent = null;
 		this.children = new ArrayList<>();
 		this.newChildCount = 0;
 		this.observerList = new GObserverList();
+		this.setName(null);
 	}
 	
 	public GNode(String name) {
@@ -125,6 +125,7 @@ public class GNode implements MutableTreeNode, GObservable {
 	public void removeFromParent() {
 		this.parent.children.remove(this);
 		this.parent.observerList.notifyObservers(GObserverNotification.DELETE, this);
+		System.out.println("Obrisi mene " + this.getName());
 	}
 
 	@Override
@@ -149,9 +150,11 @@ public class GNode implements MutableTreeNode, GObservable {
 
 	public void setName(String name) {
 		this.name = name;
+		this.observerList.notifyObservers(GObserverNotification.GNODE_RENAME, this);
 	}
 
 	protected int getNewChildCount() {
 		return this.newChildCount++;
 	}
+	
 }
