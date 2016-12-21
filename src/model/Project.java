@@ -23,4 +23,9 @@ public class Project extends GNode{
 		this.add(child);
 		return child;
    }
+
+   public void setOpened(boolean b) {
+		// TODO Auto-generated method stub
+	
+	}
 }

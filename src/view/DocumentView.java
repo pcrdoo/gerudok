@@ -73,7 +73,7 @@ public class DocumentView extends JPanel implements GObserver {
 
 	@Override
 	public void update(GObserverNotification notification, Object obj) {
-		// TODO
+		// TODO 
 	}
 
 	public void updateSelection(Object[] path, int idx) {

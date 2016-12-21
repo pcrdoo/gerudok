@@ -66,14 +66,15 @@ public class ProjectController {
 
 		@Override
 		public void internalFrameDeiconified(InternalFrameEvent e) {
-			// TODO Auto-generated method stub
+			projectView.getProject().setOpened(true);
+			model.getTreeModel().reload();
 			
 		}
 
 		@Override
 		public void internalFrameIconified(InternalFrameEvent e) {
-			// TODO Auto-generated method stub
-			
+			projectView.getProject().setOpened(false);
+			model.getTreeModel().reload();
 		}
 
 		@Override

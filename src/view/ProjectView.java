@@ -70,6 +70,21 @@ public class ProjectView extends JInternalFrame implements GObserver {
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
+		} else if(notification == GObserverNotification.PROJECT_CLOSE) {
+			try {
+				this.setIcon(true);
+			} catch (PropertyVetoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if(notification == GObserverNotification.GNODE_RENAME) {
+			if(obj instanceof Project) {
+				this.setTitle(this.getProject().getName());
+			} else if(obj instanceof Document) { 
+				Document document = (Document)obj;
+				Component c = findDocumentTab(document);
+				c.setName(document.getName());
+			}
 		}
 	}
 
