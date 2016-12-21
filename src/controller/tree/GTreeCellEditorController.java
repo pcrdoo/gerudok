@@ -7,15 +7,18 @@ import java.awt.event.FocusListener;
 
 import javax.swing.JLabel;
 
+import model.Model;
 import model.tree.GNode;
 import view.tree.GTreeCellEditor;
 
 public class GTreeCellEditorController {
 	
 	GTreeCellEditor view;
+	Model model;
 	
-	public GTreeCellEditorController(GTreeCellEditor view) {
+	public GTreeCellEditorController(GTreeCellEditor view, Model model) {
 		this.view = view;
+		this.model = model;
 		this.view.setNameFocusListener(new NameFocusListener());
 	}
 	
@@ -30,6 +33,7 @@ public class GTreeCellEditorController {
 		@Override
 		public void focusLost(FocusEvent e) {
 			view.getNode().setName(view.getNameText());
+			model.doNodeRename(view.getNode());
 		}
 	}
 }

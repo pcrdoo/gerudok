@@ -13,6 +13,7 @@ import javax.swing.tree.DefaultTreeCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
 import controller.tree.GTreeCellEditorController;
+import model.Model;
 import model.tree.GNode;
 
 public class GTreeCellEditor extends DefaultTreeCellEditor{
@@ -20,12 +21,14 @@ public class GTreeCellEditor extends DefaultTreeCellEditor{
 	private GNode node;
 	private JTextField tfName;
 	private GTreeCellEditorController controller;
+	private Model model;
 
-	public GTreeCellEditor(JTree arg0, DefaultTreeCellRenderer arg1) {
+	public GTreeCellEditor(JTree arg0, DefaultTreeCellRenderer arg1, Model model) {
 		super(arg0, arg1);
+		this.model = model;
 		// TODO Auto-generated constructor stub
 		this.tfName = new JTextField("test ogi oig test");
-		this.controller = new GTreeCellEditorController(this);
+		this.controller = new GTreeCellEditorController(this, model);
 	}
 	
 	public Component getTreeCellEditorComponent(JTree arg0, Object value, boolean isSelected, boolean expanded, boolean leaf, int row) {

@@ -64,7 +64,7 @@ public class TreeView extends JPanel{
 	   
 	   GTreeCellRendered gtcr = new GTreeCellRendered();
 	   this.tree.setCellRenderer(gtcr);
-	   this.tree.setCellEditor(new GTreeCellEditor(this.tree, gtcr));
+	   this.tree.setCellEditor(new GTreeCellEditor(this.tree, gtcr, this.model));
 	   this.tree.setEditable(true);
 	   this.tree.setShowsRootHandles(true);
 	   
