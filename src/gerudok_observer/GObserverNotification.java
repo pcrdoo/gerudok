@@ -6,5 +6,6 @@ public enum GObserverNotification {
 	TREE_SELECT, 
 	DESKTOP_SELECT,
 	PROJECT_CLOSE, 
-	GNODE_RENAME;
+	GNODE_RENAME, 
+	PROJECT_OPEN;
 }

@@ -77,6 +77,13 @@ public class ProjectView extends JInternalFrame implements GObserver {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else if(notification == GObserverNotification.PROJECT_OPEN) {
+			try {
+				this.setIcon(false);
+			} catch (PropertyVetoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else if(notification == GObserverNotification.GNODE_RENAME) {
 			if(obj instanceof Project) {
 				this.setTitle(this.getProject().getName());
