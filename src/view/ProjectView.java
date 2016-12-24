@@ -30,6 +30,9 @@ public class ProjectView extends JInternalFrame implements GObserver {
 	private Project project;
 	private JTabbedPane documentTabs;
 	private Model model;
+	private boolean projectSelectionFromTree, documentSelectionFromTree;
+
+	
 
 	public ProjectView(Model model, Project project, Point p) {
 		super(project.getName(), true, false, true, true);
@@ -48,6 +51,7 @@ public class ProjectView extends JInternalFrame implements GObserver {
 
 		// Listener
 		projectController = new ProjectController(model, this);
+		projectSelectionFromTree = documentSelectionFromTree = false;
 	}
 
 	public Project getProject() {
@@ -92,11 +96,13 @@ public class ProjectView extends JInternalFrame implements GObserver {
 	}
 
 	public void updateSelection(Object[] path, int idx) {
+		System.out.println("ProjectView update sel");
 		if (path.length > idx) {
 			DocumentView documentView = findDocumentTab((Document) path[idx]);
 			if (documentView == null)
 				return;
 			try {
+				documentSelectionFromTree = true;
 				documentTabs.setSelectedComponent(documentView);
 				documentView.updateSelection(path, idx + 1);
 			} catch (NullPointerException e) {
@@ -128,5 +134,21 @@ public class ProjectView extends JInternalFrame implements GObserver {
 
 	public void attachTabChangeListener(ChangeListener tabChangeListener) {
 		this.documentTabs.addChangeListener(tabChangeListener);
+	}
+	
+	public boolean isProjectSelectionFromTree() {
+		return projectSelectionFromTree;
+	}
+
+	public void setProjectSelectionFromTree(boolean projectSelectionFromTree) {
+		this.projectSelectionFromTree = projectSelectionFromTree;
+	}
+
+	public boolean isDocumentSelectionFromTree() {
+		return documentSelectionFromTree;
+	}
+
+	public void setDocumentSelectionFromTree(boolean documentSelectionFromTree) {
+		this.documentSelectionFromTree = documentSelectionFromTree;
 	}
 }

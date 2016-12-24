@@ -32,12 +32,16 @@ public class ProjectController {
 	class TabChangeListener implements ChangeListener {
 		@Override
 		public void stateChanged(ChangeEvent e) {
-	          JTabbedPane sourceTabbedPane = (JTabbedPane) e.getSource();
-	          DocumentView documentView = (DocumentView)sourceTabbedPane.getSelectedComponent();
-	          System.out.println("iz desktopa selektovan dokument");
-	          if(documentView != null) {
-	        	  model.doTreeSelection(documentView.getDocument());
-	          }
+	          if(projectView.isDocumentSelectionFromTree()) {
+					projectView.setDocumentSelectionFromTree(false);
+				} else {
+		          JTabbedPane sourceTabbedPane = (JTabbedPane) e.getSource();
+		          DocumentView documentView = (DocumentView)sourceTabbedPane.getSelectedComponent();
+		          System.out.println("iz desktopa selektovan dokument");
+		           if(documentView != null) {
+		        	   model.doTreeSelection(documentView.getDocument());
+		           }
+				}
 		}
 		
 	}
@@ -46,7 +50,12 @@ public class ProjectController {
 
 		@Override
 		public void internalFrameActivated(InternalFrameEvent e) {
-			model.doTreeSelection(projectView.getProject());
+			// TODO: Naci lepsi nacin da se ovo popravi nakon sto se refaktorisu komande.
+			if(projectView.isProjectSelectionFromTree()) {
+				projectView.setProjectSelectionFromTree(false);
+			} else {
+				model.doTreeSelection(projectView.getProject());
+			}
 		}
 
 		@Override

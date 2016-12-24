@@ -36,7 +36,7 @@ import javax.swing.event.InternalFrameListener;
 
 import constants.Constants;
 import controller.DocumentController;
-
+import controller.ProjectController;
 import controller.DocumentController;
 
 @SuppressWarnings("serial")
@@ -45,6 +45,11 @@ public class DocumentView extends JPanel implements GObserver {
 	private Document document;
 	private Model model;
 	private JPanel pageArea;
+	private boolean pageSelectionFromTree;
+	private boolean treePageSelectionFromDesktop;
+	private PageView selectedPage;
+
+	private JScrollPane scrollBar;
 
 	public DocumentView(Model model, Document document) {
 		this.model = model;
@@ -56,15 +61,19 @@ public class DocumentView extends JPanel implements GObserver {
 		pageArea = new JPanel();
 		pageArea.setLayout(new BoxLayout(pageArea, BoxLayout.PAGE_AXIS));
 		pageArea.setBackground(Color.LIGHT_GRAY);
-		pageArea.add(Box.createRigidArea(new Dimension(0, Constants.DOCUMENT_TOP_MARGIN)));
+		pageSelectionFromTree = false;
+		selectedPage = null;
 
 		// Dodaj skrol bar
 		this.setLayout(new BorderLayout());
-		JScrollPane scrollBar = new JScrollPane(pageArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+		scrollBar = new JScrollPane(pageArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollBar.setBorder(BorderFactory.createEmptyBorder());
 		scrollBar.getVerticalScrollBar().setUnitIncrement(20);
 		this.add(scrollBar);
+		
+		// Listener
+		documentController = new DocumentController(model, this);
 	}
 
 	public void setDocument(Document document) {
@@ -75,13 +84,12 @@ public class DocumentView extends JPanel implements GObserver {
 		return this.document;
 	}
 
-	// DOKUMENT SVA ONA SRANJA ?!
-
 	@Override
 	public void update(GObserverNotification notification, Object obj) {
 		if (notification == GObserverNotification.ADD) {
 			PageView pageView = new PageView(model, (Page) obj);
 			pageArea.add(pageView);
+			pageArea.scrollRectToVisible(pageView.getBounds());
 			repaint();
 		} else if (notification == GObserverNotification.DELETE) {
 			System.out.println("Brisi dokument");
@@ -105,13 +113,27 @@ public class DocumentView extends JPanel implements GObserver {
 	}
 
 	public void updateSelection(Object[] path, int idx) {
+		// selektovanje stranica
+		// dno, update selection ne ide na nivo slotova
+		System.out.println("Doc update sel" + path.length + " " + idx);
+		System.out.println(path);
 		if (path.length > idx) {
 			PageView pageView = findPage((Page) path[idx]);
-			if (pageView == null)
+			selectedPage = pageView;
+			if(treePageSelectionFromDesktop) {
+				treePageSelectionFromDesktop = false;
 				return;
+			}
+			selectedPage = pageView;
+			if (pageView == null) {
+				System.out.println("HEY");
+				return;
+			}
 			try {
 				// TODO: Tree -> Model selekcija dokumenata - popraviti
-				pageView.scrollRectToVisible(pageView.getBounds());
+				pageSelectionFromTree = true;
+				pageArea.scrollRectToVisible(pageView.getBounds());
+			    System.out.println("LOKACIJA " + pageView.getBounds());
 			    System.out.println("LOKACIJA " + pageView.getLocation());
 			} catch (NullPointerException e) {
 				e.printStackTrace();
@@ -131,21 +153,33 @@ public class DocumentView extends JPanel implements GObserver {
 		return null;
 	}
 	
-	// TODO: Model -> Tree selekcija dokumenata implementirati (posle se prelazi na Page, ceo Document je gotov)
+	public void attachViewPortChangeListener(ChangeListener viewPortChangeListener) {
+		this.scrollBar.getViewport().addChangeListener(viewPortChangeListener);
+	}
+	
+	
+	public JPanel getPageArea() {
+		return pageArea;
+	}
+	
 
-	/*
-	 * public void updateSelection(Object[] path, int idx) { if (path.length >
-	 * idx) { Component tab = findDocumentTab((Document)path[idx]); if(tab ==
-	 * null) return; try { documentTabs.setSelectedComponent(tab);
-	 * ((DocumentView)tab).updateSelection(path, idx + 1); } catch
-	 * (NullPointerException e) { e.printStackTrace(); } } }
-	 * 
-	 * 
-	 * public void attachFrameListener(InternalFrameListener frameListener) {
-	 * this.addInternalFrameListener(frameListener); }
-	 * 
-	 * public void attachTabChangeListener(ChangeListener tabChangeListener) {
-	 * this.documentTabs.addChangeListener(tabChangeListener); }
-	 */
+	public boolean isPageSelectionFromTree() {
+		return pageSelectionFromTree;
+	}
 
+	public void setPageSelectionFromTree(boolean pageSelectionFromTree) {
+		this.pageSelectionFromTree = pageSelectionFromTree;
+	}
+	
+	public boolean isTreePageSelectionFromDesktop() {
+		return treePageSelectionFromDesktop;
+	}
+
+	public void setTreePageSelectionFromDesktop(boolean treePageSelectionFromDesktop) {
+		this.treePageSelectionFromDesktop = treePageSelectionFromDesktop;
+	}
+
+	public PageView getSelectedPage() {
+		return selectedPage;
+	}
 }

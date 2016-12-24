@@ -40,7 +40,7 @@ public class PageView extends JPanel implements GObserver {
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
 		// Border i content
-		setBorder(new EmptyBorder(0, 0, Constants.DOCUMENT_BOTTOM_MARGIN, 0));
+		setBorder(new EmptyBorder(Constants.DOCUMENT_TOP_MARGIN, 0, Constants.DOCUMENT_BOTTOM_MARGIN, 0));
 		content = new JPanel();
 		content.setBackground(new Color(new Random().nextFloat(), new Random().nextFloat(), new Random().nextFloat()));
 		add(content);

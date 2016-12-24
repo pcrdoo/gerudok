@@ -43,7 +43,6 @@ public class DesktopView extends JDesktopPane implements GObserver {
 		this.setBackground(Color.CYAN);
 		this.add(new JLabel("RADNI PROSTOR"));
 		setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
-
 		// Listener
 
 	}
@@ -97,11 +96,20 @@ public class DesktopView extends JDesktopPane implements GObserver {
 				e.printStackTrace();
 			}
 		} else if (notification == GObserverNotification.DELETE) {
+			
 			ProjectView projectView = findProjectView((Project) obj);
 			try {
 				System.out.println(this.getAllFrames().length);
 				System.out.println("NASAO");
-				remove(projectView);
+				if(this.getAllFrames()[0] == projectView) 
+					System.out.println("WOOP");
+				try {
+					projectView.setIcon(false);
+					remove(projectView);
+				} catch (PropertyVetoException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				repaint();
 				System.out.println(this.getAllFrames().length);
 			} catch (NullPointerException e) {
@@ -114,6 +122,7 @@ public class DesktopView extends JDesktopPane implements GObserver {
 	}
 
 	private void updateSelection(Object[] path, int idx) {
+		System.out.println("Desktopview update sel" );
 		// I am a workspace, I contain projects, idx = 1
 		if (path.length > idx) {
 			ProjectView projectView = findProjectView((Project) path[idx]);
@@ -121,6 +130,7 @@ public class DesktopView extends JDesktopPane implements GObserver {
 				return;
 			}
 			try {
+				projectView.setProjectSelectionFromTree(true);
 				projectView.setSelected(true);
 				projectView.updateSelection(path, idx + 1);
 			} catch (NullPointerException e) {
