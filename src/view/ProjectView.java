@@ -96,7 +96,6 @@ public class ProjectView extends JInternalFrame implements GObserver {
 	}
 
 	public void updateSelection(Object[] path, int idx) {
-		System.out.println("ProjectView update sel");
 		if (path.length > idx) {
 			DocumentView documentView = findDocumentTab((Document) path[idx]);
 			if (documentView == null)
@@ -112,13 +111,11 @@ public class ProjectView extends JInternalFrame implements GObserver {
 	}
 
 	private DocumentView findDocumentTab(Document document) {
-		System.out.println("trazimo ime " + document.getName());
 		int totalTabs = documentTabs.getTabCount();
 		for (int i = 0; i < totalTabs; i++) {
 			Component tab = documentTabs.getComponentAt(i);
 			if (tab instanceof DocumentView) {
 				DocumentView documentView = (DocumentView) tab;
-				System.out.println("trenutno ime " + documentView.getDocument().getName());
 				if (documentView.getDocument() == document) {
 					return documentView;
 				}

@@ -125,7 +125,6 @@ public class GNode implements MutableTreeNode, GObservable {
 	public void removeFromParent() {
 		this.parent.children.remove(this);
 		this.parent.observerList.notifyObservers(GObserverNotification.DELETE, this);
-		System.out.println("Obrisi mene " + this.getName());
 	}
 
 	@Override

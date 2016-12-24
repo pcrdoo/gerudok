@@ -92,12 +92,9 @@ public class DocumentView extends JPanel implements GObserver {
 			pageArea.scrollRectToVisible(pageView.getBounds());
 			repaint();
 		} else if (notification == GObserverNotification.DELETE) {
-			System.out.println("Brisi dokument");
 			PageView pageView = findPage((Page) obj);
 			try {
-				System.out.println(pageArea.getComponents().length);
 				pageArea.remove(pageView);
-				System.out.println(pageArea.getComponents().length);
 				repaint();
 			} catch (NullPointerException e) {
 				e.printStackTrace();
@@ -115,8 +112,6 @@ public class DocumentView extends JPanel implements GObserver {
 	public void updateSelection(Object[] path, int idx) {
 		// selektovanje stranica
 		// dno, update selection ne ide na nivo slotova
-		System.out.println("Doc update sel" + path.length + " " + idx);
-		System.out.println(path);
 		if (path.length > idx) {
 			PageView pageView = findPage((Page) path[idx]);
 			selectedPage = pageView;
@@ -126,15 +121,12 @@ public class DocumentView extends JPanel implements GObserver {
 			}
 			selectedPage = pageView;
 			if (pageView == null) {
-				System.out.println("HEY");
 				return;
 			}
 			try {
 				// TODO: Tree -> Model selekcija dokumenata - popraviti
 				pageSelectionFromTree = true;
 				pageArea.scrollRectToVisible(pageView.getBounds());
-			    System.out.println("LOKACIJA " + pageView.getBounds());
-			    System.out.println("LOKACIJA " + pageView.getLocation());
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}

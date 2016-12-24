@@ -17,7 +17,6 @@ public class TreeListener implements TreeSelectionListener {
 		@Override
 		public void valueChanged(TreeSelectionEvent e) {
 			TreePath path = e.getPath(); // Strasno...
-			System.out.println("Tree listener je uhvatio ovaj path koji saljem modelu:");
 			System.out.println(path);
 			model.doDesktopSelection(path);
 		}

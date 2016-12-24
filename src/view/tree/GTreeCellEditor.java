@@ -48,7 +48,6 @@ public class GTreeCellEditor extends DefaultTreeCellEditor{
 	}
 	
 	public void setNameFocusListener(FocusListener l) {
-		System.out.println("aa");
 		this.tfName.addFocusListener(l);
 	}
 	

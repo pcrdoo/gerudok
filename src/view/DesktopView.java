@@ -99,10 +99,6 @@ public class DesktopView extends JDesktopPane implements GObserver {
 			
 			ProjectView projectView = findProjectView((Project) obj);
 			try {
-				System.out.println(this.getAllFrames().length);
-				System.out.println("NASAO");
-				if(this.getAllFrames()[0] == projectView) 
-					System.out.println("WOOP");
 				try {
 					projectView.setIcon(false);
 					remove(projectView);
@@ -111,7 +107,6 @@ public class DesktopView extends JDesktopPane implements GObserver {
 					e.printStackTrace();
 				}
 				repaint();
-				System.out.println(this.getAllFrames().length);
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
@@ -122,7 +117,6 @@ public class DesktopView extends JDesktopPane implements GObserver {
 	}
 
 	private void updateSelection(Object[] path, int idx) {
-		System.out.println("Desktopview update sel" );
 		// I am a workspace, I contain projects, idx = 1
 		if (path.length > idx) {
 			ProjectView projectView = findProjectView((Project) path[idx]);

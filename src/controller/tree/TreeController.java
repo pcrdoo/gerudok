@@ -46,7 +46,6 @@ public class TreeController {
 			   tree.setSelectionPath(path);
 			   
 			   //TODO open context menu for node
-			   System.out.println(tree.getLastSelectedPathComponent());
 			   GPopupMenu pm = new GPopupMenu(model, (GNode)tree.getLastSelectedPathComponent());
 			   pm.show(e.getComponent(), e.getX(), e.getY());
 		   }
