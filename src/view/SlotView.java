@@ -6,68 +6,71 @@
 
 package view;
 
+import model.Document;
+import model.Model;
+import model.Page;
 import model.Slot;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Paint;
 import java.util.*;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+
+import constants.Constants;
+import controller.DocumentController;
 import controller.SlotController;
+import gerudok_observer.GObserver;
+import gerudok_observer.GObserverNotification;
 
-/** @pdOid 9d5d961c-8484-4b1f-9204-c2daa677e3c3 */
-public class SlotView {
-   /** @pdRoleInfo migr=no name=ElementView assc=association8 coll=java.util.Collection impl=java.util.HashSet mult=0..* type=Composition */
-   public java.util.Collection<ElementView> elementView;
-   /** @pdRoleInfo migr=no name=SoltController assc=association9 mult=1..1 type=Composition */
-   public SlotController soltController;
-   /** @pdRoleInfo migr=no name=Slot assc=association18 mult=1..1 */
-   public Slot slot;
-   
-   
-   /** @pdGenerated default getter */
-   public java.util.Collection<ElementView> getElementView() {
-      if (elementView == null)
-         elementView = new java.util.HashSet<ElementView>();
-      return elementView;
-   }
-   
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorElementView() {
-      if (elementView == null)
-         elementView = new java.util.HashSet<ElementView>();
-      return elementView.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newElementView */
-   public void setElementView(java.util.Collection<ElementView> newElementView) {
-      removeAllElementView();
-      for (java.util.Iterator iter = newElementView.iterator(); iter.hasNext();)
-         addElementView((ElementView)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newElementView */
-   public void addElementView(ElementView newElementView) {
-      if (newElementView == null)
-         return;
-      if (this.elementView == null)
-         this.elementView = new java.util.HashSet<ElementView>();
-      if (!this.elementView.contains(newElementView))
-         this.elementView.add(newElementView);
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldElementView */
-   public void removeElementView(ElementView oldElementView) {
-      if (oldElementView == null)
-         return;
-      if (this.elementView != null)
-         if (this.elementView.contains(oldElementView))
-            this.elementView.remove(oldElementView);
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllElementView() {
-      if (elementView != null)
-         elementView.clear();
-   }
+public class SlotView extends JPanel implements GObserver {
+	private SlotController slotController;
+	private Slot slot;
 
+	private Model model;
+	
+	private TitledBorder border;
+
+	public SlotView(Model model, Slot obj) {
+		this.model = model;
+		this.model.addObserver(this);
+		this.setSlot(obj);
+		this.slot.addObserver(this);
+
+		setAlignmentY(CENTER_ALIGNMENT);
+		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.8f));
+	    EmptyBorder innerBorder = new EmptyBorder(1, 1, 1, 1);
+		border = BorderFactory.createTitledBorder(innerBorder, this.getSlot().getName());
+		this.setBorder(border);
+	}
+
+	public Slot getSlot() {
+		return slot;
+	}
+
+	public void setSlot(Slot slot) {
+		this.slot = slot;
+	}
+	
+	@Override
+	public void update(GObserverNotification notification, Object obj) {
+		if (notification == GObserverNotification.ADD) {
+			// Add new element
+		} else if (notification == GObserverNotification.DELETE) {
+			// Delete an element
+		} else if (notification == GObserverNotification.GNODE_RENAME) {
+			System.out.println("RENAMED");
+			border.setTitle(this.getSlot().getName());
+			repaint();
+		}
+	}
 }
