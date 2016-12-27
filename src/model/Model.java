@@ -38,6 +38,10 @@ public class Model implements GObservable{
 		//TODO pitati Davida da presudi dal ovo da bude genericka funkcija
 		this.observerList.notifyObservers(GObserverNotification.TREE_SELECT, node);
 	}
+	
+	public void doTreeRename(GNode node) {
+		this.observerList.notifyObservers(GObserverNotification.TREE_RENAME, node);
+	}
 
 	@Override
 	public void addObserver(GObserver obs) {

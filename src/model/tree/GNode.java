@@ -103,7 +103,7 @@ public class GNode implements MutableTreeNode, GObservable {
 	@Override
 	public boolean getAllowsChildren() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
@@ -118,8 +118,7 @@ public class GNode implements MutableTreeNode, GObservable {
 
 	@Override
 	public int getIndex(TreeNode arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.children.indexOf(arg0);
 	}
 
 	@Override

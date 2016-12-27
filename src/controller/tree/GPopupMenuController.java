@@ -41,8 +41,10 @@ public class GPopupMenuController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			GNode parent = (GNode)view.getSelectedNode().getParent();
 			view.getSelectedNode().removeFromParent();
 			model.getTreeModel().reload();
+			model.doTreeSelection(parent);
 		}
 	}
 	
@@ -50,8 +52,7 @@ public class GPopupMenuController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			//tree.startEditingAtPath(path);
+			model.doTreeRename(view.getSelectedNode());
 		}
 	}
 	
@@ -86,7 +87,8 @@ public class GPopupMenuController {
 		public void actionPerformed(ActionEvent e) {
 			//TODO
 			System.out.println("share");
-			new SelectDialog(view.getSelectedNode()).show();
+			SelectDialog sd = new SelectDialog(view.getSelectedNode(), model);
+			sd.show();
 			model.getTreeModel().reload();
 		}
 	}

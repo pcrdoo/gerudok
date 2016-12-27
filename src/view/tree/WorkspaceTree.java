@@ -36,9 +36,11 @@ public class WorkspaceTree extends JTree implements GObserver{
 	public void update(GObserverNotification notification, Object obj) {
 		switch(notification) {
 		case TREE_SELECT:
-			//this.setExpandedState(((GNode)obj).getPath(), true);
 			this.setSelectionPath(((GNode)obj).getPath());
+			break;
+		case TREE_RENAME:
+			this.startEditingAtPath(((GNode)obj).getPath());
+			break;
 		}
 	}
-
 }

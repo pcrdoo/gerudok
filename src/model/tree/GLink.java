@@ -28,7 +28,7 @@ public class GLink extends GNode {
 	@Override
 	public boolean getAllowsChildren() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
@@ -43,8 +43,7 @@ public class GLink extends GNode {
 
 	@Override
 	public int getIndex(TreeNode arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.original.getChildren().indexOf(arg0);
 	}
 
 	@Override

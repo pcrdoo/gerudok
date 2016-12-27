@@ -14,21 +14,23 @@ import javax.swing.ListModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import model.Model;
 import model.Workspace;
 import model.tree.GLink;
 import model.tree.GNode;
 
 public class SelectDialog extends JDialog implements ListSelectionListener{
 	
+	Model model;
 	GNode selected;
 	GNode shared;
 	JButton btnOK;
 	
-	public SelectDialog(GNode shared) {
+	public SelectDialog(GNode shared, Model model) {
 		super();
 		
 		
-		
+		this.model = model;
 		this.shared = shared;
 		
 		this.setLayout(new BorderLayout());
@@ -36,8 +38,8 @@ public class SelectDialog extends JDialog implements ListSelectionListener{
 		JLabel lbl = new JLabel("test");
 		this.add(lbl, BorderLayout.NORTH);
 		
-		DefaultListModel model = new DefaultListModel();
-	    JList list = new JList(model);
+		DefaultListModel listModel = new DefaultListModel();
+	    JList list = new JList(listModel);
 	    
 	    
 	    
@@ -48,7 +50,7 @@ public class SelectDialog extends JDialog implements ListSelectionListener{
 	    //only for projects
 	    for(GNode node : Workspace.getInstance().getChildren()) {
 	    	if(node != shared.getParent())
-	    		model.addElement(node);
+	    		listModel.addElement(node);
 	    }
 		
 	    btnOK = new JButton("OK");
@@ -69,7 +71,7 @@ public class SelectDialog extends JDialog implements ListSelectionListener{
 	}
 	
 	private void cclose() {
-		this.selected.addNewLinkChild(this.shared);
+		this.model.doTreeSelection(this.selected.addNewLinkChild(this.shared));
 		this.dispose();
 	}
 	
