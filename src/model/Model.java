@@ -13,7 +13,6 @@ import model.tree.GNode;
 import model.tree.GTreeModel;
 
 public class Model implements GObservable{
-	private Workspace workspace;
 	private GTreeModel treeModel;
 	private GObserverList observerList;
 	
