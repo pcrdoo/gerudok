@@ -11,6 +11,7 @@ import javax.swing.JPopupMenu;
 
 import controller.tree.GPopupMenuController;
 import model.Document;
+import model.DocumentLink;
 import model.Element;
 import model.Model;
 import model.Page;
@@ -29,6 +30,7 @@ public class GPopupMenu extends JPopupMenu {
 	JMenuItem rename;
 	JMenuItem switchWorkspace;
 	JMenuItem close;
+	JMenuItem share;
 	HashMap<Class, List<JMenuItem>> menuItems;
 	
 	public GPopupMenu(Model model, GNode node) {
@@ -47,12 +49,14 @@ public class GPopupMenu extends JPopupMenu {
 		this.rename = new JMenuItem("Rename");
 		this.switchWorkspace = new JMenuItem("Switch Workspace");
 		this.close = new JMenuItem(this.node instanceof Project && ((Project)this.node).isOpened() ? "Close" : "Open");
+		this.share = new JMenuItem("Share with...");
 		
 		this.menuItems = new HashMap<Class, List<JMenuItem>>(){{
 
 			put(Workspace.class, Arrays.asList(addNew, rename, switchWorkspace));
 			put(Project.class, node.getClass() == Project.class && ((Project)node).isOpened() ? Arrays.asList(addNew, delete, rename, close) : Arrays.asList(delete, close));
-			put(Document.class, Arrays.asList(addNew, delete, rename));
+			put(Document.class, Arrays.asList(addNew, share, delete, rename));
+			put(DocumentLink.class, Arrays.asList(delete));
 			put(Page.class, Arrays.asList(addNew, delete, rename));
 			put(Slot.class, Arrays.asList(addNew, delete, rename));
 			put(Element.class, Arrays.asList(addNew, delete, rename));
@@ -89,5 +93,9 @@ public class GPopupMenu extends JPopupMenu {
 	
 	public void setCloseListener(ActionListener l) {
 		this.close.addActionListener(l);
+	}
+	
+	public void setShareListener(ActionListener l) {
+		this.share.addActionListener(l);
 	}
 }

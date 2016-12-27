@@ -27,6 +27,14 @@ public class Project extends GNode{
 		this.add(child);
 		return child;
 	}
+	
+	public GNode addNewLinkChild(GNode node) {
+		DocumentLink child = new DocumentLink(node);
+		node.addLink(child);
+		this.add(child);
+		child.setParent(this);
+		return child;
+	}
 
 	public void doProjectClose() {
 		this.observerList.notifyObservers(GObserverNotification.PROJECT_CLOSE, null);

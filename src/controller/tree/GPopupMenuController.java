@@ -8,6 +8,7 @@ import model.Model;
 import model.Project;
 import model.tree.GNode;
 import view.tree.GPopupMenu;
+import view.tree.SelectDialog;
 
 public class GPopupMenuController {
 	
@@ -23,6 +24,7 @@ public class GPopupMenuController {
 		this.view.setRenameListener(new RenameListener());
 		this.view.setSwitchWorkspaceListener(new SwitchWorkspaceListener());
 		this.view.setCloseListener(new CloseListener());
+		this.view.setShareListener(new ShareListener());
 	}
 	
 	class AddNewListener implements ActionListener {
@@ -74,6 +76,17 @@ public class GPopupMenuController {
 				((Project)view.getSelectedNode()).doProjectOpen();
 				((Project)view.getSelectedNode()).setOpened(true);
 			}
+			model.getTreeModel().reload();
+		}
+	}
+	
+	class ShareListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			//TODO
+			System.out.println("share");
+			new SelectDialog(view.getSelectedNode()).show();
 			model.getTreeModel().reload();
 		}
 	}

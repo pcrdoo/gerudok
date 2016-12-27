@@ -11,6 +11,7 @@ import gerudok_observer.GObserverNotification;
 import model.Document;
 import model.Model;
 import model.Project;
+import model.tree.GLink;
 
 import java.awt.Component;
 import java.awt.Point;
@@ -65,7 +66,7 @@ public class ProjectView extends JInternalFrame implements GObserver {
 	@Override
 	public void update(GObserverNotification notification, Object obj) {
 		if (notification == GObserverNotification.ADD) {
-			DocumentView documentView = new DocumentView(model, (Document) obj);
+			DocumentView documentView = new DocumentView(model, (Document) (obj instanceof Document ? obj : ((GLink)obj).getOriginal()));
 			documentTabs.addTab(documentView.getDocument().getName(), documentView);
 			repaint();
 		} else if (notification == GObserverNotification.DELETE) {
@@ -97,7 +98,7 @@ public class ProjectView extends JInternalFrame implements GObserver {
 
 	public void updateSelection(Object[] path, int idx) {
 		if (path.length > idx) {
-			DocumentView documentView = findDocumentTab((Document) path[idx]);
+			DocumentView documentView = findDocumentTab((Document) (path[idx] instanceof Document ? path[idx] : ((GLink)path[idx]).getOriginal()));
 			if (documentView == null)
 				return;
 			try {

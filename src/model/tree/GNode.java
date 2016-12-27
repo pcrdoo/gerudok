@@ -22,12 +22,14 @@ public class GNode implements MutableTreeNode, GObservable {
 	protected ArrayList<GNode> children;
 	private int newChildCount;
 	protected GObserverList observerList;
+	private List<GLink> links;
 	
 	public GNode() {
 		this.parent = null;
 		this.children = new ArrayList<>();
 		this.newChildCount = 0;
 		this.observerList = new GObserverList();
+		this.links = new ArrayList<>();
 		this.setName(null);
 	}
 	
@@ -66,12 +68,36 @@ public class GNode implements MutableTreeNode, GObservable {
 	public GNode addNewChild() {
 		return null;
 	}
+	
+	public GNode addNewLinkChild(GNode node) {
+		return null;
+	}
+	
+	public void addLink(GLink link) {
+		this.links.add(link);
+	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+		this.observerList.notifyObservers(GObserverNotification.GNODE_RENAME, this);
+	}
+
+	protected int getNewChildCount() {
+		return this.newChildCount++;
+	}
+	
+	public List<GNode> getChildren() {
+		return this.children;
+	}
+	
 	@Override
 	public Enumeration children() {
 		// TODO Auto-generated method stub
 		return null;
-		//return (Enumeration)this.children;
 	}
 
 	@Override
@@ -123,6 +149,9 @@ public class GNode implements MutableTreeNode, GObservable {
 
 	@Override
 	public void removeFromParent() {
+		for(GLink link : this.links) {
+			link.removeFromParent();
+		}
 		this.parent.children.remove(this);
 		this.parent.observerList.notifyObservers(GObserverNotification.DELETE, this);
 	}
@@ -142,18 +171,4 @@ public class GNode implements MutableTreeNode, GObservable {
 	public String toString() {
 		return this.name;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-		this.observerList.notifyObservers(GObserverNotification.GNODE_RENAME, this);
-	}
-
-	protected int getNewChildCount() {
-		return this.newChildCount++;
-	}
-	
 }

@@ -11,6 +11,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeCellRenderer;
 
 import model.Document;
+import model.DocumentLink;
 import model.Element;
 import model.Page;
 import model.Project;
@@ -31,6 +32,8 @@ public class GTreeCellRendered extends DefaultTreeCellRenderer{
 			iconPath = ((Project)value).isOpened() ? "/res/project_icon.png" : "/res/project_closed_icon.png";
 		} else if(value instanceof Document) {
 			iconPath = "/res/document_icon.png";
+		} else if(value instanceof DocumentLink) {
+			iconPath = "/res/document_link_icon.png";
 		} else if(value instanceof Page) {
 			iconPath = "/res/page_icon.png";
 		} else if(value instanceof Slot) {

@@ -22,5 +22,4 @@ public class Document extends GNode{
 		this.add(child);
 		return child;
    }
-
 }
