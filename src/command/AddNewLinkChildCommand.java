@@ -3,9 +3,8 @@ package command;
 import model.Model;
 import model.tree.GNode;
 
-public class AddNewLinkChildCommand implements Command {
+public class AddNewLinkChildCommand extends Command {
 	
-	private Model model;
 	private GNode node;
 	private GNode shared;
 	

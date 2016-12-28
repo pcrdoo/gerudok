@@ -3,8 +3,8 @@ package command;
 import model.Model;
 import model.tree.GNode;
 
-public class SwitchWorkspaceCommand implements Command {
-	private Model model;
+public class SwitchWorkspaceCommand extends Command {
+
 	private GNode node;
 	
 	public SwitchWorkspaceCommand(Model model, GNode node) {

@@ -5,9 +5,8 @@ import model.Document;
 import model.Model;
 import model.tree.GNode;
 
-public class AddNewChildCommand implements Command {
+public class AddNewChildCommand extends Command {
 
-	private Model model;
 	private GNode node;
 	
 	public AddNewChildCommand(Model model, GNode node) {

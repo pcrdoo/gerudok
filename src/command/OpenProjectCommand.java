@@ -3,9 +3,8 @@ package command;
 import model.Model;
 import model.Project;
 
-public class OpenProjectCommand implements Command {
+public class OpenProjectCommand extends Command {
 	
-	private Model model;
 	private Project project;
 	
 	public OpenProjectCommand(Model model, Project project) {

@@ -3,9 +3,8 @@ package command;
 import model.Model;
 import model.tree.GNode;
 
-public class TreeSelectCommand implements Command {
+public class TreeSelectCommand extends Command {
 
-	private Model model;
 	private GNode node;
 	
 	public TreeSelectCommand(Model model, GNode node) {

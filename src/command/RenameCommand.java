@@ -3,9 +3,8 @@ package command;
 import model.Model;
 import model.tree.GNode;
 
-public class RenameCommand implements Command {
+public class RenameCommand extends Command {
 	
-	private Model model;
 	private GNode node;
 	
 	public RenameCommand(Model model, GNode node) {

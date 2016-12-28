@@ -3,9 +3,8 @@ package command;
 import model.Model;
 import model.Project;
 
-public class CloseProjectCommand implements Command {
+public class CloseProjectCommand extends Command {
 	
-	private Model model;
 	private Project project;
 	
 	public CloseProjectCommand(Model model, Project project) {

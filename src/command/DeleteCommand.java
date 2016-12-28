@@ -4,8 +4,8 @@ import model.Document;
 import model.Model;
 import model.tree.GNode;
 
-public class DeleteCommand implements Command {
-	private Model model;
+public class DeleteCommand extends Command {
+
 	private GNode node;
 	
 	public DeleteCommand(Model model, GNode node) {

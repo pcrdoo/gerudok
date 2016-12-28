@@ -1,5 +1,8 @@
 package command;
 
-public interface Command {
-	public void execute();
+import model.Model;
+
+public abstract class Command {
+	protected Model model;
+	public abstract void execute();
 }
