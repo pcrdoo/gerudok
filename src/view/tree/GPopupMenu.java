@@ -29,7 +29,7 @@ public class GPopupMenu extends JPopupMenu {
 	JMenuItem delete;
 	JMenuItem rename;
 	JMenuItem switchWorkspace;
-	JMenuItem close;
+	JMenuItem openClose;
 	JMenuItem share;
 	HashMap<Class, List<JMenuItem>> menuItems;
 	
@@ -48,13 +48,13 @@ public class GPopupMenu extends JPopupMenu {
 		this.delete = new JMenuItem("Delete");
 		this.rename = new JMenuItem("Rename");
 		this.switchWorkspace = new JMenuItem("Switch Workspace");
-		this.close = new JMenuItem(this.node instanceof Project && ((Project)this.node).isOpened() ? "Close" : "Open");
+		this.openClose = new JMenuItem(this.node instanceof Project && ((Project)this.node).isOpened() ? "Close" : "Open");
 		this.share = new JMenuItem("Share with...");
 		
 		this.menuItems = new HashMap<Class, List<JMenuItem>>(){{
 
 			put(Workspace.class, Arrays.asList(addNew, rename, switchWorkspace));
-			put(Project.class, node.getClass() == Project.class && ((Project)node).isOpened() ? Arrays.asList(addNew, delete, rename, close) : Arrays.asList(delete, close));
+			put(Project.class, node.getClass() == Project.class && ((Project)node).isOpened() ? Arrays.asList(addNew, delete, rename, openClose) : Arrays.asList(delete, openClose));
 			put(Document.class, Arrays.asList(addNew, share, delete, rename));
 			put(DocumentLink.class, Arrays.asList(delete));
 			put(Page.class, Arrays.asList(addNew, delete, rename));
@@ -91,8 +91,8 @@ public class GPopupMenu extends JPopupMenu {
 		this.switchWorkspace.addActionListener(l);
 	}
 	
-	public void setCloseListener(ActionListener l) {
-		this.close.addActionListener(l);
+	public void setOpenCloseListener(ActionListener l) {
+		this.openClose.addActionListener(l);
 	}
 	
 	public void setShareListener(ActionListener l) {

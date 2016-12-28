@@ -23,6 +23,9 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 
+import command.Invoker;
+import command.TreeSelectCommand;
+
 /** @pdOid bf767906-23cd-405d-a24d-dd73d7851411 */
 public class DocumentController {
 	private Model model;
@@ -79,7 +82,7 @@ public class DocumentController {
 				// stvari naci lepsi nacin.
 
 				documentView.setTreePageSelectionFromDesktop(true);
-				model.doTreeSelection(closestChild.getPage());
+				Invoker.getInstance().executeCommand(new TreeSelectCommand(model, closestChild.getPage()));
 			}
 		}
 	}

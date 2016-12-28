@@ -17,6 +17,9 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 
+import command.Invoker;
+import command.TreeSelectCommand;
+
 /** @pdOid bf767906-23cd-405d-a24d-dd73d7851411 */
 public class ProjectController {
 	private Model model;
@@ -38,7 +41,8 @@ public class ProjectController {
 		          JTabbedPane sourceTabbedPane = (JTabbedPane) e.getSource();
 		          DocumentView documentView = (DocumentView)sourceTabbedPane.getSelectedComponent();
 		           if(documentView != null) {
-		        	   model.doTreeSelection(documentView.getDocument());
+		        	   TreeSelectCommand command = new TreeSelectCommand(model, documentView.getDocument());
+					   Invoker.getInstance().executeCommand(command);
 		           }
 				}
 		}
@@ -53,7 +57,7 @@ public class ProjectController {
 			if(projectView.isProjectSelectionFromTree()) {
 				projectView.setProjectSelectionFromTree(false);
 			} else {
-				model.doTreeSelection(projectView.getProject());
+				Invoker.getInstance().executeCommand(new TreeSelectCommand(model, projectView.getProject()));
 			}
 		}
 

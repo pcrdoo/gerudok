@@ -4,6 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
+import command.AddNewChildCommand;
+import command.CloseProjectCommand;
+import command.DeleteCommand;
+import command.Invoker;
+import command.OpenProjectCommand;
+import command.RenameCommand;
+import command.SwitchWorkspaceCommand;
+import command.TreeSelectCommand;
 import model.Document;
 import model.Model;
 import model.Project;
@@ -24,7 +32,7 @@ public class GPopupMenuController {
 		this.view.setDeleteListener(new DeleteListener());
 		this.view.setRenameListener(new RenameListener());
 		this.view.setSwitchWorkspaceListener(new SwitchWorkspaceListener());
-		this.view.setCloseListener(new CloseListener());
+		this.view.setOpenCloseListener(new OpenCloseListener());
 		this.view.setShareListener(new ShareListener());
 	}
 	
@@ -32,9 +40,7 @@ public class GPopupMenuController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			GNode newNode = view.getSelectedNode().addNewChild();
-			model.getTreeModel().reload();
-			model.doTreeSelection(newNode);
+			Invoker.getInstance().executeCommand(new AddNewChildCommand(model, view.getSelectedNode()));
 		}
 	}
 	
@@ -42,18 +48,7 @@ public class GPopupMenuController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			GNode selected = view.getSelectedNode();
-			GNode parent = (GNode) selected.getParent();
-			
-			if(selected instanceof Document) {
-				model.addFreeNode(selected);
-			}
-			
-			selected.removeFromParent();
-			model.getTreeModel().reload();
-			model.doTreeSelection(parent);
-			
-			//System.out.println(model.getFreeNodes());
+			Invoker.getInstance().executeCommand(new DeleteCommand(model, view.getSelectedNode()));
 		}
 	}
 	
@@ -61,7 +56,7 @@ public class GPopupMenuController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			model.doTreeRename(view.getSelectedNode());
+			Invoker.getInstance().executeCommand(new RenameCommand(model, view.getSelectedNode()));
 		}
 	}
 	
@@ -69,24 +64,21 @@ public class GPopupMenuController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
+			Invoker.getInstance().executeCommand(new SwitchWorkspaceCommand(model, view.getSelectedNode()));
 		}
 	}
 	
-	class CloseListener implements ActionListener {
+	class OpenCloseListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
-			if(((Project)view.getSelectedNode()).isOpened()) {
-				((Project)view.getSelectedNode()).doProjectClose();
-				((Project)view.getSelectedNode()).setOpened(false);
+			Project project = (Project)view.getSelectedNode();
+			if(project.isOpened()) {
+				Invoker.getInstance().executeCommand(new CloseProjectCommand(model, project));
 			} else {
-				((Project)view.getSelectedNode()).doProjectOpen();
-				((Project)view.getSelectedNode()).setOpened(true);
+				Invoker.getInstance().executeCommand(new OpenProjectCommand(model, project));
 			}
-			model.getTreeModel().reload();
+			// model.getTreeModel().reload();
 		}
 	}
 	
@@ -96,7 +88,6 @@ public class GPopupMenuController {
 		public void actionPerformed(ActionEvent e) {
 			SelectDialog sd = new SelectDialog(view.getSelectedNode(), model);
 			sd.show();
-			model.getTreeModel().reload();
 		}
 	}
 }

@@ -106,7 +106,8 @@ public class PageView extends JPanel implements GObserver {
 			if (c instanceof SlotView) {
 				int factor = Math.max(4, content.getComponents().length);
 				// TODO: Racunati ove dimenzije kako treba umesto ovog nabadanja.
-				c.setPreferredSize(new Dimension(Constants.PAGE_WIDTH - 15, Constants.PAGE_HEIGHT / factor - 12));
+				c.setPreferredSize(new Dimension(Constants.PAGE_WIDTH - 15, Constants.PAGE_HEIGHT / factor - 10));
+				
 			} 
 		}
 	}

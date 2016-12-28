@@ -10,6 +10,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import command.AddNewLinkChildCommand;
+import command.Invoker;
 import model.Model;
 import view.tree.SelectDialog;
 
@@ -39,7 +41,8 @@ public class SelectDialogController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			model.doTreeSelection(view.getSelected().addNewLinkChild(view.getShared()));
+			AddNewLinkChildCommand command = new AddNewLinkChildCommand(model, view.getSelected(), view.getShared());
+			Invoker.getInstance().executeCommand(command);
 			view.dispose();
 		}
 	}
@@ -49,7 +52,8 @@ public class SelectDialogController {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			if(e.getClickCount() >= 2) {
-				model.doTreeSelection(view.getSelected().addNewLinkChild(view.getShared()));
+				AddNewLinkChildCommand command = new AddNewLinkChildCommand(model, view.getSelected(), view.getShared());
+				Invoker.getInstance().executeCommand(command);
 				view.dispose();
 			}
 		}

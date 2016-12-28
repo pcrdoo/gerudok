@@ -27,7 +27,7 @@ public class SelectDialog extends JDialog{
 	GNode selected;
 	GNode shared;
 	JButton btnOK;
-	JList list;
+	JList<GNode> list;
 	SelectDialogController controller;
 	
 	public SelectDialog(GNode shared, Model model) {
@@ -40,10 +40,8 @@ public class SelectDialog extends JDialog{
 		JLabel lbl = new JLabel("Select the Project to share the Document with:");
 		this.add(lbl, BorderLayout.NORTH);
 		
-		DefaultListModel listModel = new DefaultListModel();
-	    list = new JList(listModel);
-	    
-	    
+		DefaultListModel<GNode> listModel = new DefaultListModel<>();
+	    list = new JList<GNode>(listModel);
 	    
 	    this.add(list, BorderLayout.CENTER);
 	    

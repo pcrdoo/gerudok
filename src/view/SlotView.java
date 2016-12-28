@@ -48,7 +48,7 @@ public class SlotView extends JPanel implements GObserver {
 
 		setAlignmentY(CENTER_ALIGNMENT);
 		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.8f));
-	    EmptyBorder innerBorder = new EmptyBorder(1, 1, 1, 1);
+	    EmptyBorder innerBorder = new EmptyBorder(3, 3, 3, 3);
 		border = BorderFactory.createTitledBorder(innerBorder, this.getSlot().getName());
 		this.setBorder(border);
 	}
