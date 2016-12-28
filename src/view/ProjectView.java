@@ -66,11 +66,13 @@ public class ProjectView extends JInternalFrame implements GObserver {
 	@Override
 	public void update(GObserverNotification notification, Object obj) {
 		if (notification == GObserverNotification.ADD) {
-			DocumentView documentView = new DocumentView(model, (Document) (obj instanceof Document ? obj : ((GLink)obj).getOriginal()));
+			Document document = (Document) (obj instanceof Document ? obj : ((GLink)obj).getOriginal());
+			DocumentView documentView = new DocumentView(model, document);
 			documentTabs.addTab(documentView.getDocument().getName(), documentView);
 			repaint();
 		} else if (notification == GObserverNotification.DELETE) {
-			DocumentView documentView = findDocumentTab((Document) obj);
+			Document document = (Document) (obj instanceof Document ? obj : ((GLink)obj).getOriginal());
+			DocumentView documentView = findDocumentTab(document);
 			try {
 				documentTabs.remove(documentView);
 				repaint();

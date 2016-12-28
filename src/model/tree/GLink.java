@@ -6,10 +6,11 @@ import java.util.Enumeration;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
+import gerudok_observer.GObserverNotification;
+
 public class GLink extends GNode {
 	
 	private GNode original;
-	private GNode parent;
 	
 	public GLink(GNode original) {
 		this.original = original;
@@ -74,6 +75,7 @@ public class GLink extends GNode {
 	@Override
 	public void removeFromParent() {
 		this.parent.children.remove(this);
+		this.parent.observerList.notifyObservers(GObserverNotification.DELETE, this);
 	}
 
 	@Override

@@ -34,6 +34,7 @@ public class Project extends GNode{
 		return child;
 	}
 	
+	@Override
 	public GNode addNewLinkChild(GNode node) {
 		DocumentLink child = new DocumentLink(node);
 		node.addLink(child);

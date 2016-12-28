@@ -6,6 +6,7 @@
 
 package model;
 
+import java.awt.Color;
 import java.util.*;
 
 import model.tree.GNode;
@@ -15,17 +16,29 @@ public class Page extends GNode{
 
 	static int newChildCount = 0;
 	
+	private Color color;
+	
 	private static int getNewChildCount() {
 		return newChildCount++;
 	}
 	
 	public Page(String name) {
 		super(name);
+		Random r = new Random();
+		color = new Color(r.nextFloat(), r.nextFloat(), r.nextFloat());
 	}
 	
 	public GNode addNewChild() {
-		Slot child = new Slot("Slot"+getNewChildCount());;
+		Slot child = new Slot("Slot"+getNewChildCount());
 		this.add(child);
 		return child;
+	}
+	
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
 	}
 }

@@ -67,7 +67,7 @@ public class PageView extends JPanel implements GObserver {
 		// Content
 		content = new JPanel();
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		content.setBackground(new Color(new Random().nextFloat(), new Random().nextFloat(), new Random().nextFloat()));
+		content.setBackground(page.getColor());
 		add(content);
 	}
 
