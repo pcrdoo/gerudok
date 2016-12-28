@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
+import model.Document;
 import model.Model;
 import model.Project;
 import model.tree.GNode;
@@ -41,10 +42,18 @@ public class GPopupMenuController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			GNode parent = (GNode)view.getSelectedNode().getParent();
-			view.getSelectedNode().removeFromParent();
+			GNode selected = view.getSelectedNode();
+			GNode parent = (GNode) selected.getParent();
+			
+			if(selected instanceof Document) {
+				model.addFreeNode(selected);
+			}
+			
+			selected.removeFromParent();
 			model.getTreeModel().reload();
 			model.doTreeSelection(parent);
+			
+			//System.out.println(model.getFreeNodes());
 		}
 	}
 	
@@ -85,8 +94,6 @@ public class GPopupMenuController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//TODO
-			System.out.println("share");
 			SelectDialog sd = new SelectDialog(view.getSelectedNode(), model);
 			sd.show();
 			model.getTreeModel().reload();

@@ -15,9 +15,19 @@ import model.tree.GTreeModel;
 public class Model implements GObservable{
 	private GTreeModel treeModel;
 	private GObserverList observerList;
+	private List<GNode> freeNodes;
 	
 	public Model() {
 		this.observerList = new GObserverList();
+		this.freeNodes = new ArrayList<>();
+	}
+	
+	public void addFreeNode(GNode node) {
+		this.freeNodes.add(node);
+	}
+	
+	public List<GNode> getFreeNodes() {
+		return this.freeNodes;
 	}
 	
 	public void setTreeModel(GTreeModel treeModel) {
@@ -26,10 +36,6 @@ public class Model implements GObservable{
 	
 	public GTreeModel getTreeModel() {
 		return this.treeModel;
-	}
-	
-	public Workspace getWorkspace() {
-		return Workspace.getInstance();
 	}
 	
 	// Desktop -> Tree

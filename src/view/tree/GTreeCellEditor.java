@@ -15,6 +15,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 
 import controller.tree.GTreeCellEditorController;
 import model.Model;
+import model.tree.GLink;
 import model.tree.GNode;
 
 public class GTreeCellEditor extends DefaultTreeCellEditor{
@@ -53,12 +54,17 @@ public class GTreeCellEditor extends DefaultTreeCellEditor{
 	}
 	
 	public boolean isCellEditable(EventObject e) {
+		if (e == null)
+			return true;
+		
+		if (((WorkspaceTree)e.getSource()).getLastSelectedPathComponent() instanceof GLink) {
+			return false;
+		}
+		
 		if (e instanceof MouseEvent)
 			if (((MouseEvent)e).getClickCount() == 3){
 				return true;
 				}
-		if (e == null)
-			return true;
 		
 		return false;
 	}

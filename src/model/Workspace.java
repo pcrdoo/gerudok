@@ -15,8 +15,15 @@ import model.tree.GNode;
 
 /** @pdOid 9ad5960e-3097-4f1b-971a-2008a1df723c */
 public class Workspace extends GNode {
+
+	static int newChildCount = 0;
+	
 	
 	private static Workspace instance = null;
+	
+	private static int getNewChildCount() {
+		return newChildCount++;
+	}
 	
 	private Workspace() {
 		
@@ -34,7 +41,7 @@ public class Workspace extends GNode {
 	}
 	
 	public GNode addNewChild() {
-		Project child = new Project("Project"+this.getNewChildCount());
+		Project child = new Project("Project"+getNewChildCount());
 		this.add(child);
 		return child;
 	}

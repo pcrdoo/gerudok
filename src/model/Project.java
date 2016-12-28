@@ -14,6 +14,12 @@ import model.tree.GNode;
 
 /** @pdOid 715d801c-8af9-4037-9476-707272b9ea66 */
 public class Project extends GNode{
+
+	static int newChildCount = 0;
+	
+	private static int getNewChildCount() {
+		return newChildCount++;
+	}
 	
 	private boolean opened;
 	
@@ -23,7 +29,7 @@ public class Project extends GNode{
 	}
 
 	public GNode addNewChild() {
-		Document child = new Document("Document"+this.getNewChildCount());
+		Document child = new Document("Document"+getNewChildCount());
 		this.add(child);
 		return child;
 	}

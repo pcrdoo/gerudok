@@ -10,15 +10,20 @@ import java.util.*;
 
 import model.tree.GNode;
 
-/** @pdOid 2daa0c29-7b61-4d73-9235-343a3f9ce163 */
 public class Document extends GNode{
+
+	static int newChildCount = 0;
+	
+	private static int getNewChildCount() {
+		return newChildCount++;
+	}
 	
 	public Document(String name) {
 		super(name);
 	}
    
    public GNode addNewChild() {
-		Page child = new Page("Page"+this.getNewChildCount());
+		Page child = new Page("Page"+getNewChildCount());
 		this.add(child);
 		return child;
    }

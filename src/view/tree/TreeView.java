@@ -23,9 +23,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.event.TreeModelListener;
+import javax.swing.tree.DefaultTreeSelectionModel;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
+import javax.swing.tree.TreeSelectionModel;
 
 import constants.Constants;
 import controller.tree.TreeController;
@@ -67,6 +69,10 @@ public class TreeView extends JPanel{
 	   this.tree.setCellEditor(new GTreeCellEditor(this.tree, gtcr, this.model));
 	   this.tree.setEditable(true);
 	   this.tree.setShowsRootHandles(true);
+	   
+	   TreeSelectionModel selectionModel = new DefaultTreeSelectionModel();
+	   selectionModel.setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+	   this.tree.setSelectionModel(selectionModel);
 	   
 	   //MOCK
 	   this.setBackground(Color.BLACK);

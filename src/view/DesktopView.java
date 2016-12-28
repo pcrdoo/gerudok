@@ -38,7 +38,7 @@ public class DesktopView extends JDesktopPane implements GObserver {
 	public DesktopView(Model model) {
 		this.model = model;
 		this.model.addObserver(this);
-		this.workspace = this.model.getWorkspace();
+		this.workspace = Workspace.getInstance();
 		this.workspace.addObserver(this);
 		this.setBackground(Color.CYAN);
 		this.add(new JLabel("RADNI PROSTOR"));

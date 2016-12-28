@@ -20,14 +20,12 @@ public class GNode implements MutableTreeNode, GObservable {
 	private String name;
 	protected GNode parent;
 	protected ArrayList<GNode> children;
-	private int newChildCount;
 	protected GObserverList observerList;
 	private List<GLink> links;
 	
 	public GNode() {
 		this.parent = null;
 		this.children = new ArrayList<>();
-		this.newChildCount = 0;
 		this.observerList = new GObserverList();
 		this.links = new ArrayList<>();
 		this.setName(null);
@@ -84,10 +82,6 @@ public class GNode implements MutableTreeNode, GObservable {
 	public void setName(String name) {
 		this.name = name;
 		this.observerList.notifyObservers(GObserverNotification.GNODE_RENAME, this);
-	}
-
-	protected int getNewChildCount() {
-		return this.newChildCount++;
 	}
 	
 	public List<GNode> getChildren() {
