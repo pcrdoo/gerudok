@@ -48,14 +48,14 @@ public class Model implements GObservable{
 		this.observerList.notifyObservers(GObserverNotification.TREE_RENAME, node);
 	}
 
-	@Override
-	public void addObserver(GObserver obs) {
-		this.observerList.addObserver(obs);
-	}
-
 	// Tree -> Desktop
 	public void doDesktopSelection(TreePath path) {
 		this.observerList.notifyObservers(GObserverNotification.DESKTOP_SELECT, path);
+	}
+	
+	@Override
+	public void addObserver(GObserver obs) {
+		this.observerList.addObserver(obs);
 	}
 	
 }

@@ -8,9 +8,12 @@ package view;
 
 import gerudok_observer.GObserver;
 import gerudok_observer.GObserverNotification;
+import model.Document;
 import model.Model;
+import model.Page;
 import model.Project;
 import model.Workspace;
+import model.tree.GNode;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -86,14 +89,9 @@ public class DesktopView extends JDesktopPane implements GObserver {
 	@Override
 	public void update(GObserverNotification notification, Object obj) {
 		if (notification == GObserverNotification.ADD) {
-			Point p = new Point(10 + getAllFrames().length * Constants.CASCADE_OFFSET, 10 + getAllFrames().length * Constants.CASCADE_OFFSET); 
-			ProjectView projectView = new ProjectView(model, (Project) obj, p);
-			add(projectView);
-			repaint();
-			try {
-				projectView.setSelected(true);
-			} catch (PropertyVetoException e) {
-				e.printStackTrace();
+			if(obj instanceof Project) {
+				Project project = (Project) obj;
+				addNewChildView(project);
 			}
 		} else if (notification == GObserverNotification.DELETE) {
 			
@@ -113,6 +111,22 @@ public class DesktopView extends JDesktopPane implements GObserver {
 		} else if (notification == GObserverNotification.DESKTOP_SELECT) {
 			Object[] path = ((TreePath) obj).getPath();
 			updateSelection(path, 1);
+		}
+	}
+	
+	public void addNewChildView(Project project) {
+		Point p = new Point(10 + getAllFrames().length * Constants.CASCADE_OFFSET, 10 + getAllFrames().length * Constants.CASCADE_OFFSET); 
+		ProjectView projectView = new ProjectView(model, project, p);
+		this.add(projectView);
+		repaint();
+		try {
+			projectView.setSelected(true);
+		} catch (PropertyVetoException e) {
+			e.printStackTrace();
+		}
+		for(GNode child : project.getChildren()) {
+			Document document = (Document)child;
+			projectView.addNewChildView(document);
 		}
 	}
 

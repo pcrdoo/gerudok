@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
@@ -47,7 +48,8 @@ public class SlotView extends JPanel implements GObserver {
 		this.slot.addObserver(this);
 
 		setAlignmentY(CENTER_ALIGNMENT);
-		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.8f));
+		setAlignmentX(CENTER_ALIGNMENT);
+		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.2f));
 	    EmptyBorder innerBorder = new EmptyBorder(3, 3, 3, 3);
 		border = BorderFactory.createTitledBorder(innerBorder, this.getSlot().getName());
 		this.setBorder(border);
@@ -68,7 +70,6 @@ public class SlotView extends JPanel implements GObserver {
 		} else if (notification == GObserverNotification.DELETE) {
 			// Delete an element
 		} else if (notification == GObserverNotification.GNODE_RENAME) {
-			System.out.println("RENAMED");
 			border.setTitle(this.getSlot().getName());
 			repaint();
 		}

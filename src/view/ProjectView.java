@@ -9,9 +9,13 @@ package view;
 import gerudok_observer.GObserver;
 import gerudok_observer.GObserverNotification;
 import model.Document;
+import model.DocumentLink;
 import model.Model;
+import model.Page;
 import model.Project;
+import model.Slot;
 import model.tree.GLink;
+import model.tree.GNode;
 
 import java.awt.Component;
 import java.awt.Point;
@@ -32,8 +36,6 @@ public class ProjectView extends JInternalFrame implements GObserver {
 	private JTabbedPane documentTabs;
 	private Model model;
 	private boolean projectSelectionFromTree, documentSelectionFromTree;
-
-	
 
 	public ProjectView(Model model, Project project, Point p) {
 		super(project.getName(), true, false, true, true);
@@ -66,12 +68,17 @@ public class ProjectView extends JInternalFrame implements GObserver {
 	@Override
 	public void update(GObserverNotification notification, Object obj) {
 		if (notification == GObserverNotification.ADD) {
-			Document document = (Document) (obj instanceof Document ? obj : ((GLink)obj).getOriginal());
-			DocumentView documentView = new DocumentView(model, document);
-			documentTabs.addTab(documentView.getDocument().getName(), documentView);
-			repaint();
+			Document document = null;
+			if (obj instanceof Document) {
+				document = (Document) obj;
+			} else if (obj instanceof DocumentLink) {
+				document = (Document) ((GLink) obj).getOriginal();
+			}
+			if (document != null) {
+				addNewChildView(document);
+			}
 		} else if (notification == GObserverNotification.DELETE) {
-			Document document = (Document) (obj instanceof Document ? obj : ((GLink)obj).getOriginal());
+			Document document = (Document) (obj instanceof Document ? obj : ((GLink) obj).getOriginal());
 			DocumentView documentView = findDocumentTab(document);
 			try {
 				documentTabs.remove(documentView);
@@ -94,13 +101,24 @@ public class ProjectView extends JInternalFrame implements GObserver {
 				e.printStackTrace();
 			}
 		} else if (notification == GObserverNotification.GNODE_RENAME) {
-				this.setTitle(this.getProject().getName());
+			this.setTitle(this.getProject().getName());
+		}
+	}
+
+	public void addNewChildView(Document document) {
+		DocumentView documentView = new DocumentView(model, document);
+		documentTabs.addTab(documentView.getDocument().getName(), documentView);
+		repaint();
+		for (GNode child : document.getChildren()) {
+			Page page = (Page) child;
+			documentView.addNewChildView(page);
 		}
 	}
 
 	public void updateSelection(Object[] path, int idx) {
 		if (path.length > idx) {
-			DocumentView documentView = findDocumentTab((Document) (path[idx] instanceof Document ? path[idx] : ((GLink)path[idx]).getOriginal()));
+			DocumentView documentView = findDocumentTab(
+					(Document) (path[idx] instanceof Document ? path[idx] : ((GLink) path[idx]).getOriginal()));
 			if (documentView == null)
 				return;
 			try {
@@ -135,7 +153,7 @@ public class ProjectView extends JInternalFrame implements GObserver {
 	public void attachTabChangeListener(ChangeListener tabChangeListener) {
 		this.documentTabs.addChangeListener(tabChangeListener);
 	}
-	
+
 	public boolean isProjectSelectionFromTree() {
 		return projectSelectionFromTree;
 	}

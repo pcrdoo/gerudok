@@ -12,6 +12,7 @@ import model.Document;
 import model.Model;
 import model.Page;
 import model.Project;
+import model.Slot;
 import model.tree.GNode;
 
 import java.awt.BorderLayout;
@@ -87,10 +88,10 @@ public class DocumentView extends JPanel implements GObserver {
 	@Override
 	public void update(GObserverNotification notification, Object obj) {
 		if (notification == GObserverNotification.ADD) {
-			PageView pageView = new PageView(model, (Page) obj);
-			pageArea.add(pageView);
-			pageArea.scrollRectToVisible(pageView.getBounds());
-			repaint();
+			if(obj instanceof Page) {
+				Page page = (Page)obj;
+				addNewChildView(page);
+			}
 		} else if (notification == GObserverNotification.DELETE) {
 			PageView pageView = findPage((Page) obj);
 			try {
@@ -145,6 +146,17 @@ public class DocumentView extends JPanel implements GObserver {
 		return null;
 	}
 	
+	public void addNewChildView(Page page) {
+		PageView pageView = new PageView(model, page);
+		pageArea.add(pageView);
+		pageArea.scrollRectToVisible(pageView.getBounds());
+		repaint();
+		for(GNode child : page.getChildren()) {
+			Slot slot = (Slot)child;
+			pageView.addNewChildView(slot);
+		}
+	}
+	
 	public void attachViewPortChangeListener(ChangeListener viewPortChangeListener) {
 		this.scrollBar.getViewport().addChangeListener(viewPortChangeListener);
 	}
@@ -174,4 +186,6 @@ public class DocumentView extends JPanel implements GObserver {
 	public PageView getSelectedPage() {
 		return selectedPage;
 	}
+	
+	
 }

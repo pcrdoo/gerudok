@@ -11,6 +11,7 @@ import gerudok_observer.GObserverNotification;
 import model.Model;
 import model.Page;
 import model.Slot;
+import model.tree.GNode;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -66,7 +67,7 @@ public class PageView extends JPanel implements GObserver {
 		
 		// Content
 		content = new JPanel();
-		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		//setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		content.setBackground(page.getColor());
 		add(content);
 	}
@@ -82,10 +83,11 @@ public class PageView extends JPanel implements GObserver {
 	@Override
 	public void update(GObserverNotification notification, Object obj) {
 		if (notification == GObserverNotification.ADD) {
-			SlotView slotView = new SlotView(model, (Slot) obj);
-			content.add(slotView);
-			adjustSlotSizes();
-			repaint();
+			if(obj instanceof Slot) {
+				Slot slot = (Slot)obj;
+				SlotView newView = addNewChildView(slot);
+				// propagate further to elements
+			}
 		} else if (notification == GObserverNotification.DELETE) {
 			SlotView slotView = findSlot((Slot) obj);
 			try {
@@ -106,7 +108,7 @@ public class PageView extends JPanel implements GObserver {
 			if (c instanceof SlotView) {
 				int factor = Math.max(4, content.getComponents().length);
 				// TODO: Racunati ove dimenzije kako treba umesto ovog nabadanja.
-				c.setPreferredSize(new Dimension(Constants.PAGE_WIDTH - 15, Constants.PAGE_HEIGHT / factor - 10));
+				c.setPreferredSize(new Dimension(Constants.PAGE_WIDTH - 15, (Constants.PAGE_HEIGHT) / factor - 11));
 				
 			} 
 		}
@@ -122,5 +124,13 @@ public class PageView extends JPanel implements GObserver {
 			}
 		}
 		return null;
+	}
+
+	public SlotView addNewChildView(Slot slot) {
+		SlotView slotView = new SlotView(model, slot);
+		content.add(slotView);
+		adjustSlotSizes();
+		repaint();
+		return slotView;
 	}
 }

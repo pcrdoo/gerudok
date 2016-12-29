@@ -80,6 +80,8 @@ public class DocumentController {
 				// zbog nekog
 				// race conditiona, ako krenu da se desavaju cudne
 				// stvari naci lepsi nacin.
+				
+				// TODO: OVO MORA NORMALNO: 1 komanda koja javlja svima
 
 				documentView.setTreePageSelectionFromDesktop(true);
 				Invoker.getInstance().executeCommand(new TreeSelectCommand(model, closestChild.getPage()));
