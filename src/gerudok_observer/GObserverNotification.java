@@ -8,5 +8,6 @@ public enum GObserverNotification {
 	TREE_RENAME,
 	TREE_SELECT, 
 	DESKTOP_SELECT,
+	ELEMENT_EDIT,
 	GNODE_RENAME;
 }

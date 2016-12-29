@@ -149,7 +149,7 @@ public class GNode implements MutableTreeNode, GObservable {
 		for(GLink link : this.links) {
 			link.removeFromParent();
 		}
-		this.parent.children.remove(this);
+		this.parent.remove(this);
 		this.parent.observerList.notifyObservers(GObserverNotification.DELETE, this);
 	}
 

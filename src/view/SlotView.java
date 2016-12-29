@@ -33,45 +33,31 @@ import controller.SlotController;
 import gerudok_observer.GObserver;
 import gerudok_observer.GObserverNotification;
 
-public class SlotView extends JPanel implements GObserver {
+public class SlotView extends ElementContainerView {
 	private SlotController slotController;
-	private Slot slot;
 
 	private Model model;
 	
 	private TitledBorder border;
 
+	public Slot getSlot() {
+		return (Slot) getElementContainer();
+	}
+	
+	public void onRenameNotification(Object obj)
+	{
+		border.setTitle(this.getSlot().getName());
+		repaint();
+	}
+		
 	public SlotView(Model model, Slot obj) {
-		this.model = model;
-		this.model.addObserver(this);
-		this.setSlot(obj);
-		this.slot.addObserver(this);
+		super(model, obj);
 
 		setAlignmentY(CENTER_ALIGNMENT);
 		setAlignmentX(CENTER_ALIGNMENT);
 		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.2f));
 	    EmptyBorder innerBorder = new EmptyBorder(3, 3, 3, 3);
-		border = BorderFactory.createTitledBorder(innerBorder, this.getSlot().getName());
+		border = BorderFactory.createTitledBorder(innerBorder, obj.getName());
 		this.setBorder(border);
-	}
-
-	public Slot getSlot() {
-		return slot;
-	}
-
-	public void setSlot(Slot slot) {
-		this.slot = slot;
-	}
-	
-	@Override
-	public void update(GObserverNotification notification, Object obj) {
-		if (notification == GObserverNotification.ADD) {
-			// Add new element
-		} else if (notification == GObserverNotification.DELETE) {
-			// Delete an element
-		} else if (notification == GObserverNotification.GNODE_RENAME) {
-			border.setTitle(this.getSlot().getName());
-			repaint();
-		}
 	}
 }

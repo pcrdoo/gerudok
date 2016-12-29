@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
@@ -13,6 +14,7 @@ import controller.tree.GPopupMenuController;
 import model.Document;
 import model.DocumentLink;
 import model.Element;
+import model.ElementContainer;
 import model.Model;
 import model.Page;
 import model.Project;
@@ -26,6 +28,11 @@ public class GPopupMenu extends JPopupMenu {
 	GPopupMenuController controller;
 	GNode node;
 	JMenuItem addNew;
+	JMenu addNewElement;
+	JMenuItem edit;
+	JMenuItem addNewTextElement;
+	JMenuItem addNewGraphicElement;
+	JMenuItem addNewSoundElement;
 	JMenuItem delete;
 	JMenuItem rename;
 	JMenuItem switchWorkspace;
@@ -45,6 +52,18 @@ public class GPopupMenu extends JPopupMenu {
 	private void initialize() {
 		//TODO strings from res
 		this.addNew = new JMenuItem("Add");
+		
+		this.addNewElement = new JMenu("Add");
+		this.addNewTextElement = new JMenuItem("Text");
+		this.addNewGraphicElement = new JMenuItem("Graphics");
+		this.addNewSoundElement = new JMenuItem("Sound");
+		
+		this.addNewElement.add(this.addNewTextElement);
+		this.addNewElement.add(this.addNewGraphicElement);
+		this.addNewElement.add(this.addNewSoundElement);
+		
+		this.edit = new JMenuItem("Edit");
+		
 		this.delete = new JMenuItem("Delete");
 		this.rename = new JMenuItem("Rename");
 		this.switchWorkspace = new JMenuItem("Switch Workspace");
@@ -58,16 +77,31 @@ public class GPopupMenu extends JPopupMenu {
 			put(Document.class, Arrays.asList(addNew, share, delete, rename));
 			put(DocumentLink.class, Arrays.asList(delete));
 			put(Page.class, Arrays.asList(addNew, delete, rename));
-			put(Slot.class, Arrays.asList(addNew, delete, rename));
-			put(Element.class, Arrays.asList(addNew, delete, rename));
+			put(Slot.class, Arrays.asList(delete, rename));
+			put(Element.class, Arrays.asList(edit, delete, rename));
 			
 			}};
 		
 		if(this.menuItems.containsKey(node.getClass())) {
+			if (node instanceof ElementContainer) {
+				if (((ElementContainer)node).getType() == null) {
+					this.add(addNewElement);
+				} else {
+					this.add(addNew);
+				}
+			}
 			for(JMenuItem item : this.menuItems.get(node.getClass()))
 				this.add(item);
 		} else {
-			System.err.println("OgiException: Unknown node type in tree");
+			if (node instanceof Element) {
+				// hak oko ogijevog haka
+				this.add(addNew);
+				for (JMenuItem item : this.menuItems.get(Element.class)) {
+					this.add(item);
+				}
+			} else {
+				System.err.println("OgiException: Unknown node type in tree");
+			}
 		}
 	}
 	
@@ -77,6 +111,18 @@ public class GPopupMenu extends JPopupMenu {
 	
 	public void setAddNewListener(ActionListener l) {
 		this.addNew.addActionListener(l);
+	}
+
+	public void setAddNewTextElementListener(ActionListener l) {
+		this.addNewTextElement.addActionListener(l);
+	}
+	
+	public void setAddNewSoundElementListener(ActionListener l) {
+		this.addNewSoundElement.addActionListener(l);
+	}
+	
+	public void setAddNewGraphicElementListener(ActionListener l) {
+		this.addNewGraphicElement.addActionListener(l);
 	}
 	
 	public void setDeleteListener(ActionListener l) {
@@ -97,5 +143,9 @@ public class GPopupMenu extends JPopupMenu {
 	
 	public void setShareListener(ActionListener l) {
 		this.share.addActionListener(l);
+	}
+	
+	public void setElementEditListener(ActionListener l) {
+		this.edit.addActionListener(l);
 	}
 }

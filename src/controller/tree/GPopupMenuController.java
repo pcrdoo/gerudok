@@ -5,16 +5,21 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
 import command.AddNewChildCommand;
+import command.AddNewChildElementCommand;
 import command.CloseProjectCommand;
 import command.DeleteCommand;
 import command.Invoker;
 import command.OpenProjectCommand;
 import command.RenameCommand;
 import command.SwitchWorkspaceCommand;
+import command.ElementEditInitCommand;
 import command.TreeSelectCommand;
 import model.Document;
 import model.Model;
 import model.Project;
+import model.ElementContainer;
+import model.ElementType;
+import model.Element;
 import model.tree.GNode;
 import view.tree.GPopupMenu;
 import view.tree.SelectDialog;
@@ -29,11 +34,15 @@ public class GPopupMenuController {
 		this.view = view;
 
 		this.view.setAddNewListener(new AddNewListener());
+		this.view.setAddNewGraphicElementListener(new AddNewGraphicElementListener());
+		this.view.setAddNewTextElementListener(new AddNewTextElementListener());
+		this.view.setAddNewSoundElementListener(new AddNewSoundElementListener());
 		this.view.setDeleteListener(new DeleteListener());
 		this.view.setRenameListener(new RenameListener());
 		this.view.setSwitchWorkspaceListener(new SwitchWorkspaceListener());
 		this.view.setOpenCloseListener(new OpenCloseListener());
 		this.view.setShareListener(new ShareListener());
+		this.view.setElementEditListener(new ElementEditListener());
 	}
 	
 	class AddNewListener implements ActionListener {
@@ -43,6 +52,28 @@ public class GPopupMenuController {
 			Invoker.getInstance().executeCommand(new AddNewChildCommand(model, view.getSelectedNode()));
 		}
 	}
+	
+	class AddNewGraphicElementListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Invoker.getInstance().executeCommand(new AddNewChildElementCommand(model, (ElementContainer)view.getSelectedNode(), ElementType.GRAPHIC));
+		}
+	}
+	
+	class AddNewTextElementListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Invoker.getInstance().executeCommand(new AddNewChildElementCommand(model, (ElementContainer)view.getSelectedNode(), ElementType.TEXT));
+		}
+	}
+	
+	class AddNewSoundElementListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Invoker.getInstance().executeCommand(new AddNewChildElementCommand(model, (ElementContainer)view.getSelectedNode(), ElementType.SOUND));
+		}
+	}
+	
 	
 	class DeleteListener implements ActionListener {
 
@@ -80,6 +111,14 @@ public class GPopupMenuController {
 			}
 			// model.getTreeModel().reload();
 		}
+	}
+	
+	class ElementEditListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Invoker.getInstance().executeCommand(new ElementEditInitCommand(model, (Element) view.getSelectedNode()));
+
+		}		
 	}
 	
 	class ShareListener implements ActionListener {
