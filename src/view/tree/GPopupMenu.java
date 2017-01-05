@@ -38,6 +38,7 @@ public class GPopupMenu extends JPopupMenu {
 	JMenuItem switchWorkspace;
 	JMenuItem openClose;
 	JMenuItem share;
+	JMenuItem addFromFree;
 	HashMap<Class, List<JMenuItem>> menuItems;
 	
 	public GPopupMenu(Model model, GNode node) {
@@ -69,11 +70,13 @@ public class GPopupMenu extends JPopupMenu {
 		this.switchWorkspace = new JMenuItem("Switch Workspace");
 		this.openClose = new JMenuItem(this.node instanceof Project && ((Project)this.node).isOpened() ? "Close" : "Open");
 		this.share = new JMenuItem("Share with...");
+		this.addFromFree = new JMenuItem("Add from free documents...");
+		this.addFromFree.setEnabled(!model.getFreeNodes().isEmpty());
 		
 		this.menuItems = new HashMap<Class, List<JMenuItem>>(){{
 
 			put(Workspace.class, Arrays.asList(addNew, rename, switchWorkspace));
-			put(Project.class, node.getClass() == Project.class && ((Project)node).isOpened() ? Arrays.asList(addNew, delete, rename, openClose) : Arrays.asList(delete, openClose));
+			put(Project.class, node.getClass() == Project.class && ((Project)node).isOpened() ? Arrays.asList(addNew, addFromFree, delete, rename, openClose) : Arrays.asList(delete, openClose));
 			put(Document.class, Arrays.asList(addNew, share, delete, rename));
 			put(DocumentLink.class, Arrays.asList(delete));
 			put(Page.class, Arrays.asList(addNew, delete, rename));
@@ -147,5 +150,9 @@ public class GPopupMenu extends JPopupMenu {
 	
 	public void setElementEditListener(ActionListener l) {
 		this.edit.addActionListener(l);
+	}
+	
+	public void setAddFromFreeListener(ActionListener l) {
+		this.addFromFree.addActionListener(l);
 	}
 }

@@ -16,6 +16,7 @@ public class OpenProjectCommand extends Command {
 	public void execute() {
 		project.doProjectClose();
 		project.setOpened(true);
+		this.model.getTreeModel().reload();
 	}
 
 }

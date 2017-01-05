@@ -13,14 +13,14 @@ import javax.swing.event.ListSelectionListener;
 import command.AddNewLinkChildCommand;
 import command.Invoker;
 import model.Model;
-import view.tree.SelectDialog;
+import view.tree.SelectProjectDialog;
 
-public class SelectDialogController {
+public class SelectProjectDialogController {
 	
 	Model model;
-	SelectDialog view;
+	SelectProjectDialog view;
 	
-	public SelectDialogController(Model model, SelectDialog view) {
+	public SelectProjectDialogController(Model model, SelectProjectDialog view) {
 		this.model = model;
 		this.view = view;
 		

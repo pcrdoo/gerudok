@@ -22,7 +22,8 @@ import model.ElementType;
 import model.Element;
 import model.tree.GNode;
 import view.tree.GPopupMenu;
-import view.tree.SelectDialog;
+import view.tree.SelectDocumentDialog;
+import view.tree.SelectProjectDialog;
 
 public class GPopupMenuController {
 	
@@ -43,6 +44,7 @@ public class GPopupMenuController {
 		this.view.setOpenCloseListener(new OpenCloseListener());
 		this.view.setShareListener(new ShareListener());
 		this.view.setElementEditListener(new ElementEditListener());
+		this.view.setAddFromFreeListener(new AddFromFreeListener());
 	}
 	
 	class AddNewListener implements ActionListener {
@@ -125,7 +127,16 @@ public class GPopupMenuController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			SelectDialog sd = new SelectDialog(view.getSelectedNode(), model);
+			SelectProjectDialog sd = new SelectProjectDialog(view.getSelectedNode(), model);
+			sd.show();
+		}
+	}
+	
+	class AddFromFreeListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			SelectDocumentDialog sd = new SelectDocumentDialog(view.getSelectedNode(), model);
 			sd.show();
 		}
 	}

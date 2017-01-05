@@ -41,7 +41,7 @@ public class GNode implements MutableTreeNode, GObservable {
 		observerList.addObserver(observer);
 	}
 	
-	protected void add(GNode child) {
+	public void add(GNode child) {
 		child.parent = this;
 		this.children.add(child);
 		observerList.notifyObservers(GObserverNotification.ADD, child);

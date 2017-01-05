@@ -2,7 +2,6 @@ package view.tree;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
@@ -11,33 +10,30 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.ListModel;
-import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import controller.tree.SelectDialogController;
+import controller.tree.SelectDocumentDialogController;
+import controller.tree.SelectProjectDialogController;
 import model.Model;
 import model.Workspace;
-import model.tree.GLink;
 import model.tree.GNode;
 
-public class SelectDialog extends JDialog{
-	
+public class SelectDocumentDialog extends JDialog{
 	Model model;
 	GNode selected;
-	GNode shared;
+	GNode parent;
 	JButton btnOK;
 	JList<GNode> list;
-	SelectDialogController controller;
+	SelectDocumentDialogController controller;
 	
-	public SelectDialog(GNode shared, Model model) {
+	public SelectDocumentDialog(GNode parent, Model model) {
 		super();
 		this.model = model;
-		this.shared = shared;
+		this.parent = parent;
 		
 		this.setLayout(new BorderLayout());
 		
-		JLabel lbl = new JLabel("Select the Project to share the Document with:");
+		JLabel lbl = new JLabel("Select the free Document to add to the Project:");
 		this.add(lbl, BorderLayout.NORTH);
 		
 		DefaultListModel<GNode> listModel = new DefaultListModel<>();
@@ -45,10 +41,8 @@ public class SelectDialog extends JDialog{
 	    
 	    this.add(list, BorderLayout.CENTER);
 	    
-	    //only for projects
-	    for(GNode node : Workspace.getInstance().getChildren()) {
-	    	if(node != shared.getParent())
-	    		listModel.addElement(node);
+	    for(GNode node : this.model.getFreeNodes()) {
+	    	listModel.addElement(node);
 	    }
 		
 	    btnOK = new JButton("OK");
@@ -60,7 +54,7 @@ public class SelectDialog extends JDialog{
 		pack();
 		setLocationRelativeTo(null);
 		
-		this.controller = new SelectDialogController(model, this);
+		this.controller = new SelectDocumentDialogController(model, this);
 	}
 	
 	public void addSelectionChangedListener(ListSelectionListener l) {
@@ -83,7 +77,7 @@ public class SelectDialog extends JDialog{
 		return (GNode) this.list.getSelectedValue();
 	}
 	
-	public GNode getShared() {
-		return this.shared;
+	public GNode getParentNode() {
+		return this.parent;
 	}
 }
