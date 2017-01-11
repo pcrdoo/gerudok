@@ -62,6 +62,7 @@ public class DocumentController {
 						closestChild = child;
 						closestChildDistance = currentDistance;
 					}
+					child.repaint();
 				}
 			}
 			if (closestChild != null && closestChild != documentView.getSelectedPage()) {

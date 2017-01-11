@@ -87,12 +87,16 @@ public class PageView extends JPanel implements GObserver {
 				Slot slot = (Slot)obj;
 				SlotView newView = addNewChildView(slot);
 				// propagate further to elements
+				adjustSlotSizes();
+				validate();
+				repaint();
 			}
 		} else if (notification == GObserverNotification.DELETE) {
 			SlotView slotView = findSlot((Slot) obj);
 			try {
 				content.remove(slotView);
 				adjustSlotSizes();
+				validate();
 				repaint();
 			} catch (NullPointerException e) {
 				e.printStackTrace();
@@ -104,11 +108,13 @@ public class PageView extends JPanel implements GObserver {
 	}
 	
 	private void adjustSlotSizes() {
+
+		int factor = Math.max(4, content.getComponents().length);
+		int availableHeight = content.getHeight() - factor * 5;
+		
 		for(Component c : content.getComponents()) {
 			if (c instanceof SlotView) {
-				int factor = Math.max(4, content.getComponents().length);
-				// TODO: Racunati ove dimenzije kako treba umesto ovog nabadanja.
-				c.setPreferredSize(new Dimension(Constants.PAGE_WIDTH - 15, (Constants.PAGE_HEIGHT) / factor - 11));
+				c.setPreferredSize(new Dimension(content.getWidth(), availableHeight / factor));
 				
 			} 
 		}
@@ -129,8 +135,6 @@ public class PageView extends JPanel implements GObserver {
 	public SlotView addNewChildView(Slot slot) {
 		SlotView slotView = new SlotView(model, slot);
 		content.add(slotView);
-		adjustSlotSizes();
-		repaint();
 		return slotView;
 	}
 }
