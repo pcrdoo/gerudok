@@ -16,6 +16,7 @@ import model.tree.GNode;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.util.Random;
 
 import javax.swing.BorderFactory;
@@ -87,7 +88,6 @@ public class PageView extends JPanel implements GObserver {
 				Slot slot = (Slot)obj;
 				SlotView newView = addNewChildView(slot);
 				// propagate further to elements
-				adjustSlotSizes();
 				validate();
 				repaint();
 			}
@@ -108,6 +108,7 @@ public class PageView extends JPanel implements GObserver {
 	}
 	
 	private void adjustSlotSizes() {
+		
 
 		int factor = Math.max(4, content.getComponents().length);
 		int availableHeight = content.getHeight() - factor * 5;
@@ -115,7 +116,6 @@ public class PageView extends JPanel implements GObserver {
 		for(Component c : content.getComponents()) {
 			if (c instanceof SlotView) {
 				c.setPreferredSize(new Dimension(content.getWidth(), availableHeight / factor));
-				
 			} 
 		}
 	}
@@ -135,6 +135,7 @@ public class PageView extends JPanel implements GObserver {
 	public SlotView addNewChildView(Slot slot) {
 		SlotView slotView = new SlotView(model, slot);
 		content.add(slotView);
+		adjustSlotSizes();
 		return slotView;
 	}
 }

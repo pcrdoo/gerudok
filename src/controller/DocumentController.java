@@ -85,7 +85,7 @@ public class DocumentController {
 				// TODO: OVO MORA NORMALNO: 1 komanda koja javlja svima
 
 				documentView.setTreePageSelectionFromDesktop(true);
-				Invoker.getInstance().executeCommand(new TreeSelectCommand(model, closestChild.getPage()));
+				//Invoker.getInstance().executeCommand(new TreeSelectCommand(model, closestChild.getPage()));
 			}
 		}
 	}

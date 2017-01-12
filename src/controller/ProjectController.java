@@ -41,8 +41,8 @@ public class ProjectController {
 		          JTabbedPane sourceTabbedPane = (JTabbedPane) e.getSource();
 		          DocumentView documentView = (DocumentView)sourceTabbedPane.getSelectedComponent();
 		           if(documentView != null) {
-		        	   TreeSelectCommand command = new TreeSelectCommand(model, documentView.getDocument());
-					   Invoker.getInstance().executeCommand(command);
+		        	   //TreeSelectCommand command = new TreeSelectCommand(model, documentView.getDocument());
+					   //Invoker.getInstance().executeCommand(command);
 		           }
 				}
 		}
@@ -57,7 +57,7 @@ public class ProjectController {
 			if(projectView.isProjectSelectionFromTree()) {
 				projectView.setProjectSelectionFromTree(false);
 			} else {
-				Invoker.getInstance().executeCommand(new TreeSelectCommand(model, projectView.getProject()));
+				//Invoker.getInstance().executeCommand(new TreeSelectCommand(model, projectView.getProject()));
 			}
 		}
 
