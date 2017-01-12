@@ -3,6 +3,7 @@ package command;
 import model.Model;
 import model.ElementContainer;
 import model.ElementType;
+import model.Element;
 import model.tree.GNode;
 
 public class AddNewChildElementCommand extends Command {
@@ -18,8 +19,9 @@ public class AddNewChildElementCommand extends Command {
 	@Override
 	public void execute() {
 		try {
-			GNode child = node.addNewChild(childType);
+			Element child = (Element) node.addNewChild(childType);
 			Invoker.getInstance().executeCommand(new TreeSelectCommand(model, child));
+			Invoker.getInstance().executeCommand(new ElementEditInitCommand(model, child));
 		} catch (Exception e) {
 			System.out.println("DavisException: violated data type invariant; contact your local Davis for help and guidance");
 			e.printStackTrace();

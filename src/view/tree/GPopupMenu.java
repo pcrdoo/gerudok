@@ -87,10 +87,9 @@ public class GPopupMenu extends JPopupMenu {
 		
 		if(this.menuItems.containsKey(node.getClass())) {
 			if (node instanceof ElementContainer) {
-				if (((ElementContainer)node).getType() == null) {
-					this.add(addNewElement);
-				} else {
-					this.add(addNew);
+				this.add(addNewElement);
+				if (((ElementContainer)node).getType() != null) {
+					addNewElement.setEnabled(false);
 				}
 			}
 			for(JMenuItem item : this.menuItems.get(node.getClass()))

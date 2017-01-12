@@ -3,6 +3,7 @@ package command;
 import gerudok_observer.GObserverNotification;
 import model.Document;
 import model.Model;
+import model.Element;
 import model.tree.GNode;
 
 public class AddNewChildCommand extends Command {
@@ -18,6 +19,9 @@ public class AddNewChildCommand extends Command {
 	public void execute() {
 		GNode child = this.node.addNewChild();
 		Invoker.getInstance().executeCommand(new TreeSelectCommand(model, child));
+		if (child instanceof Element) {
+			Invoker.getInstance().executeCommand(new ElementEditInitCommand(model, (Element) child));
+		}
 	}
 
 }

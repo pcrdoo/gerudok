@@ -18,7 +18,7 @@ public abstract class ElementView extends ElementContainerView {
 	protected ArrayList<MouseListener> deferredListeners = new ArrayList<>();
 	
 	public ElementView(Model model, Element element) {
-		super(model, element);
+		super(model, element, false);
 		controller = new ElementController(model, this);
 	}
 	

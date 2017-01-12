@@ -17,13 +17,13 @@ public class TextElement extends Element {
 	public TextElement() {
 		super();
 		this.type = ElementType.TEXT;
-		this.html = "Lorem ipsum dolor sit amet";
+		this.html = "";
 	}
 	
 	public TextElement(String name) {
 		super(name);
 		this.type = ElementType.TEXT;
-		this.html = "Lorem ipsum dolor sit amet";
+		this.html = "";
 	}
 	
 	public String getHtml() {

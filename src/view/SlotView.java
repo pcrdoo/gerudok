@@ -40,6 +40,17 @@ public class SlotView extends ElementContainerView {
 	
 	private TitledBorder border;
 
+	public SlotView(Model model, Slot obj) {
+		super(model, obj, true);
+
+		setAlignmentY(CENTER_ALIGNMENT);
+		setAlignmentX(CENTER_ALIGNMENT);
+		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.2f));
+	    EmptyBorder innerBorder = new EmptyBorder(3, 3, 3, 3);
+		border = BorderFactory.createTitledBorder(innerBorder, obj.getName());
+		this.setBorder(border);
+	}
+	
 	public Slot getSlot() {
 		return (Slot) getElementContainer();
 	}
@@ -50,14 +61,4 @@ public class SlotView extends ElementContainerView {
 		repaint();
 	}
 		
-	public SlotView(Model model, Slot obj) {
-		super(model, obj);
-
-		setAlignmentY(CENTER_ALIGNMENT);
-		setAlignmentX(CENTER_ALIGNMENT);
-		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.2f));
-	    EmptyBorder innerBorder = new EmptyBorder(3, 3, 3, 3);
-		border = BorderFactory.createTitledBorder(innerBorder, obj.getName());
-		this.setBorder(border);
-	}
 }
