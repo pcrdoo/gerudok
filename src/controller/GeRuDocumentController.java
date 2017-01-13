@@ -7,7 +7,7 @@
 package controller;
 
 import model.Model;
-import view.DocumentView;
+import view.GeRuDocumentView;
 import view.PageView;
 import view.ProjectView;
 
@@ -27,11 +27,11 @@ import command.Invoker;
 import command.TreeSelectCommand;
 
 /** @pdOid bf767906-23cd-405d-a24d-dd73d7851411 */
-public class DocumentController {
+public class GeRuDocumentController {
 	private Model model;
-	private DocumentView documentView;
+	private GeRuDocumentView documentView;
 
-	public DocumentController(Model model, DocumentView view) {
+	public GeRuDocumentController(Model model, GeRuDocumentView view) {
 		this.model = model;
 		this.documentView = view;
 		documentView.attachViewPortChangeListener(new ViewPortChangeListener());

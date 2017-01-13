@@ -1,6 +1,6 @@
 package command;
 
-import model.Document;
+import model.GeRuDocument;
 import model.Model;
 import model.Project;
 import model.tree.GNode;

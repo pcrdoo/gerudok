@@ -8,8 +8,8 @@ package view;
 
 import gerudok_observer.GObserver;
 import gerudok_observer.GObserverNotification;
-import model.Document;
-import model.DocumentLink;
+import model.GeRuDocument;
+import model.GeRuDocumentLink;
 import model.Model;
 import model.Page;
 import model.Project;
@@ -68,18 +68,18 @@ public class ProjectView extends JInternalFrame implements GObserver {
 	@Override
 	public void update(GObserverNotification notification, Object obj) {
 		if (notification == GObserverNotification.ADD) {
-			Document document = null;
-			if (obj instanceof Document) {
-				document = (Document) obj;
-			} else if (obj instanceof DocumentLink) {
-				document = (Document) ((GLink) obj).getOriginal();
+			GeRuDocument document = null;
+			if (obj instanceof GeRuDocument) {
+				document = (GeRuDocument) obj;
+			} else if (obj instanceof GeRuDocumentLink) {
+				document = (GeRuDocument) ((GLink) obj).getOriginal();
 			}
 			if (document != null) {
 				addNewChildView(document);
 			}
 		} else if (notification == GObserverNotification.DELETE) {
-			Document document = (Document) (obj instanceof Document ? obj : ((GLink) obj).getOriginal());
-			DocumentView documentView = findDocumentTab(document);
+			GeRuDocument document = (GeRuDocument) (obj instanceof GeRuDocument ? obj : ((GLink) obj).getOriginal());
+			GeRuDocumentView documentView = findDocumentTab(document);
 			try {
 				documentTabs.remove(documentView);
 				repaint();
@@ -105,8 +105,8 @@ public class ProjectView extends JInternalFrame implements GObserver {
 		}
 	}
 
-	public void addNewChildView(Document document) {
-		DocumentView documentView = new DocumentView(model, document);
+	public void addNewChildView(GeRuDocument document) {
+		GeRuDocumentView documentView = new GeRuDocumentView(model, document);
 		documentTabs.addTab(documentView.getDocument().getName(), documentView);
 		repaint();
 		for (GNode child : document.getChildren()) {
@@ -117,8 +117,8 @@ public class ProjectView extends JInternalFrame implements GObserver {
 
 	public void updateSelection(Object[] path, int idx) {
 		if (path.length > idx) {
-			DocumentView documentView = findDocumentTab(
-					(Document) (path[idx] instanceof Document ? path[idx] : ((GLink) path[idx]).getOriginal()));
+			GeRuDocumentView documentView = findDocumentTab(
+					(GeRuDocument) (path[idx] instanceof GeRuDocument ? path[idx] : ((GLink) path[idx]).getOriginal()));
 			if (documentView == null)
 				return;
 			try {
@@ -131,12 +131,12 @@ public class ProjectView extends JInternalFrame implements GObserver {
 		}
 	}
 
-	private DocumentView findDocumentTab(Document document) {
+	private GeRuDocumentView findDocumentTab(GeRuDocument document) {
 		int totalTabs = documentTabs.getTabCount();
 		for (int i = 0; i < totalTabs; i++) {
 			Component tab = documentTabs.getComponentAt(i);
-			if (tab instanceof DocumentView) {
-				DocumentView documentView = (DocumentView) tab;
+			if (tab instanceof GeRuDocumentView) {
+				GeRuDocumentView documentView = (GeRuDocumentView) tab;
 				if (documentView.getDocument() == document) {
 					return documentView;
 				}

@@ -10,8 +10,8 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeCellRenderer;
 
-import model.Document;
-import model.DocumentLink;
+import model.GeRuDocument;
+import model.GeRuDocumentLink;
 import model.Element;
 import model.Page;
 import model.Project;
@@ -30,9 +30,9 @@ public class GTreeCellRendered extends DefaultTreeCellRenderer{
 			iconPath = "/res/workspace_icon.png";
 		} else if(value instanceof Project) {
 			iconPath = ((Project)value).isOpened() ? "/res/project_icon.png" : "/res/project_closed_icon.png";
-		} else if(value instanceof Document) {
+		} else if(value instanceof GeRuDocument) {
 			iconPath = "/res/document_icon.png";
-		} else if(value instanceof DocumentLink) {
+		} else if(value instanceof GeRuDocumentLink) {
 			iconPath = "/res/document_link_icon.png";
 		} else if(value instanceof Page) {
 			iconPath = "/res/page_icon.png";

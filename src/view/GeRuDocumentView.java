@@ -8,7 +8,7 @@ package view;
 
 import gerudok_observer.GObserver;
 import gerudok_observer.GObserverNotification;
-import model.Document;
+import model.GeRuDocument;
 import model.Model;
 import model.Page;
 import model.Project;
@@ -36,14 +36,14 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.InternalFrameListener;
 
 import constants.Constants;
-import controller.DocumentController;
+import controller.GeRuDocumentController;
 import controller.ProjectController;
-import controller.DocumentController;
+import controller.GeRuDocumentController;
 
 @SuppressWarnings("serial")
-public class DocumentView extends JPanel implements GObserver {
-	private DocumentController documentController;
-	private Document document;
+public class GeRuDocumentView extends JPanel implements GObserver {
+	private GeRuDocumentController documentController;
+	private GeRuDocument document;
 	private Model model;
 	private JPanel pageArea;
 	private boolean pageSelectionFromTree;
@@ -52,7 +52,7 @@ public class DocumentView extends JPanel implements GObserver {
 
 	private JScrollPane scrollBar;
 
-	public DocumentView(Model model, Document document) {
+	public GeRuDocumentView(Model model, GeRuDocument document) {
 		this.model = model;
 		this.model.addObserver(this);
 		this.setDocument(document);
@@ -74,14 +74,14 @@ public class DocumentView extends JPanel implements GObserver {
 		this.add(scrollBar);
 		
 		// Listener
-		documentController = new DocumentController(model, this);
+		documentController = new GeRuDocumentController(model, this);
 	}
 
-	public void setDocument(Document document) {
+	public void setDocument(GeRuDocument document) {
 		this.document = document;
 	}
 
-	public Document getDocument() {
+	public GeRuDocument getDocument() {
 		return this.document;
 	}
 

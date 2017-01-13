@@ -6,7 +6,7 @@
 
 package view;
 
-import model.Document;
+import model.GeRuDocument;
 import model.Model;
 import model.Page;
 import model.Slot;
@@ -28,7 +28,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import constants.Constants;
-import controller.DocumentController;
+import controller.GeRuDocumentController;
 import controller.SlotController;
 import gerudok_observer.GObserver;
 import gerudok_observer.GObserverNotification;

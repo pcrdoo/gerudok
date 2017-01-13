@@ -14,7 +14,7 @@ import command.RenameCommand;
 import command.SwitchWorkspaceCommand;
 import command.ElementEditInitCommand;
 import command.TreeSelectCommand;
-import model.Document;
+import model.GeRuDocument;
 import model.Model;
 import model.Project;
 import model.ElementContainer;

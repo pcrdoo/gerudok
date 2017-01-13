@@ -29,14 +29,14 @@ public class Project extends GNode{
 	}
 
 	public GNode addNewChild() {
-		Document child = new Document("Document"+getNewChildCount());
+		GeRuDocument child = new GeRuDocument("Document"+getNewChildCount());
 		this.add(child);
 		return child;
 	}
 	
 	@Override
 	public GNode addNewLinkChild(GNode node) {
-		DocumentLink child = new DocumentLink(node);
+		GeRuDocumentLink child = new GeRuDocumentLink(node);
 		node.addLink(child);
 		this.add(child);
 		child.setParent(this);

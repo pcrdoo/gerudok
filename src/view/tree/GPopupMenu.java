@@ -11,8 +11,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
 import controller.tree.GPopupMenuController;
-import model.Document;
-import model.DocumentLink;
+import model.GeRuDocument;
+import model.GeRuDocumentLink;
 import model.Element;
 import model.ElementContainer;
 import model.Model;
@@ -77,8 +77,8 @@ public class GPopupMenu extends JPopupMenu {
 
 			put(Workspace.class, Arrays.asList(addNew, rename, switchWorkspace));
 			put(Project.class, node.getClass() == Project.class && ((Project)node).isOpened() ? Arrays.asList(addNew, addFromFree, delete, rename, openClose) : Arrays.asList(delete, openClose));
-			put(Document.class, Arrays.asList(addNew, share, delete, rename));
-			put(DocumentLink.class, Arrays.asList(delete));
+			put(GeRuDocument.class, Arrays.asList(addNew, share, delete, rename));
+			put(GeRuDocumentLink.class, Arrays.asList(delete));
 			put(Page.class, Arrays.asList(addNew, delete, rename));
 			put(Slot.class, Arrays.asList(delete, rename));
 			put(Element.class, Arrays.asList(edit, delete, rename));

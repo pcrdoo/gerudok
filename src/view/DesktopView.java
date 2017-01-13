@@ -8,7 +8,7 @@ package view;
 
 import gerudok_observer.GObserver;
 import gerudok_observer.GObserverNotification;
-import model.Document;
+import model.GeRuDocument;
 import model.Model;
 import model.Page;
 import model.Project;
@@ -125,7 +125,7 @@ public class DesktopView extends JDesktopPane implements GObserver {
 			e.printStackTrace();
 		}
 		for(GNode child : project.getChildren()) {
-			Document document = (Document)child;
+			GeRuDocument document = (GeRuDocument)child;
 			projectView.addNewChildView(document);
 		}
 	}

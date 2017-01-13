@@ -10,7 +10,7 @@ import java.util.*;
 
 import model.tree.GNode;
 
-public class Document extends GNode{
+public class GeRuDocument extends GNode{
 
 	static int newChildCount = 0;
 	
@@ -18,7 +18,7 @@ public class Document extends GNode{
 		return newChildCount++;
 	}
 	
-	public Document(String name) {
+	public GeRuDocument(String name) {
 		super(name);
 	}
    

@@ -7,7 +7,7 @@
 package controller;
 
 import model.Model;
-import view.DocumentView;
+import view.GeRuDocumentView;
 import view.ProjectView;
 import java.util.*;
 
@@ -39,7 +39,7 @@ public class ProjectController {
 					projectView.setDocumentSelectionFromTree(false);
 				} else {
 		          JTabbedPane sourceTabbedPane = (JTabbedPane) e.getSource();
-		          DocumentView documentView = (DocumentView)sourceTabbedPane.getSelectedComponent();
+		          GeRuDocumentView documentView = (GeRuDocumentView)sourceTabbedPane.getSelectedComponent();
 		           if(documentView != null) {
 		        	   //TreeSelectCommand command = new TreeSelectCommand(model, documentView.getDocument());
 					   //Invoker.getInstance().executeCommand(command);
