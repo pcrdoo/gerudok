@@ -9,7 +9,7 @@ public class GObserverList {
 		observers = new ArrayList<>();
 	}
 	
-	public void notifyObservers(GObserverNotification notification, Object obj) {
+	public void notifyObservers(GNotification notification, Object obj) {
 		for(GObserver obs : observers) {
 			obs.update(notification, obj);
 		}

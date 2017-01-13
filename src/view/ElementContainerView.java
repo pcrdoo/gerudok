@@ -4,7 +4,7 @@ import model.Element;
 import model.Model;
 import model.ElementContainer;
 import gerudok_observer.GObserver;
-import gerudok_observer.GObserverNotification;
+import gerudok_observer.GNotification;
 
 import java.util.*;
 import javax.swing.BoxLayout;
@@ -66,19 +66,19 @@ public class ElementContainerView extends JPanel implements GObserver {
 	}
 	
 	@Override
-	public void update(GObserverNotification notification, Object obj) {
-		if (notification == GObserverNotification.ADD) {
+	public void update(GNotification notification, Object obj) {
+		if (notification == GNotification.ADD) {
 			addElement((Element) obj, !isRoot);
-		} else if (notification == GObserverNotification.DELETE) {
+		} else if (notification == GNotification.DELETE) {
 			ElementView view = findView((Element) obj);
 			if (view != null) {
 				view.getParent().remove(view);
 				revalidate();
 				repaint();
 			}
-		} else if (notification == GObserverNotification.GNODE_RENAME) {
+		} else if (notification == GNotification.GNODE_RENAME) {
 			onRenameNotification(obj);
-		} else if (notification == GObserverNotification.ELEMENT_EDIT) {
+		} else if (notification == GNotification.ELEMENT_EDIT) {
 			onEditNotification(obj);
 		}
 	}

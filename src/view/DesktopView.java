@@ -7,7 +7,7 @@
 package view;
 
 import gerudok_observer.GObserver;
-import gerudok_observer.GObserverNotification;
+import gerudok_observer.GNotification;
 import model.GeRuDocument;
 import model.Model;
 import model.Page;
@@ -87,13 +87,13 @@ public class DesktopView extends JDesktopPane implements GObserver {
 	}
 
 	@Override
-	public void update(GObserverNotification notification, Object obj) {
-		if (notification == GObserverNotification.ADD) {
+	public void update(GNotification notification, Object obj) {
+		if (notification == GNotification.ADD) {
 			if(obj instanceof Project) {
 				Project project = (Project) obj;
 				addNewChildView(project);
 			}
-		} else if (notification == GObserverNotification.DELETE) {
+		} else if (notification == GNotification.DELETE) {
 			
 			ProjectView projectView = findProjectView((Project) obj);
 			try {
@@ -108,7 +108,7 @@ public class DesktopView extends JDesktopPane implements GObserver {
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
-		} else if (notification == GObserverNotification.DESKTOP_SELECT) {
+		} else if (notification == GNotification.DESKTOP_SELECT) {
 			Object[] path = ((TreePath) obj).getPath();
 			updateSelection(path, 1);
 		}

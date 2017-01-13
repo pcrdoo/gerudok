@@ -9,7 +9,7 @@ package model;
 import java.util.*;
 
 import gerudok_observer.GObserverList;
-import gerudok_observer.GObserverNotification;
+import gerudok_observer.GNotification;
 import model.tree.GNode;
 
 /** @pdOid 715d801c-8af9-4037-9476-707272b9ea66 */
@@ -44,11 +44,11 @@ public class Project extends GNode{
 	}
 
 	public void doProjectClose() {
-		this.observerList.notifyObservers(GObserverNotification.PROJECT_CLOSE, null);
+		this.observerList.notifyObservers(GNotification.PROJECT_CLOSE, null);
 	}
 	
 	public void doProjectOpen() {
-		this.observerList.notifyObservers(GObserverNotification.PROJECT_OPEN, null);
+		this.observerList.notifyObservers(GNotification.PROJECT_OPEN, null);
 	}
 
 	public boolean isOpened() {

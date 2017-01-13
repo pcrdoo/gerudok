@@ -1,6 +1,6 @@
 package gerudok_observer;
 
-public enum GObserverNotification {
+public enum GNotification {
 	ADD,
 	DELETE,
 	PROJECT_CLOSE, 

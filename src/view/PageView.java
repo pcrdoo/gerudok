@@ -7,7 +7,7 @@
 package view;
 
 import gerudok_observer.GObserver;
-import gerudok_observer.GObserverNotification;
+import gerudok_observer.GNotification;
 import model.Model;
 import model.Page;
 import model.Slot;
@@ -82,8 +82,8 @@ public class PageView extends JPanel implements GObserver {
 	}
 
 	@Override
-	public void update(GObserverNotification notification, Object obj) {
-		if (notification == GObserverNotification.ADD) {
+	public void update(GNotification notification, Object obj) {
+		if (notification == GNotification.ADD) {
 			if(obj instanceof Slot) {
 				Slot slot = (Slot)obj;
 				SlotView newView = addNewChildView(slot);
@@ -91,7 +91,7 @@ public class PageView extends JPanel implements GObserver {
 				validate();
 				repaint();
 			}
-		} else if (notification == GObserverNotification.DELETE) {
+		} else if (notification == GNotification.DELETE) {
 			SlotView slotView = findSlot((Slot) obj);
 			try {
 				content.remove(slotView);
@@ -101,7 +101,7 @@ public class PageView extends JPanel implements GObserver {
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
-		} else if (notification == GObserverNotification.GNODE_RENAME) {
+		} else if (notification == GNotification.GNODE_RENAME) {
 			titledBorder.setTitle(this.getPage().getName());
 			repaint();
 		}

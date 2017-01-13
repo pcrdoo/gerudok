@@ -8,7 +8,7 @@ package model;
 
 import java.util.*;
 
-import gerudok_observer.GObserverNotification;
+import gerudok_observer.GNotification;
 
 /** @pdOid 7be85156-09fc-4a5e-8135-a23816e01bde */
 public class TextElement extends Element {
@@ -32,6 +32,6 @@ public class TextElement extends Element {
 	
 	public void setHtml(String html) {
 		this.html = html;
-		this.notifyObservers(GObserverNotification.ELEMENT_EDIT, this);
+		this.notifyObservers(GNotification.ELEMENT_EDIT, this);
 	}
 }

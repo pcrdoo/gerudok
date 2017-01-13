@@ -11,7 +11,7 @@ import javax.swing.tree.TreePath;
 
 import gerudok_observer.GObservable;
 import gerudok_observer.GObserver;
-import gerudok_observer.GObserverNotification;
+import gerudok_observer.GNotification;
 import gerudok_observer.GObserverList;
 import model.Project;
 
@@ -44,7 +44,7 @@ public class GNode implements MutableTreeNode, GObservable {
 	public void add(GNode child) {
 		child.parent = this;
 		this.children.add(child);
-		observerList.notifyObservers(GObserverNotification.ADD, child);
+		observerList.notifyObservers(GNotification.ADD, child);
 	}
 	
 	public TreePath getPath() {
@@ -81,14 +81,14 @@ public class GNode implements MutableTreeNode, GObservable {
 
 	public void setName(String name) {
 		this.name = name;
-		this.observerList.notifyObservers(GObserverNotification.GNODE_RENAME, this);
+		this.observerList.notifyObservers(GNotification.GNODE_RENAME, this);
 	}
 	
 	public List<GNode> getChildren() {
 		return this.children;
 	}
 	
-	public void notifyObservers(GObserverNotification notification, Object obj) {
+	public void notifyObservers(GNotification notification, Object obj) {
 		observerList.notifyObservers(notification, obj);
 	}
 	
@@ -150,7 +150,7 @@ public class GNode implements MutableTreeNode, GObservable {
 			link.removeFromParent();
 		}
 		this.parent.remove(this);
-		this.parent.observerList.notifyObservers(GObserverNotification.DELETE, this);
+		this.parent.observerList.notifyObservers(GNotification.DELETE, this);
 	}
 
 	@Override

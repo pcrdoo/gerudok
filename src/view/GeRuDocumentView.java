@@ -7,7 +7,7 @@
 package view;
 
 import gerudok_observer.GObserver;
-import gerudok_observer.GObserverNotification;
+import gerudok_observer.GNotification;
 import model.GeRuDocument;
 import model.Model;
 import model.Page;
@@ -86,13 +86,13 @@ public class GeRuDocumentView extends JPanel implements GObserver {
 	}
 
 	@Override
-	public void update(GObserverNotification notification, Object obj) {
-		if (notification == GObserverNotification.ADD) {
+	public void update(GNotification notification, Object obj) {
+		if (notification == GNotification.ADD) {
 			if(obj instanceof Page) {
 				Page page = (Page)obj;
 				addNewChildView(page);
 			}
-		} else if (notification == GObserverNotification.DELETE) {
+		} else if (notification == GNotification.DELETE) {
 			PageView pageView = findPage((Page) obj);
 			try {
 				pageArea.remove(pageView);
@@ -100,7 +100,7 @@ public class GeRuDocumentView extends JPanel implements GObserver {
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
-		} else if (notification == GObserverNotification.GNODE_RENAME) {
+		} else if (notification == GNotification.GNODE_RENAME) {
 			JTabbedPane documentTabs = (JTabbedPane)SwingUtilities.getAncestorOfClass(JTabbedPane.class, this);
 			for(int i = 0; i < documentTabs.getTabCount(); i++) {
 			    if(documentTabs.getComponentAt(i) == this) {

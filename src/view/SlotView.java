@@ -31,7 +31,7 @@ import constants.Constants;
 import controller.GeRuDocumentController;
 import controller.SlotController;
 import gerudok_observer.GObserver;
-import gerudok_observer.GObserverNotification;
+import gerudok_observer.GNotification;
 
 public class SlotView extends ElementContainerView {
 	private SlotController slotController;

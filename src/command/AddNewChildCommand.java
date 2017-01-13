@@ -1,6 +1,6 @@
 package command;
 
-import gerudok_observer.GObserverNotification;
+import gerudok_observer.GNotification;
 import model.GeRuDocument;
 import model.Model;
 import model.Element;

@@ -9,7 +9,7 @@ package model;
 import java.util.*;
 
 import gerudok_observer.GObserver;
-import gerudok_observer.GObserverNotification;
+import gerudok_observer.GNotification;
 import gerudok_observer.GObserverList;
 import model.tree.GNode;
 

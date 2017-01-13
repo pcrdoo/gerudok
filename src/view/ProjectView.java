@@ -7,7 +7,7 @@
 package view;
 
 import gerudok_observer.GObserver;
-import gerudok_observer.GObserverNotification;
+import gerudok_observer.GNotification;
 import model.GeRuDocument;
 import model.GeRuDocumentLink;
 import model.Model;
@@ -66,8 +66,8 @@ public class ProjectView extends JInternalFrame implements GObserver {
 	}
 
 	@Override
-	public void update(GObserverNotification notification, Object obj) {
-		if (notification == GObserverNotification.ADD) {
+	public void update(GNotification notification, Object obj) {
+		if (notification == GNotification.ADD) {
 			GeRuDocument document = null;
 			if (obj instanceof GeRuDocument) {
 				document = (GeRuDocument) obj;
@@ -77,7 +77,7 @@ public class ProjectView extends JInternalFrame implements GObserver {
 			if (document != null) {
 				addNewChildView(document);
 			}
-		} else if (notification == GObserverNotification.DELETE) {
+		} else if (notification == GNotification.DELETE) {
 			GeRuDocument document = (GeRuDocument) (obj instanceof GeRuDocument ? obj : ((GLink) obj).getOriginal());
 			GeRuDocumentView documentView = findDocumentTab(document);
 			try {
@@ -86,21 +86,21 @@ public class ProjectView extends JInternalFrame implements GObserver {
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
-		} else if (notification == GObserverNotification.PROJECT_CLOSE) {
+		} else if (notification == GNotification.PROJECT_CLOSE) {
 			try {
 				this.setIcon(true);
 			} catch (PropertyVetoException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if (notification == GObserverNotification.PROJECT_OPEN) {
+		} else if (notification == GNotification.PROJECT_OPEN) {
 			try {
 				this.setIcon(false);
 			} catch (PropertyVetoException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if (notification == GObserverNotification.GNODE_RENAME) {
+		} else if (notification == GNotification.GNODE_RENAME) {
 			this.setTitle(this.getProject().getName());
 		}
 	}

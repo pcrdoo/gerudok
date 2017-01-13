@@ -8,7 +8,7 @@ import javax.swing.tree.TreePath;
 
 import controller.TreeListener;
 import gerudok_observer.GObserver;
-import gerudok_observer.GObserverNotification;
+import gerudok_observer.GNotification;
 import model.Model;
 import model.Project;
 import model.tree.GNode;
@@ -33,7 +33,7 @@ public class WorkspaceTree extends JTree implements GObserver{
 	}
 
 	@Override
-	public void update(GObserverNotification notification, Object obj) {
+	public void update(GNotification notification, Object obj) {
 		switch(notification) {
 		case TREE_SELECT:
 			this.setSelectionPath(((GNode)obj).getPath());

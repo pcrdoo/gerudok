@@ -1,5 +1,5 @@
 package gerudok_observer;
 
 public interface GObserver {
-	public void update(GObserverNotification notification, Object obj);
+	public void update(GNotification notification, Object obj);
 }
