@@ -9,11 +9,14 @@ package controller;
 import model.Model;
 import view.MenuBarView;
 import view.ToolBarView;
+import view.tree.GPopupMenu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
+import command.AddNewChildCommand;
+import command.Invoker;
 import command.LoadProjectCommand;
 import command.SaveAsProjectCommand;
 import command.SaveProjectCommand;
@@ -36,8 +39,7 @@ public class ToolBarControler {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SaveProjectCommand cmd = new SaveProjectCommand();
-				cmd.execute();
+				Invoker.getInstance().executeCommand(new SaveProjectCommand());
 			}
 		};
 	}
@@ -47,8 +49,7 @@ public class ToolBarControler {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SaveAsProjectCommand cmd = new SaveAsProjectCommand();
-				cmd.execute();
+				Invoker.getInstance().executeCommand(new SaveAsProjectCommand());
 			}
 		};
 	}
@@ -58,8 +59,7 @@ public class ToolBarControler {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				LoadProjectCommand cmd = new LoadProjectCommand(model);
-				cmd.execute();
+				Invoker.getInstance().executeCommand(new LoadProjectCommand(model));
 			}
 		};
 	}

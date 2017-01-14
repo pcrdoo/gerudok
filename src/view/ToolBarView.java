@@ -75,13 +75,6 @@ public class ToolBarView extends JToolBar {
 	   
 	   addSeparator();
 	   
-	   JButton btnShare = new JButton();
-	   btnShare.setToolTipText("Share");
-	   btnShare.setIcon(new ImageIcon("src/res/share_toolbar_icon.png"));
-	   add(btnShare);
-	   
-	   addSeparator();
-	   
 	   JButton btnCut = new JButton();
 	   btnCut.setToolTipText("Cut");
 	   btnCut.setIcon(new ImageIcon("src/res/cut_toolbar_icon.png"));
@@ -97,22 +90,17 @@ public class ToolBarView extends JToolBar {
 	   btnPaste.setIcon(new ImageIcon("src/res/paste_toolbar_icon.png"));
 	   add(btnPaste);
 	   
+	   addSeparator();
+
+	   JButton btnShare = new JButton();
+	   btnShare.setToolTipText("Share");
+	   btnShare.setIcon(new ImageIcon("src/res/share_toolbar_icon.png"));
+	   add(btnShare);
+	   
 	   JButton btnDelete = new JButton();
 	   btnDelete.setToolTipText("Delete");
 	   btnDelete.setIcon(new ImageIcon("src/res/delete_toolbar_icon.png"));
 	   add(btnDelete);
-
-	   addSeparator();
-	   
-	   JButton btnMaximize = new JButton();
-	   btnMaximize.setToolTipText("Maximize window");
-	   btnMaximize.setIcon(new ImageIcon("src/res/maximize_toolbar_icon.png"));
-	   add(btnMaximize);
-	   
-	   JButton btnMinimize = new JButton();
-	   btnMinimize.setToolTipText("Minimize window");
-	   btnMinimize.setIcon(new ImageIcon("src/res/minimize_toolbar_icon.png"));
-	   add(btnMinimize);
 	   
 	   setBackground(new Color(255,255,204));
    }

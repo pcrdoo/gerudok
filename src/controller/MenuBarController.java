@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
+import command.Invoker;
 import command.LoadProjectCommand;
 import command.SaveAsProjectCommand;
 import command.SaveProjectCommand;
@@ -35,8 +36,7 @@ public class MenuBarController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SaveProjectCommand cmd = new SaveProjectCommand();
-				cmd.execute();
+				Invoker.getInstance().executeCommand(new SaveProjectCommand());
 			}
 		};
 	}
@@ -46,19 +46,17 @@ public class MenuBarController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SaveAsProjectCommand cmd = new SaveAsProjectCommand();
-				cmd.execute();
+				Invoker.getInstance().executeCommand(new SaveAsProjectCommand());
 			}
 		};
 	}
 	
 	public ActionListener getLoadActionListener() {
 		return new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				LoadProjectCommand cmd = new LoadProjectCommand(model);
-				cmd.execute();
+				Invoker.getInstance().executeCommand(new LoadProjectCommand(model));
 			}
 		};
 	}
