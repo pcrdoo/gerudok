@@ -46,6 +46,7 @@ public class ToolBarView extends JToolBar {
 	   JButton btnOpen = new JButton();
 	   btnOpen.setToolTipText("Open");
 	   btnOpen.setIcon(new ImageIcon("src/res/open_toolbar_icon.png"));
+	   btnOpen.addActionListener(toolBarControler.getLoadActionListener());
 	   add(btnOpen);
 	   
 	   JButton btnSave = new JButton();

@@ -1,5 +1,6 @@
 package model.tree;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
@@ -8,7 +9,7 @@ import javax.swing.tree.TreeNode;
 
 import gerudok_observer.GNotification;
 
-public class GLink extends GNode {
+public class GLink extends GNode implements Serializable {
 	
 	private GNode original;
 	

@@ -149,7 +149,7 @@ public class DesktopView extends JDesktopPane implements GObserver {
 		}
 	}
 
-	private ProjectView findProjectView(Project project) {
+	public ProjectView findProjectView(Project project) {
 		for (JInternalFrame internalFrame : getAllFrames()) {
 			ProjectView projectView = (ProjectView) internalFrame;
 			if (projectView.getProject() == project) {

@@ -1,6 +1,7 @@
 package model.tree;
 
 import java.awt.Component;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -15,12 +16,12 @@ import gerudok_observer.GNotification;
 import gerudok_observer.GObserverList;
 import model.Project;
 
-public class GNode implements MutableTreeNode, GObservable {
+public class GNode implements MutableTreeNode, GObservable, Serializable {
 	
 	private String name;
 	protected GNode parent;
 	protected ArrayList<GNode> children;
-	protected GObserverList observerList;
+	protected transient GObserverList observerList;
 	private List<GLink> links;
 	
 	public GNode() {
@@ -167,5 +168,10 @@ public class GNode implements MutableTreeNode, GObservable {
 	@Override
 	public String toString() {
 		return this.name;
+	}
+	
+	public void initObserverList() {
+		this.observerList = new GObserverList();
+		for (GNode child : getChildren()) child.initObserverList();
 	}
 }

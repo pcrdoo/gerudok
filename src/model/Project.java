@@ -17,13 +17,8 @@ import model.tree.GNode;
 /** @pdOid 715d801c-8af9-4037-9476-707272b9ea66 */
 public class Project extends GNode implements Serializable{
 
-	static int newChildCount = 0;
+	private int newChildCount;
 	
-	
-	
-	private static int getNewChildCount() {
-		return newChildCount++;
-	}
 	
 	private boolean opened;
 	private File projectFile;
@@ -32,10 +27,12 @@ public class Project extends GNode implements Serializable{
 		super(name);
 		this.opened = true;
 		this.projectFile = null;
+		this.newChildCount = 0;
 	}
 
 	public GNode addNewChild() {
-		GeRuDocument child = new GeRuDocument("Document"+getNewChildCount());
+		GeRuDocument child = new GeRuDocument("Document"+newChildCount);
+		newChildCount++;
 		this.add(child);
 		return child;
 	}

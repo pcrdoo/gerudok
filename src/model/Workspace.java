@@ -46,6 +46,10 @@ public class Workspace extends GNode implements Serializable {
 		this.add(child);
 		return child;
 	}
-	   
 	
+	public void addLoadedProject(Project project) {
+		newChildCount++;
+		this.add(project);
+	}
+	   
 }
