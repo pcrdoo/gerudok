@@ -13,19 +13,17 @@ import model.tree.GNode;
 
 public class GeRuDocument extends GNode implements Serializable{
 
-	static int newChildCount = 0;
-	
-	private static int getNewChildCount() {
-		return newChildCount++;
-	}
+	private int newChildCount = 0;
 	
 	public GeRuDocument(String name) {
 		super(name);
+		this.newChildCount = 0;
 	}
    
-   public GNode addNewChild() {
-		Page child = new Page("Page"+getNewChildCount());
+	public GNode addNewChild() {
+		Page child = new Page("Page"+newChildCount);
+		newChildCount++;
 		this.add(child);
 		return child;
-   }
+	}
 }

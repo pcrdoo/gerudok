@@ -18,8 +18,6 @@ import model.tree.GNode;
 public class Project extends GNode implements Serializable{
 
 	private int newChildCount;
-	
-	
 	private boolean opened;
 	private File projectFile;
 	
