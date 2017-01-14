@@ -31,6 +31,7 @@ public class MenuBarView extends JMenuBar{
 	   
 	   JMenuItem newWorkspaceItem = new JMenuItem("New workspace");
 	   JMenuItem switchWorkspaceItem = new JMenuItem("Switch workspace");
+	   JMenuItem saveWorkspaceItem = new JMenuItem("Save workspace");
 	   JMenuItem openItem = new JMenuItem("Open");
 	   openItem.addActionListener(menuBarController.getLoadActionListener());
 	   JMenuItem saveItem = new JMenuItem("Save");
@@ -41,6 +42,7 @@ public class MenuBarView extends JMenuBar{
 	   
 	   fileMenu.add(newWorkspaceItem);
 	   fileMenu.add(switchWorkspaceItem);
+	   fileMenu.add(saveWorkspaceItem);
 	   fileMenu.addSeparator();
 	   fileMenu.add(openItem);
 	   fileMenu.addSeparator();
@@ -58,6 +60,7 @@ public class MenuBarView extends JMenuBar{
 	   JMenuItem redoItem = new JMenuItem("Redu");
 	   JMenuItem deleteItem = new JMenuItem("Delete");
 	   JMenuItem renameItem = new JMenuItem("Rename");
+	   JMenuItem shareItem = new JMenuItem("Share");
 	   
 	   editMenu.add(cutItem);
 	   editMenu.add(copyItem);
@@ -66,6 +69,7 @@ public class MenuBarView extends JMenuBar{
 	   editMenu.add(undoItem);
 	   editMenu.add(redoItem);
 	   editMenu.addSeparator();
+	   editMenu.add(shareItem);
 	   editMenu.add(deleteItem);
 	   editMenu.add(renameItem);
 	   
