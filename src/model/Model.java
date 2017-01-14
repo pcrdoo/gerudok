@@ -1,6 +1,7 @@
 
 package model;
 
+import java.io.Serializable;
 import java.util.*;
 
 import javax.swing.tree.TreePath;
@@ -12,7 +13,7 @@ import gerudok_observer.GNotification;
 import model.tree.GNode;
 import model.tree.GTreeModel;
 
-public class Model implements GObservable{
+public class Model implements GObservable, Serializable{
 	private GTreeModel treeModel;
 	private GObserverList observerList;
 	private List<GNode> freeNodes;

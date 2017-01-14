@@ -6,6 +6,7 @@
 
 package model;
 
+import java.io.Serializable;
 import java.util.*;
 
 import gerudok_observer.GObserver;
@@ -14,7 +15,7 @@ import gerudok_observer.GObserverList;
 import model.tree.GNode;
 
 /** @pdOid 9ad5960e-3097-4f1b-971a-2008a1df723c */
-public class Workspace extends GNode {
+public class Workspace extends GNode implements Serializable {
 
 	static int newChildCount = 0;
 	

@@ -6,6 +6,8 @@
 
 package model;
 
+import java.io.File;
+import java.io.Serializable;
 import java.util.*;
 
 import gerudok_observer.GObserverList;
@@ -13,19 +15,23 @@ import gerudok_observer.GNotification;
 import model.tree.GNode;
 
 /** @pdOid 715d801c-8af9-4037-9476-707272b9ea66 */
-public class Project extends GNode{
+public class Project extends GNode implements Serializable{
 
 	static int newChildCount = 0;
+	
+	
 	
 	private static int getNewChildCount() {
 		return newChildCount++;
 	}
 	
 	private boolean opened;
+	private File projectFile;
 	
 	public Project(String name) {
 		super(name);
 		this.opened = true;
+		this.projectFile = null;
 	}
 
 	public GNode addNewChild() {
@@ -57,5 +63,13 @@ public class Project extends GNode{
 
 	public void setOpened(boolean opened) {
 		this.opened = opened;
+	}
+
+	public File getProjectFile() {
+		return projectFile;
+	}
+
+	public void setProjectFile(File projectFile) {
+		this.projectFile = projectFile;
 	}
 }

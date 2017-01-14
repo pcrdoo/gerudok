@@ -1,6 +1,8 @@
 package model;
 
-public abstract class GraphicShape {
+import java.io.Serializable;
+
+public abstract class GraphicShape implements Serializable{
 	private GraphicShapeType type;
 	
 	protected GraphicShape(GraphicShapeType type) {

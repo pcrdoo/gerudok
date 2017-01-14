@@ -1,6 +1,8 @@
 package model;
 
-public class GraphicTriangleShape extends GraphicShape {
+import java.io.Serializable;
+
+public class GraphicTriangleShape extends GraphicShape implements Serializable{
 	Rectangle bounds;
 	
 	public GraphicTriangleShape(Rectangle bounds)

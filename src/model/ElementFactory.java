@@ -1,6 +1,8 @@
 package model;
 
-public class ElementFactory {
+import java.io.Serializable;
+
+public class ElementFactory implements Serializable{
 	public Element create(ElementType type, String name) throws Exception {
 		switch (type) {
 		case GRAPHIC: return new GraphicElement(name);

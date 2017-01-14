@@ -6,11 +6,12 @@
 
 package model;
 
+import java.io.Serializable;
 import java.util.*;
 
 import model.tree.GNode;
 
-public class GeRuDocument extends GNode{
+public class GeRuDocument extends GNode implements Serializable{
 
 	static int newChildCount = 0;
 	

@@ -7,12 +7,13 @@
 package model;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.*;
 
 import model.tree.GNode;
 
 /** @pdOid a8ab91cf-d20a-4024-a842-190ce1e68bfa */
-public class Page extends GNode{
+public class Page extends GNode implements Serializable{
 
 	static int newChildCount = 0;
 	

@@ -6,12 +6,13 @@
 
 package model;
 
+import java.io.Serializable;
 import java.util.*;
 
 import javax.swing.tree.MutableTreeNode;
 
 /** @pdOid b2e2161e-269a-4e75-b842-89f0af4ac234 */
-public class Slot extends ElementContainer {
+public class Slot extends ElementContainer implements Serializable{
 	public Slot() {
 		super();
 	}

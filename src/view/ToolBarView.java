@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import controller.MenuBarController;
 import controller.ToolBarControler;
 
 /** @pdOid 89b60961-0c68-4ad1-8eb4-5a8b8a8dec28 */
@@ -33,6 +34,7 @@ public class ToolBarView extends JToolBar {
    
    public ToolBarView(Model model) {
 	   this.model = model;
+	   toolBarControler = new ToolBarControler(model, this);
 	   
 	   JButton btnNew = new JButton();
 	   btnNew.setToolTipText("New");
@@ -49,11 +51,13 @@ public class ToolBarView extends JToolBar {
 	   JButton btnSave = new JButton();
 	   btnSave.setToolTipText("Save");
 	   btnSave.setIcon(new ImageIcon("src/res/save_toolbar_icon.png"));
+	   btnSave.addActionListener(toolBarControler.getSaveActionListener());
 	   add(btnSave);
 	   
 	   JButton btnSaveAs = new JButton();
 	   btnSaveAs.setToolTipText("Save As");
 	   btnSaveAs.setIcon(new ImageIcon("src/res/save_as_toolbar_icon.png"));
+	   btnSaveAs.addActionListener(toolBarControler.getSaveAsActionListener());
 	   add(btnSaveAs);
 	   
 	   addSeparator();

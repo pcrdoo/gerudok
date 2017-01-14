@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.tree.MutableTreeNode;
@@ -7,7 +8,7 @@ import javax.swing.tree.MutableTreeNode;
 import gerudok_observer.GObserverList;
 import model.tree.GNode;
 
-public class ElementContainer extends GNode {
+public class ElementContainer extends GNode implements Serializable{
 	protected ElementType type;
 	private ElementFactory elementFactory;
 

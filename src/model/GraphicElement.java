@@ -6,12 +6,13 @@
 
 package model;
 
+import java.io.Serializable;
 import java.util.*;
 
 import gerudok_observer.GNotification;
 
 /** @pdOid b3cc2eff-d82f-456e-ab73-1921e0ba2467 */
-public class GraphicElement extends Element {
+public class GraphicElement extends Element implements Serializable{
 	private List<GraphicShape> shapes;
 	
 	public GraphicElement() {

@@ -6,10 +6,11 @@
 
 package model;
 
+import java.io.Serializable;
 import java.util.*;
 
 /** @pdOid 328723e1-05ca-41dc-b721-a3bcaff3e342 */
-public abstract class Element extends ElementContainer {
+public abstract class Element extends ElementContainer implements Serializable{
 	public Element() {
 		super();
 	}

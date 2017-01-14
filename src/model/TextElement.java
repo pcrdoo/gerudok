@@ -6,12 +6,13 @@
 
 package model;
 
+import java.io.Serializable;
 import java.util.*;
 
 import gerudok_observer.GNotification;
 
 /** @pdOid 7be85156-09fc-4a5e-8135-a23816e01bde */
-public class TextElement extends Element {
+public class TextElement extends Element implements Serializable {
 	public String html;
 	
 	public TextElement() {

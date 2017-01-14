@@ -1,6 +1,8 @@
 package model;
 
-public class GraphicRectangleShape extends GraphicShape {
+import java.io.Serializable;
+
+public class GraphicRectangleShape extends GraphicShape implements Serializable{
 	Rectangle rectangle;
 	
 	public GraphicRectangleShape(Rectangle rectangle)

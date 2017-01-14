@@ -1,6 +1,8 @@
 package model;
 
-public class GraphicEllipseShape extends GraphicShape {
+import java.io.Serializable;
+
+public class GraphicEllipseShape extends GraphicShape implements Serializable{
 	Rectangle bounds;
 	
 	public GraphicEllipseShape(Rectangle bounds)

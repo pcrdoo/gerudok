@@ -60,7 +60,6 @@ public class MainView extends JFrame {
 		    }
 		} catch (Exception e) {
 		    // If Nimbus is not available, you can set the GUI to another look and feel.
-			// ^ šta si čuo, čuo si
 		}
 	}
 	
@@ -122,5 +121,9 @@ public class MainView extends JFrame {
 		this.mainController = new MainController(this.model, this);
 
 
+	}
+	
+	public TreeView getTreeView() {
+		return treeView;
 	}
 }

@@ -1,6 +1,8 @@
 package model;
 
-public class Rectangle {
+import java.io.Serializable;
+
+public class Rectangle implements Serializable{
 	private Point origin;
 	private int width, height;
 

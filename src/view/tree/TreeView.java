@@ -7,6 +7,7 @@
 package view.tree;
 
 import model.Model;
+import model.Project;
 import model.Workspace;
 import model.tree.GNode;
 import model.tree.GTreeModel;
@@ -91,6 +92,14 @@ public class TreeView extends JPanel{
    
    public WorkspaceTree getTree() {
 	   return this.tree;
+   }
+   
+   public Project getSelectedProject() {
+	    Object o = tree.getLastSelectedPathComponent();
+		if(o instanceof Project) {
+			return (Project) o;
+		}
+		return null;
    }
 
 }
