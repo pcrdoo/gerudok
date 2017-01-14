@@ -13,6 +13,7 @@ import javax.swing.event.ListSelectionListener;
 import command.AddNewLinkChildCommand;
 import command.Invoker;
 import model.Model;
+import model.tree.GNode;
 import view.tree.SelectProjectDialog;
 
 public class SelectProjectDialogController {
@@ -41,8 +42,11 @@ public class SelectProjectDialogController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			AddNewLinkChildCommand command = new AddNewLinkChildCommand(model, view.getSelected(), view.getShared());
-			Invoker.getInstance().executeCommand(command);
+			
+			for(GNode node : view.getSelected()) {
+				AddNewLinkChildCommand command = new AddNewLinkChildCommand(model, node, view.getShared());
+				Invoker.getInstance().executeCommand(command);
+			}
 			view.dispose();
 		}
 	}
@@ -52,7 +56,7 @@ public class SelectProjectDialogController {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			if(e.getClickCount() >= 2) {
-				AddNewLinkChildCommand command = new AddNewLinkChildCommand(model, view.getSelected(), view.getShared());
+				AddNewLinkChildCommand command = new AddNewLinkChildCommand(model, view.getSelected().get(0), view.getShared());
 				Invoker.getInstance().executeCommand(command);
 				view.dispose();
 			}

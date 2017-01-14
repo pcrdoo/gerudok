@@ -19,7 +19,10 @@ public class DeleteCommand extends Command {
 		GNode parent = (GNode) node.getParent();
 		if(node instanceof Project) {
 			for(GNode child : node.getChildren()) {
-				this.model.addFreeNode(child);
+				if(child instanceof GeRuDocument) {
+					this.model.getFreeNodes().add(child);
+					this.model.doReloadFreeNodes();
+				}
 			}
 		}
 		node.removeFromParent();

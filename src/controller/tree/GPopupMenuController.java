@@ -9,8 +9,11 @@ import command.AddNewChildElementCommand;
 import command.CloseProjectCommand;
 import command.DeleteCommand;
 import command.Invoker;
+import command.LoadProjectCommand;
 import command.OpenProjectCommand;
 import command.RenameCommand;
+import command.SaveAsProjectCommand;
+import command.SaveProjectCommand;
 import command.SwitchWorkspaceCommand;
 import command.ElementEditInitCommand;
 import command.TreeSelectCommand;
@@ -45,6 +48,9 @@ public class GPopupMenuController {
 		this.view.setShareListener(new ShareListener());
 		this.view.setElementEditListener(new ElementEditListener());
 		this.view.setAddFromFreeListener(new AddFromFreeListener());
+		this.view.setSaveProjectListener(new SaveProjectListener());
+		this.view.setSaveAsProjectListener(new SaveAsProjectListener());
+		this.view.setImportProjectListener(new ImportProjectListener());
 	}
 	
 	class AddNewListener implements ActionListener {
@@ -138,6 +144,30 @@ public class GPopupMenuController {
 		public void actionPerformed(ActionEvent e) {
 			SelectDocumentDialog sd = new SelectDocumentDialog(view.getSelectedNode(), model);
 			sd.show();
+		}
+	}
+	
+	class SaveProjectListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Invoker.getInstance().executeCommand(new SaveProjectCommand());
+		}
+	}
+	
+	class SaveAsProjectListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Invoker.getInstance().executeCommand(new SaveAsProjectCommand());
+		}
+	}
+	
+	class ImportProjectListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Invoker.getInstance().executeCommand(new LoadProjectCommand(model));
 		}
 	}
 }

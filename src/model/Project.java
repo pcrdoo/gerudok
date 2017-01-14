@@ -29,7 +29,7 @@ public class Project extends GNode implements Serializable{
 	}
 
 	public GNode addNewChild() {
-		GeRuDocument child = new GeRuDocument("Document"+newChildCount);
+		GeRuDocument child = new GeRuDocument("GeRuDocument"+newChildCount);
 		newChildCount++;
 		this.add(child);
 		return child;

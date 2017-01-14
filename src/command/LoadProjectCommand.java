@@ -21,8 +21,8 @@ import view.ProjectView;
 
 public class LoadProjectCommand extends Command {
 	
-	public LoadProjectCommand() {
-		
+	public LoadProjectCommand(Model model) {
+		this.model = model;
 	}
 	
 	@Override
@@ -45,6 +45,7 @@ public class LoadProjectCommand extends Command {
                 }
 
                 Workspace.getInstance().addLoadedProject(p);
+                Invoker.getInstance().executeCommand(new TreeSelectCommand(model, p));
 
                 os.close();
             } catch (FileNotFoundException e1) {

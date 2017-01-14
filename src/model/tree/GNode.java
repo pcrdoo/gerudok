@@ -36,7 +36,7 @@ public class GNode implements MutableTreeNode, GObservable, Serializable {
 		this();
 		this.setName(name);
 	}
-
+	
 	@Override
 	public void addObserver(GObserver observer) {
 		observerList.addObserver(observer);
@@ -93,6 +93,16 @@ public class GNode implements MutableTreeNode, GObservable, Serializable {
 		observerList.notifyObservers(notification, obj);
 	}
 	
+	private void removeLinks() {
+		
+		for(GLink link : this.links) {
+			link.removeFromParent();
+		}
+		for(GNode child : this.children) {
+			child.removeLinks();
+		}
+	}
+	
 	@Override
 	public Enumeration children() {
 		// TODO Auto-generated method stub
@@ -147,9 +157,7 @@ public class GNode implements MutableTreeNode, GObservable, Serializable {
 
 	@Override
 	public void removeFromParent() {
-		for(GLink link : this.links) {
-			link.removeFromParent();
-		}
+		this.removeLinks();
 		this.parent.remove(this);
 		this.parent.observerList.notifyObservers(GNotification.DELETE, this);
 	}

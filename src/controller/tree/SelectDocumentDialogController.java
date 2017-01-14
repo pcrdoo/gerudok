@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -42,13 +43,16 @@ public class SelectDocumentDialogController {
 		public void actionPerformed(ActionEvent e) {
 			
 			// TODO mozda u komandu
-			GNode selected = view.getSelected();
-			model.getFreeNodes().remove(selected);
-			view.getParentNode().add(selected);
-			model.getTreeModel().reload();
-			Invoker.getInstance().executeCommand(new TreeSelectCommand(model, selected));
-//			AddNewLinkChildCommand command = new AddNewLinkChildCommand(model, view.getSelected(), view.getShared());
-//			Invoker.getInstance().executeCommand(command);
+			List<GNode> selected = view.getSelected();
+			
+			for(GNode node : selected) {
+				model.getFreeNodes().remove(node);
+				model.doReloadFreeNodes();
+				view.getParentNode().add(node);
+				model.getTreeModel().reload();
+			}
+			
+			Invoker.getInstance().executeCommand(new TreeSelectCommand(model, selected.get(0)));
 			view.dispose();
 		}
 	}
@@ -59,13 +63,12 @@ public class SelectDocumentDialogController {
 		public void mouseClicked(MouseEvent e) {
 			if(e.getClickCount() >= 2) {
 				// TODO mozda u komandu
-				GNode selected = view.getSelected();
+				GNode selected = view.getSelected().get(0);
 				model.getFreeNodes().remove(selected);
+				model.doReloadFreeNodes();
 				view.getParentNode().add(selected);
 				model.getTreeModel().reload();
 				Invoker.getInstance().executeCommand(new TreeSelectCommand(model, selected));
-//				AddNewLinkChildCommand command = new AddNewLinkChildCommand(model, view.getSelected(), view.getShared());
-//				Invoker.getInstance().executeCommand(command);
 				view.dispose();
 			}
 		}

@@ -23,12 +23,12 @@ public class Model implements GObservable, Serializable{
 		this.freeNodes = new ArrayList<>();
 	}
 	
-	public void addFreeNode(GNode node) {
-		this.freeNodes.add(node);
-	}
-	
 	public List<GNode> getFreeNodes() {
 		return this.freeNodes;
+	}
+
+	public boolean hasFreeNodes() {
+		return !this.freeNodes.isEmpty();
 	}
 	
 	public void setTreeModel(GTreeModel treeModel) {
@@ -54,9 +54,12 @@ public class Model implements GObservable, Serializable{
 		this.observerList.notifyObservers(GNotification.DESKTOP_SELECT, path);
 	}
 	
+	public void doReloadFreeNodes() {
+		this.observerList.notifyObservers(GNotification.FREE_NODES_CHANGED, null);
+	}
+	
 	@Override
 	public void addObserver(GObserver obs) {
 		this.observerList.addObserver(obs);
 	}
-	
 }

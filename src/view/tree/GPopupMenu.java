@@ -39,6 +39,9 @@ public class GPopupMenu extends JPopupMenu {
 	JMenuItem openClose;
 	JMenuItem share;
 	JMenuItem addFromFree;
+	JMenuItem saveProject;
+	JMenuItem saveAsProject;
+	JMenuItem importProject;
 	HashMap<Class, List<JMenuItem>> menuItems;
 	
 	public GPopupMenu(Model model, GNode node) {
@@ -71,12 +74,15 @@ public class GPopupMenu extends JPopupMenu {
 		this.openClose = new JMenuItem(this.node instanceof Project && ((Project)this.node).isOpened() ? "Close" : "Open");
 		this.share = new JMenuItem("Share with...");
 		this.addFromFree = new JMenuItem("Add from free documents...");
-		this.addFromFree.setEnabled(!model.getFreeNodes().isEmpty());
+		this.addFromFree.setEnabled(model.hasFreeNodes());
+		this.saveProject = new JMenuItem("Save");
+		this.saveAsProject = new JMenuItem("Save As");
+		this.importProject = new JMenuItem("Import Project");
 		
 		this.menuItems = new HashMap<Class, List<JMenuItem>>(){{
 
-			put(Workspace.class, Arrays.asList(addNew, rename, switchWorkspace));
-			put(Project.class, node.getClass() == Project.class && ((Project)node).isOpened() ? Arrays.asList(addNew, addFromFree, delete, rename, openClose) : Arrays.asList(delete, openClose));
+			put(Workspace.class, Arrays.asList(addNew, importProject, rename, switchWorkspace));
+			put(Project.class, node.getClass() == Project.class && ((Project)node).isOpened() ? Arrays.asList(addNew, addFromFree, delete, rename, openClose, saveProject, saveAsProject) : Arrays.asList(delete, openClose));
 			put(GeRuDocument.class, Arrays.asList(addNew, share, delete, rename));
 			put(GeRuDocumentLink.class, Arrays.asList(delete));
 			put(Page.class, Arrays.asList(addNew, delete, rename));
@@ -153,5 +159,17 @@ public class GPopupMenu extends JPopupMenu {
 	
 	public void setAddFromFreeListener(ActionListener l) {
 		this.addFromFree.addActionListener(l);
+	}
+	
+	public void setSaveProjectListener(ActionListener l) {
+		this.saveProject.addActionListener(l);
+	}
+	
+	public void setSaveAsProjectListener(ActionListener l) {
+		this.saveAsProject.addActionListener(l);
+	}
+	
+	public void setImportProjectListener(ActionListener l) {
+		this.importProject.addActionListener(l);
 	}
 }

@@ -57,7 +57,7 @@ public class MenuBarController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				LoadProjectCommand cmd = new LoadProjectCommand();
+				LoadProjectCommand cmd = new LoadProjectCommand(model);
 				cmd.execute();
 			}
 		};
