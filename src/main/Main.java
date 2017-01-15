@@ -12,5 +12,4 @@ public class Main {
 		MainView mainView = MainView.getInstance();
 		mainView.setVisible(true);
 	}
-
 }
