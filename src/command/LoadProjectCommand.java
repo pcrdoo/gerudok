@@ -26,7 +26,7 @@ public class LoadProjectCommand extends Command {
 	}
 	
 	@Override
-	public void execute() {
+	public void doCommand() {
 		JFileChooser jfc = new JFileChooser();
         jfc.setFileFilter(new ProjectFile());
 

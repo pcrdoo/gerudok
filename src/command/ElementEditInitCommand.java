@@ -14,7 +14,7 @@ public class ElementEditInitCommand extends Command {
 	}
 	
 	@Override
-	public void execute() {
+	public void doCommand() {
 		try {
 			factory.createEditDialog(model, element).show();
 		} catch (Exception e) {

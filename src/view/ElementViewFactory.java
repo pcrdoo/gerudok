@@ -1,10 +1,15 @@
 package view;
 
 import model.Model;
+import model.elements.GraphicElement;
+import model.elements.TextElement;
 import model.Element;
 import model.ElementType;
-import model.TextElement;
-import model.GraphicElement;
+import view.elements.GraphicElementEditDialog;
+import view.elements.GraphicElementView;
+import view.elements.TextElementEditDialog;
+import view.elements.TextElementView;
+
 import javax.swing.JDialog;
 
 

@@ -4,5 +4,5 @@ import model.Model;
 
 public abstract class Command {
 	protected Model model;
-	public abstract void execute();
+	public abstract void doCommand();
 }

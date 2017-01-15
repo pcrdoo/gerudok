@@ -20,7 +20,7 @@ public class SaveAsProjectCommand extends Command {
 	}  
 	
 	@Override
-	public void execute() {
+	public void doCommand() {
 		Project project = MainView.getInstance().getTreeView().getSelectedProject();
 		JFileChooser jfc = new JFileChooser();
 		jfc.setFileFilter(new ProjectFile());

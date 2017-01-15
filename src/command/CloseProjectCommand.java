@@ -13,7 +13,7 @@ public class CloseProjectCommand extends Command {
 	}
 	
 	@Override
-	public void execute() {
+	public void doCommand() {
 		project.doProjectClose();
 		project.setOpened(false);
 		this.model.getTreeModel().reload();

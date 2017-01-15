@@ -13,7 +13,7 @@ public class OpenProjectCommand extends Command {
 	}
 	
 	@Override
-	public void execute() {
+	public void doCommand() {
 		project.doProjectOpen();
 		project.setOpened(true);
 		this.model.getTreeModel().reload();

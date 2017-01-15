@@ -8,9 +8,11 @@ package view;
 
 import model.Element;
 import model.Model;
-import controller.ElementController;
+
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+
+import controller.ElementController;
 
 /** @pdOid 7de39cf0-3021-4c7e-a79b-bd085f44937d */
 public abstract class ElementView extends ElementContainerView {

@@ -14,7 +14,7 @@ public class AddNewLinkChildCommand extends Command {
 		this.shared = shared;
 	}
 	@Override
-	public void execute() {
+	public void doCommand() {
 		GNode child = node.addNewLinkChild(shared);
 		Invoker.getInstance().executeCommand(new TreeSelectCommand(model, child));
 	}

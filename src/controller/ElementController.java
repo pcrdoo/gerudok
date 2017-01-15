@@ -6,7 +6,6 @@
 
 package controller;
 
-import command.ElementEditInitCommand;
 import model.Model;
 import view.ElementView;
 
@@ -15,6 +14,7 @@ import java.awt.event.MouseListener;
 import java.util.*;
 
 import command.AddNewLinkChildCommand;
+import command.ElementEditInitCommand;
 import command.Invoker;
 
 /** @pdOid a5685a25-1c1b-492d-9034-be45e4f21053 */
@@ -31,8 +31,7 @@ public class ElementController {
 	   elementView.addDoubleClickListener(new DoubleClickListener());
    }
    
-	class DoubleClickListener implements MouseListener {
-	
+   public class DoubleClickListener implements MouseListener {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			if(e.getClickCount() >= 2) {

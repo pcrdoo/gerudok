@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 
+import model.elements.GraphicElement;
+import model.elements.TextElement;
+
 public class ElementFactory implements Serializable{
 	public Element create(ElementType type, String name) throws Exception {
 		switch (type) {

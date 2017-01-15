@@ -17,7 +17,7 @@ public class AddNewChildElementCommand extends Command {
 	}
 	
 	@Override
-	public void execute() {
+	public void doCommand() {
 		try {
 			Element child = (Element) node.addNewChild(childType);
 			Invoker.getInstance().executeCommand(new TreeSelectCommand(model, child));

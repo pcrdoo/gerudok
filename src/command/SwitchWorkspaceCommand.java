@@ -13,7 +13,7 @@ public class SwitchWorkspaceCommand extends Command {
 	}
 	
 	@Override
-	public void execute() {
+	public void doCommand() {
 		// TODO(David): Implementirati komandu.
 	}
 }

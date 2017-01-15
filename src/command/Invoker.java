@@ -1,9 +1,9 @@
 package command;
 
 public class Invoker {
-	public static Invoker instance = null;
+	protected static Invoker instance = null;
 
-	private Invoker() {
+	protected Invoker() {
 	}
 
 	public static Invoker getInstance() {
@@ -15,6 +15,6 @@ public class Invoker {
 	}
 
 	public void executeCommand(Command command) {
-		command.execute();
+		command.doCommand();
 	}
 }

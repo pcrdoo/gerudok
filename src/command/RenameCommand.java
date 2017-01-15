@@ -13,7 +13,7 @@ public class RenameCommand extends Command {
 	}
 	
 	@Override
-	public void execute() {
+	public void doCommand() {
 		model.doTreeRename(node);
 	}
 

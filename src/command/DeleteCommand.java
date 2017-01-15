@@ -15,7 +15,7 @@ public class DeleteCommand extends Command {
 	}
 	
 	@Override
-	public void execute() {
+	public void doCommand() {
 		GNode parent = (GNode) node.getParent();
 		if(node instanceof Project) {
 			for(GNode child : node.getChildren()) {
