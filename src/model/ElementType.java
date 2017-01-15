@@ -2,5 +2,6 @@ package model;
 
 public enum ElementType {
 	GRAPHIC,
-	TEXT
+	TEXT,
+	SOUND
 }
