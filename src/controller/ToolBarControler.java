@@ -30,6 +30,7 @@ import command.OpenProjectCommand;
 import command.RenameCommand;
 import command.SaveAsProjectCommand;
 import command.SaveProjectCommand;
+import command.SaveWorkspaceCommand;
 import command.SwitchWorkspaceCommand;
 
 /** @pdOid 88245b1f-d41c-42ae-be15-48a0717c1585 */
@@ -182,6 +183,16 @@ public class ToolBarControler {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				MainView.getInstance().getDesktopView().tileVertically();
+			}
+		};
+	}
+
+	public ActionListener getSaveWorkspaceListener() {
+		return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Invoker.getInstance().executeCommand(new SaveWorkspaceCommand(model));
 			}
 		};
 	}

@@ -56,6 +56,12 @@ public class ToolBarView extends JToolBar {
 	   btnNewWorkspace.addActionListener(toolBarControler.getSwitchWorkspaceListener());
 	   add(btnSwitchWorkspace);
 	   
+	   JButton btnSaveWorkspace = new JButton();
+	   btnSaveWorkspace.setToolTipText("Save workspace");
+	   btnSaveWorkspace.setIcon(new ImageIcon("src/res/save_workspace_toolbar_icon.png"));
+	   btnSaveWorkspace.addActionListener(toolBarControler.getSaveWorkspaceListener());
+	   add(btnSaveWorkspace);
+	   
 	   addSeparator();
 	   
 	   JButton btnOpen = new JButton();
@@ -114,19 +120,19 @@ public class ToolBarView extends JToolBar {
 	   
 	   JButton btnCascade = new JButton();
 	   btnCascade.setToolTipText("Cascade");
-	   btnCascade.setIcon(new ImageIcon("src/res/rename_toolbar_icon.png"));
+	   btnCascade.setIcon(new ImageIcon("src/res/cascade_toolbar_icon.png"));
 	   btnCascade.addActionListener(toolBarControler.getCascadeActionListener());
 	   add(btnCascade);
 		   
 	   JButton btnTileHorizontaly = new JButton();
 	   btnTileHorizontaly.setToolTipText("Tile horizontaly");
-	   btnTileHorizontaly.setIcon(new ImageIcon("src/res/rename_toolbar_icon.png"));
+	   btnTileHorizontaly.setIcon(new ImageIcon("src/res/tile_horizontaly_toolbar_icon.png"));
 	   btnTileHorizontaly.addActionListener(toolBarControler.getTileHorizontalyActionListener());
 	   add(btnTileHorizontaly);
 	   
 	   JButton btnTileVerticaly = new JButton();
 	   btnTileVerticaly.setToolTipText("Tile verticaly");
-	   btnTileVerticaly.setIcon(new ImageIcon("src/res/rename_toolbar_icon.png"));
+	   btnTileVerticaly.setIcon(new ImageIcon("src/res/tile_verticaly_toolbar_icon.png"));
 	   btnTileVerticaly.addActionListener(toolBarControler.getTileVerticalyActionListener());
 	   add(btnTileVerticaly);
 	   
