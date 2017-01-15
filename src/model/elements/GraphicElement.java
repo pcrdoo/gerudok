@@ -13,31 +13,62 @@ import gerudok_observer.GNotification;
 import model.Element;
 import model.ElementType;
 
-/** @pdOid b3cc2eff-d82f-456e-ab73-1921e0ba2467 */
-public class GraphicElement extends Element implements Serializable{
+/**
+ * Graphic element that can hold zero or more shapes.
+ * 
+ * @author geomaster
+ *
+ */
+public class GraphicElement extends Element implements Serializable {
+	/**
+	 * Shapes contained in the element.
+	 */
 	private List<GraphicShape> shapes;
-	
+
+	/**
+	 * Default constructor.
+	 */
 	public GraphicElement() {
 		super();
 		this.shapes = new ArrayList<>();
 		this.type = ElementType.GRAPHIC;
 	}
-	
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param name
+	 *            Name of the element
+	 */
 	public GraphicElement(String name) {
 		super(name);
 		this.shapes = new ArrayList<>();
 		this.type = ElementType.GRAPHIC;
 	}
 
+	/**
+	 * Gets the list of shapes contained in the element.
+	 * 
+	 * @return List of shapes
+	 */
 	public List<GraphicShape> getShapes() {
 		return shapes;
 	}
-	
-	public void notifyShapesChanged()
-	{
+
+	/**
+	 * Notifies the element that its shape list has changed, or that one or more
+	 * of the shapes it contains has changed.
+	 */
+	public void notifyShapesChanged() {
 		this.notifyObservers(GNotification.ELEMENT_EDIT, this);
 	}
-	
+
+	/**
+	 * Sets the list of the shapes contained in the element.
+	 * 
+	 * @param shapes
+	 *            List of shapes
+	 */
 	public void setShapes(List<GraphicShape> shapes) {
 		this.shapes = shapes;
 		notifyShapesChanged();

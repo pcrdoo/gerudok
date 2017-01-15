@@ -13,18 +13,36 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.awt.Color;
 
+/**
+ * Text element view.
+ * 
+ * @author geomaster
+ *
+ */
 public class TextElementView extends ElementView {
+	/**
+	 * Element being displayed.
+	 */
 	private TextElement textElement;
+
+	/**
+	 * JTextPane used to display the text.
+	 */
 	private JTextPane display;
-	
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param model
+	 *            Model
+	 * @param textElement
+	 *            Element to display
+	 */
 	public TextElementView(Model model, TextElement textElement) {
 		super(model, textElement);
-		
+
 		this.textElement = textElement;
 		display = new JTextPane();
-		//display.setMinimumSize(new Dimension(500, 30));
-		//display.setWrapStyleWord(true);
-		//display.setLineWrap(true);
 		display.setContentType("text/html");
 		display.setOpaque(false);
 		display.setEditable(false);
@@ -34,22 +52,39 @@ public class TextElementView extends ElementView {
 		display.setBorder(new EmptyBorder(5, 5, 5, 5));
 		display.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.3f));
 		display.setOpaque(false);
-	    
+
 		add(display);
-		for (MouseListener l: deferredListeners) {
+		for (MouseListener l : deferredListeners) {
 			display.addMouseListener(l);
 		}
 		setHtml(textElement.getHtml());
 	}
-	
+
+	/**
+	 * Called when the displayed element changes.
+	 * 
+	 * @param obj
+	 *            Custom event data
+	 */
 	public void onEditNotification(Object obj) {
 		setHtml(textElement.getHtml());
 	}
-	
+
+	/**
+	 * Set the HTML displayed
+	 * 
+	 * @param html
+	 *            HTML contents
+	 */
 	private void setHtml(String html) {
 		display.setText(html.replace("\n", "<br>"));
 	}
-	
+
+	/**
+	 * Gets the text element being displayed
+	 * 
+	 * @return Text element
+	 */
 	public TextElement getTextElement() {
 		return (TextElement) getElementContainer();
 	}

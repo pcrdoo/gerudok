@@ -9,12 +9,23 @@ package model;
 import java.io.Serializable;
 import java.util.*;
 
-/** @pdOid 328723e1-05ca-41dc-b721-a3bcaff3e342 */
+/**
+ * Abstract element.
+ * @author geomaster
+ *
+ */
 public abstract class Element extends ElementContainer implements Serializable {
+	/**
+	 * Default constructor.
+	 */
 	public Element() {
 		super();
 	}
 
+	/**
+	 * Constructor.
+	 * @param name Name of the element
+	 */
 	public Element(String name) {
 		super(name);
 	}

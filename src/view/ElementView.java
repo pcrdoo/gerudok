@@ -14,21 +14,55 @@ import java.util.ArrayList;
 
 import controller.ElementController;
 
-/** @pdOid 7de39cf0-3021-4c7e-a79b-bd085f44937d */
+/**
+ * Abstract view for elements. All views displaying specific elements should
+ * subclass it.
+ * 
+ * @author geomaster
+ *
+ */
 public abstract class ElementView extends ElementContainerView {
+	/**
+	 * Controller.
+	 */
 	private ElementController controller;
+
+	/**
+	 * Listeners to be added when the construction is finished (added by
+	 * superclass controllers and thus cannot be effectively added before our
+	 * own constructor runs, hence the deferring).
+	 */
 	protected ArrayList<MouseListener> deferredListeners = new ArrayList<>();
-	
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param model
+	 *            Model
+	 * @param element
+	 *            Element to display
+	 */
 	public ElementView(Model model, Element element) {
 		super(model, element, false);
 		controller = new ElementController(model, this);
 	}
-	
+
+	/**
+	 * Gets the element being displayed.
+	 * 
+	 * @return Element
+	 */
 	public Element getElement() {
 		return (Element) getElementContainer();
 	}
-	
-	public void addDoubleClickListener(MouseListener l) {
-		deferredListeners.add(l);
+
+	/**
+	 * Adds a double click listener.
+	 * 
+	 * @param listener
+	 *            Listener to add
+	 */
+	public void addDoubleClickListener(MouseListener listener) {
+		deferredListeners.add(listener);
 	}
 }
