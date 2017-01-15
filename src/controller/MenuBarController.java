@@ -7,8 +7,10 @@
 package controller;
 
 import model.Model;
+import view.AboutDialog;
 import view.MenuBarView;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
@@ -24,11 +26,13 @@ public class MenuBarController {
    public Model model;
    /** @pdRoleInfo migr=no name=MenuBarView assc=association2 mult=1..1 side=A */
    public MenuBarView menuBarView;
+   public AboutDialog aboutDialog;
    
 	public MenuBarController(Model model, MenuBarView menuBarView) {
 		super();
 		this.model = model;
 		this.menuBarView = menuBarView;
+		this.aboutDialog = new AboutDialog(null);
 	}
 
 	public ActionListener getSaveActionListener() {
@@ -57,6 +61,17 @@ public class MenuBarController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Invoker.getInstance().executeCommand(new LoadProjectCommand(model));
+			}
+		};
+	}
+	
+	public ActionListener getAboutActionListener() {
+		return new ActionListener() {
+			
+			@SuppressWarnings("deprecation")
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				aboutDialog.show();
 			}
 		};
 	}

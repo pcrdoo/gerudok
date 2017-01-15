@@ -8,6 +8,10 @@ package controller;
 
 import model.Model;
 import view.MainView;
+
+import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 
 /** @pdOid 783f6e54-f635-41e8-8184-4dd834273740 */
@@ -21,5 +25,4 @@ public class MainController {
 	   this.model = model;
 	   this.mainView = mainView;
    }
-
 }

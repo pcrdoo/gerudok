@@ -77,6 +77,8 @@ public class MenuBarView extends JMenuBar{
 	   
 	   JMenuItem PCRItem = new JMenuItem("About PCR");
 	   
+	   PCRItem.addActionListener(menuBarController.getAboutActionListener());
+	   
 	   aboutMenu.add(PCRItem);
 	   
 	   this.add(fileMenu);

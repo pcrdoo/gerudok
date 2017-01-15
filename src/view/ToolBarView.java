@@ -36,6 +36,7 @@ public class ToolBarView extends JToolBar {
 	   this.model = model;
 	   toolBarControler = new ToolBarControler(model, this);
 	   
+	// TODO
 	   JButton btnNew = new JButton();
 	   btnNew.setToolTipText("New");
 	   btnNew.setIcon(new ImageIcon("src/res/new_toolbar_icon.png"));
@@ -63,6 +64,7 @@ public class ToolBarView extends JToolBar {
 	   
 	   addSeparator();
 	   
+	// TODO
 	   JButton btnUndo = new JButton();
 	   btnUndo.setToolTipText("Undo");
 	   btnUndo.setIcon(new ImageIcon("src/res/undo_toolbar_icon.png"));
@@ -75,6 +77,7 @@ public class ToolBarView extends JToolBar {
 	   
 	   addSeparator();
 	   
+	// TODO
 	   JButton btnCut = new JButton();
 	   btnCut.setToolTipText("Cut");
 	   btnCut.setIcon(new ImageIcon("src/res/cut_toolbar_icon.png"));
@@ -91,12 +94,14 @@ public class ToolBarView extends JToolBar {
 	   add(btnPaste);
 	   
 	   addSeparator();
-
+	   
+	   // TODO
 	   JButton btnShare = new JButton();
 	   btnShare.setToolTipText("Share");
 	   btnShare.setIcon(new ImageIcon("src/res/share_toolbar_icon.png"));
 	   add(btnShare);
 	   
+	// TODO
 	   JButton btnDelete = new JButton();
 	   btnDelete.setToolTipText("Delete");
 	   btnDelete.setIcon(new ImageIcon("src/res/delete_toolbar_icon.png"));
