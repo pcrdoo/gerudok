@@ -19,7 +19,6 @@ public class ElementViewFactory {
 		switch (type) {
 		case GRAPHIC: return new GraphicElementView(model, (GraphicElement) element);
 		case TEXT:    return new TextElementView(model, (TextElement) element);
-		case SOUND:   //return new SoundElement(name);
 		default:      throw new Exception("Unsupported element type");
 		}
 	}
@@ -29,7 +28,6 @@ public class ElementViewFactory {
 		switch (type) {
 		case GRAPHIC: return new GraphicElementEditDialog(model, (GraphicElement) element);
 		case TEXT:    return new TextElementEditDialog(model, (TextElement) element);
-		case SOUND:   //return new SoundElement(name);
 		default:      throw new Exception("Unsupported element type");
 		}		
 	}

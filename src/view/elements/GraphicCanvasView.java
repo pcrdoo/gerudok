@@ -23,6 +23,7 @@ public class GraphicCanvasView extends JComponent implements GObserver {
 	private GraphicElement element;
 	private Rectangle lassoRectangle = null;
 	private List<GraphicShape> tempShapes = new ArrayList<>();
+	private List<GraphicShape> cutShapes = new ArrayList<>();
 	private Set<GraphicShape> selection = new HashSet<>();
 
 	private GraphicShape highlightedShape = null;
@@ -62,11 +63,11 @@ public class GraphicCanvasView extends JComponent implements GObserver {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
 		for (GraphicShape s: element.getShapes()) {
-			paintShape(s, g2d);
+			paintShape(s, g2d, cutShapes.contains(s));
 		}
 		
 		for (GraphicShape s: tempShapes) {
-			paintShape(s, g2d);
+			paintShape(s, g2d, false);
 		}
 		
 		for (GraphicShape s: selection) {
@@ -102,6 +103,21 @@ public class GraphicCanvasView extends JComponent implements GObserver {
 	public void deselectAll()
 	{
 		selection.clear();
+		repaint();
+	}
+	
+	public void cutSelection()
+	{
+		for (GraphicShape s: selection) {
+			cutShapes.add(s);
+		}
+		
+		repaint();
+	}
+	
+	public void clearCutShapes()
+	{
+		cutShapes.clear();
 		repaint();
 	}
 	
@@ -157,15 +173,19 @@ public class GraphicCanvasView extends JComponent implements GObserver {
 		repaint();
 	}
 	
-	private void paintShape(GraphicShape shape, Graphics2D g)
+	private void paintShape(GraphicShape shape, Graphics2D g, boolean isCut)
 	{
-		if (shape == highlightedShape) {
-			g.setColor(Color.red);
-			g.setStroke(new BasicStroke(2));
+		if (!isCut) {
+			if (shape == highlightedShape) {
+				g.setColor(Color.red);
+			} else {
+				g.setColor(Color.gray);
+			}
 		} else {
-			g.setColor(Color.gray);
-			g.setStroke(new BasicStroke(2));
+			g.setColor(Color.lightGray);
 		}
+
+		g.setStroke(new BasicStroke(2));
 		
 		switch (shape.getType()) {
 		case ELLIPSE:

@@ -70,17 +70,19 @@ public class GraphicElementMoveState extends GraphicElementState {
 	{
 		GraphicShape s = view.shapeUnderCursor(e);
 		lastPoint = new Point(e.getX(), e.getY());
-		if (s != null) {
-			if (!view.getSelection().contains(s)) {
-				view.deselectAll();
-				view.select(s);
-				
-				GraphicElementMoveShapeCommand c = new GraphicElementMoveShapeCommand(element, s, s.getPosition());
-				c.captureCurrentState();
-				commands = new ArrayList<>();
-				commands.add(c);
-				compositeCommand = new GraphicElementCompositeCommand(element, commands);
-			}
+	
+		if (s != null && !view.getSelection().contains(s)) {
+			view.deselectAll();
+			view.select(s);
+			
+			GraphicElementMoveShapeCommand c = new GraphicElementMoveShapeCommand(element, s, s.getPosition());
+			c.captureCurrentState();
+			commands.add(c);
+
+			commands = new ArrayList<>();
+			compositeCommand = new GraphicElementCompositeCommand(element, commands);
+		} else {
+			enter();
 		}
 	}
 }

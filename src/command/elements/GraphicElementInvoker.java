@@ -31,14 +31,13 @@ public class GraphicElementInvoker {
 
 	public void executeCommand(GraphicElementCommand command) {
 		command.doCommand();
+	
+		// Add the command even if it's not undoable, as that may change later
+		makeSpaceIfFull();
+		history.addLast(command);
+		redoStack.clear();
 		
-		if (command.isUndoable()) {
-			makeSpaceIfFull();
-			history.addLast(command);
-			redoStack.clear();
-			
-			fireEventIfChanged();
-		}
+		fireEventIfChanged();
 	}
 	
 	private void makeSpaceIfFull()
@@ -98,6 +97,9 @@ public class GraphicElementInvoker {
 	public void undoCommand() throws Exception {
 		if (canUndo()) {
 			// The order of these operations is important in case c.undoCommand() throws
+			while (canUndo() && !history.getLast().isUndoable()) {
+				history.removeLast();
+			}
 			GraphicElementCommand c = history.removeLast();
 			c.undoCommand();
 			redoStack.addLast(c);
@@ -108,6 +110,9 @@ public class GraphicElementInvoker {
 	
 	public void redoCommand() {
 		if (canRedo()) {
+			while (canRedo() && !redoStack.getLast().isRedoable()) {
+				redoStack.removeLast();
+			}
 			GraphicElementCommand c = redoStack.removeLast();
 			makeSpaceIfFull();
 			history.addLast(c);

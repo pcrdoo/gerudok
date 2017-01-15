@@ -27,7 +27,6 @@ public class GraphicElementPasteCommand extends GraphicElementCommand {
 	public void doCommand() {
 		try {
 			GraphicElementClipboardEntry e = GraphicElementClipboardManager.getInstance().fromClipboard();
-			e.onPasted();
 			
 			ArrayList<GraphicElementAddShapeCommand> list = new ArrayList<>();
 			for (GraphicShape s: e.getShapes()) {
@@ -43,6 +42,7 @@ public class GraphicElementPasteCommand extends GraphicElementCommand {
 			for (GraphicElementAddShapeCommand cmd: list) {
 				view.select(cmd.getShape());
 			}
+			System.out.println("Added " + list.size() + " shapes");
 		} catch (SerializationDeserializationException e) {
 			JOptionPane.showMessageDialog(null, "Nije moguće nalepiti ono što je trenutno na clipboard-u. Proverite da li je prethodno isečen ili kopiran sadržaj iz GeRuDok-a.");
 			e.printStackTrace();

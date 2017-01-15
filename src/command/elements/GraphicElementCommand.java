@@ -32,6 +32,11 @@ public abstract class GraphicElementCommand extends Command {
 		return true;
 	}
 	
+	public boolean isRedoable()
+	{
+		return isUndoable();
+	}	
+	
 	protected GraphicShape findShape(GraphicShape shape)
 	{
 		// Object.equals() is not overriden in GraphicShape as that would entail

@@ -10,7 +10,6 @@ public class ElementFactory implements Serializable{
 		switch (type) {
 		case GRAPHIC: return new GraphicElement(name);
 		case TEXT:    return new TextElement(name);
-		case SOUND:   return new SoundElement(name);
 		default:      throw new Exception("Unsupported element type");
 		}
 	}
@@ -20,7 +19,6 @@ public class ElementFactory implements Serializable{
 		switch (type) {
 		case GRAPHIC: prefix = "Graphic"; break; 
 		case TEXT:    prefix = "Text"; break;
-		case SOUND:   prefix = "Sound"; break;
 		}		
 		
 		return prefix + "Element" + index;

@@ -60,7 +60,6 @@ public class GPopupMenuController {
 		this.view.setAddNewListener(new AddNewListener());
 		this.view.setAddNewGraphicElementListener(new AddNewGraphicElementListener());
 		this.view.setAddNewTextElementListener(new AddNewTextElementListener());
-		this.view.setAddNewSoundElementListener(new AddNewSoundElementListener());
 		this.view.setDeleteListener(new DeleteListener());
 		this.view.setRenameListener(new RenameListener());
 		this.view.setSwitchWorkspaceListener(new SwitchWorkspaceListener());
@@ -112,20 +111,6 @@ public class GPopupMenuController {
 		public void actionPerformed(ActionEvent e) {
 			Invoker.getInstance().executeCommand(
 					new AddNewChildElementCommand(model, (ElementContainer) view.getSelectedNode(), ElementType.TEXT));
-		}
-	}
-
-	/**
-	 * Executes the AddNewChildElementCommand.
-	 * 
-	 * @author Ognjen Djuricic
-	 *
-	 */
-	class AddNewSoundElementListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			Invoker.getInstance().executeCommand(
-					new AddNewChildElementCommand(model, (ElementContainer) view.getSelectedNode(), ElementType.SOUND));
 		}
 	}
 

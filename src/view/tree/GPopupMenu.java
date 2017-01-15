@@ -63,10 +63,6 @@ public class GPopupMenu extends JPopupMenu {
 	 */
 	JMenuItem addNewGraphicElement;
 	/**
-	 * The add new sound element option.
-	 */
-	JMenuItem addNewSoundElement;
-	/**
 	 * The delete the node option.
 	 */
 	JMenuItem delete;
@@ -133,11 +129,9 @@ public class GPopupMenu extends JPopupMenu {
 		this.addNewElement = new JMenu("Add");
 		this.addNewTextElement = new JMenuItem("Text");
 		this.addNewGraphicElement = new JMenuItem("Graphics");
-		this.addNewSoundElement = new JMenuItem("Sound");
 
 		this.addNewElement.add(this.addNewTextElement);
 		this.addNewElement.add(this.addNewGraphicElement);
-		this.addNewElement.add(this.addNewSoundElement);
 
 		this.edit = new JMenuItem("Edit");
 
@@ -218,16 +212,6 @@ public class GPopupMenu extends JPopupMenu {
 	 */
 	public void setAddNewTextElementListener(ActionListener l) {
 		this.addNewTextElement.addActionListener(l);
-	}
-
-	/**
-	 * Adds a listener to the corresponding menu item(option).
-	 * 
-	 * @param l
-	 *            The listener to be added.
-	 */
-	public void setAddNewSoundElementListener(ActionListener l) {
-		this.addNewSoundElement.addActionListener(l);
 	}
 
 	/**

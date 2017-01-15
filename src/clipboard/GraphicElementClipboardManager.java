@@ -30,8 +30,15 @@ public class GraphicElementClipboardManager {
 	
 	public void toClipboard(GraphicElementClipboardEntry entry)
 	{
-		StringSelection str = new StringSelection(serializer.serialize(entry.getShapes()));
+		if (lastEntry != null) {
+			lastEntry.onEvicted();
+		}
+
+		lastEntry = entry;
+		lastEntryString = serializer.serialize(entry.getShapes());
+		StringSelection str = new StringSelection(lastEntryString);
 		Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+		System.out.println("Pushed " + entry.getShapes().size() + " shapes to the clipboard");
 		cb.setContents(str, str);
 	}
 	
@@ -45,11 +52,14 @@ public class GraphicElementClipboardManager {
 				String s = (String)o;
 				if (s != null) {
 					if (s.equals(lastEntryString)) {
+						System.out.println("Returning cached");
+						lastEntry.onPasted();
 						return lastEntry;
 					}
 					
 					Set<GraphicShape> shapes = deserializer.deserialize(s);
 					GraphicElementClipboardEntry e = new GraphicElementClipboardEntry(shapes);
+					System.out.println("Deserialized " + e.getShapes().size() + " shapes");
 					lastEntry = e;
 					lastEntryString = s;
 					
