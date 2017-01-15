@@ -1,6 +1,8 @@
 package view.elements;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Window;
+import java.awt.GraphicsConfiguration;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
@@ -16,6 +18,7 @@ import model.Model;
 import model.elements.GraphicElement;
 import model.elements.GraphicShape;
 import state.GraphicElementStateManager;
+import view.MainView;
 
 import java.util.*;
 
@@ -29,6 +32,7 @@ public class GraphicElementEditDialog extends JDialog {
 	JButton btnCancel;
 	
 	public GraphicElementEditDialog(Model model, GraphicElement element) {
+		super(MainView.getInstance(), "Editing " + element.getName(), ModalityType.APPLICATION_MODAL, MainView.getInstance().getGraphicsConfiguration());
 		this.model = model;
 		this.element = element;
 		
@@ -51,10 +55,11 @@ public class GraphicElementEditDialog extends JDialog {
 	    
 	    this.add(buttonPanel, BorderLayout.SOUTH);
 	    
-		setPreferredSize(new Dimension(500, 400));
+		setPreferredSize(new Dimension(460, 220));
 		pack();
 		setLocationRelativeTo(null);
 		
+		setTitle("Editing " + element.getName());
 		this.controller = new GraphicElementEditDialogController(model, this);
 	}
 	

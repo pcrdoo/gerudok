@@ -1,6 +1,7 @@
 package view.elements;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Dialog.ModalityType;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
@@ -18,6 +19,7 @@ import java.awt.event.KeyListener;
 
 import model.Workspace;
 import model.elements.TextElement;
+import view.MainView;
 import model.Model;
 
 public class TextElementEditDialog extends JDialog {
@@ -29,6 +31,7 @@ public class TextElementEditDialog extends JDialog {
 	JTextArea textArea;
 	
 	public TextElementEditDialog(Model model, TextElement element) {
+		super(MainView.getInstance(), "Editing " + element.getName(), ModalityType.APPLICATION_MODAL, MainView.getInstance().getGraphicsConfiguration());
 		this.model = model;
 		this.element = element;
 		

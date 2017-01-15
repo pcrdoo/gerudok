@@ -2,6 +2,7 @@ package view.tree;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.List;
@@ -18,6 +19,7 @@ import controller.tree.SelectProjectDialogController;
 import model.Model;
 import model.Workspace;
 import model.tree.GNode;
+import view.MainView;
 
 /**
  * The dialog that is used for selecting GeRuDocuments for the free ones and
@@ -57,7 +59,7 @@ public class SelectDocumentDialog extends JDialog {
 	 *            The main model.
 	 */
 	public SelectDocumentDialog(GNode parent, Model model) {
-		super();
+		super(MainView.getInstance(), "Free Document Selection", ModalityType.APPLICATION_MODAL, MainView.getInstance().getGraphicsConfiguration());
 		this.model = model;
 		this.parent = parent;
 

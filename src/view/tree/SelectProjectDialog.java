@@ -2,6 +2,7 @@ package view.tree;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
@@ -21,6 +22,7 @@ import model.Model;
 import model.Workspace;
 import model.tree.GLink;
 import model.tree.GNode;
+import view.MainView;
 
 /**
  * The dialog that is used for selecting projects to witch to add a hyperlink of
@@ -59,8 +61,7 @@ public class SelectProjectDialog extends JDialog {
 	 * @param model The main model.
 	 */
 	public SelectProjectDialog(GNode shared, Model model) {
-		super();
-		this.model = model;
+		super(MainView.getInstance(), "Project Selection", ModalityType.APPLICATION_MODAL, MainView.getInstance().getGraphicsConfiguration());		this.model = model;
 		this.shared = shared;
 
 		this.setLayout(new BorderLayout());
