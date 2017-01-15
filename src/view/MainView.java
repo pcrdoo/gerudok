@@ -1,45 +1,65 @@
-/***********************************************************************
- * Module:  MainView.java
- * Author:  Ognjen
- * Purpose: Defines the Class MainView
- ***********************************************************************/
 
 package view;
 
-import model.Model;
-import view.tree.TreeView;
-
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.util.*;
 
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import constants.Constants;
 import controller.MainController;
+import model.Model;
+import view.tree.TreeView;
 
+/**
+ * The main view of the application.
+ * 
+ * @author Nikola Jovanovic
+ *
+ */
+@SuppressWarnings("serial")
 public class MainView extends JFrame {
-	
-	private ToolBarView toolBarView;
-	private MenuBarView menuBarView;
-	private DesktopView desktopView;
-	private TreeView treeView;
-	private MainController mainController;
-	private Model model;
-	
-	// Singleton pattern implementation.
-	public static MainView instance = null;
 
+	/**
+	 * Singleton instance.
+	 */
+	public static MainView instance = null;
+	/**
+	 * The main model.
+	 */
+	private Model model;
+	/**
+	 * The tool bar view.
+	 */
+	private ToolBarView toolBarView;
+	/**
+	 * The menu bar view.
+	 */
+	private MenuBarView menuBarView;
+	/**
+	 * The view that shows the main desktop area.
+	 */
+	private DesktopView desktopView;
+	/**
+	 * The view that shows the tree.
+	 */
+	private TreeView treeView;
+	/**
+	 * The corresponding controller.
+	 */
+	private MainController mainController;
+
+	/**
+	 * Inaccessible constructor that prevents instantiation.
+	 */
 	private MainView() {
 	}
 
+	/**
+	 * @return returns MainView instance
+	 */
 	public static MainView getInstance() {
 		if (instance == null) {
 			instance = new MainView();
@@ -47,89 +67,94 @@ public class MainView extends JFrame {
 		}
 		return instance;
 	}
-	
-	private void setLookAndFeel() {
-		try {
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Nimbus".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-                    SwingUtilities.updateComponentTreeUI(this);
-                    pack();
-		            break;
-		        }
-		    }
-		} catch (Exception e) {
-		    // If Nimbus is not available, you can set the GUI to another look and feel.
-		}
-	}
-	
+
+	/**
+	 * Initializes the main view.
+	 */
 	private void initialize() {
-		
-		
-		// Retrieves the model and subscribes to changes.
+
+		// Retrieves the main model.
 		this.model = new Model();
-		
-		setLookAndFeel();
+
 		// Sets global layout properties.
+		setLookAndFeel();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setTitle("GeRuDok");//TODO maybe smthing
-		
-		//this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		
-		//this.setSize(500, 500);
-
+		this.setTitle("GeRuDok");
 		this.setSize(Constants.WINDOW_SIZE);
-		
-		//this.setUndecorated(false);		
-	    this.setLocationRelativeTo(null);
-
-		//this.setResizable(true);
-		// Adds three main panels.
+		this.setLocationRelativeTo(null);
 		this.setLayout(new BorderLayout());
 
-		//this.setSize((int) screenSize.getWidth(), (int) screenSize.getHeight());
-		
-		//TODO
-		//ResourceBundle bundle = ResourceBundle.getBundle("strings.MessageResources", Locale.getDefault());
-		
-		/*
-		JPanel panel = new JPanel();
-		panel.setLayout(new BorderLayout());
-		panel.setBackground(Color.GREEN);
-		*/
-		
-		// Add menu bar
+		// Adds the menu bar.
 		this.menuBarView = new MenuBarView(this.model);
 		this.setJMenuBar(menuBarView);
-		
-		// Add tool bar
+
+		// Adds the tool bar.
 		this.toolBarView = new ToolBarView(this.model);
 		this.add(this.toolBarView, BorderLayout.PAGE_START);
-		
-		// Add Tree view
+
+		// Adds the tree view.
 		this.treeView = new TreeView(this.model);
 		this.add(this.treeView, BorderLayout.LINE_START);
-		
-		// Add Desktop view
+
+		// Adds the desktop view.
 		this.desktopView = new DesktopView(this.model);
 		this.add(this.desktopView, BorderLayout.CENTER);
-		
-		//this.add(panel);
-		
-		this.mainController = new MainController(this.model, this);
 
+		// Attaches the listeners.
+		this.setMainController(new MainController(this.model, this));
 
 	}
-	
+
+	/**
+	 * Sets application look and feel.
+	 */
+	private void setLookAndFeel() {
+		try {
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					UIManager.setLookAndFeel(info.getClassName());
+					SwingUtilities.updateComponentTreeUI(this);
+					pack();
+					break;
+				}
+			}
+		} catch (Exception e) {
+			// If Nimbus is not available, you can set the GUI to
+			// another look and feel.
+		}
+	}
+
+	/**
+	 * @return the tree view
+	 */
 	public TreeView getTreeView() {
 		return treeView;
 	}
 
+	/**
+	 * @return the desktop view
+	 */
 	public DesktopView getDesktopView() {
 		return desktopView;
 	}
-	
-	
+
+	/**
+	 * Retrieves the corresponding controller.
+	 * 
+	 * @return the corresponding controller
+	 */
+	public MainController getMainController() {
+		return mainController;
+	}
+
+	/**
+	 * Attaches the controller.
+	 * 
+	 * @param mainController
+	 *            the controller to attach
+	 */
+	public void setMainController(MainController mainController) {
+		this.mainController = mainController;
+	}
+
 }

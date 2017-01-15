@@ -1,28 +1,34 @@
-/***********************************************************************
- * Module:  MainController.java
- * Author:  Ognjen
- * Purpose: Defines the Class MainController
- ***********************************************************************/
 
 package controller;
 
 import model.Model;
 import view.MainView;
 
-import java.awt.Window;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.*;
-
-/** @pdOid 783f6e54-f635-41e8-8184-4dd834273740 */
+/**
+ * Controller for the main view.
+ * 
+ * @author Nikola Jovanovic
+ *
+ */
 public class MainController {
-   /** @pdRoleInfo migr=no name=Model assc=association13 mult=1..1 */
-   public Model model;
-   /** @pdRoleInfo migr=no name=MainView assc=association3 mult=1..1 side=A */
-   public MainView mainView;
-   
-   public MainController(Model model, MainView mainView) {
-	   this.model = model;
-	   this.mainView = mainView;
-   }
+
+	/**
+	 * The main model.
+	 */
+	public Model model;
+	/**
+	 * The view to bind to.
+	 */
+	public MainView mainView;
+
+	/**
+	 * @param model
+	 *            the main model
+	 * @param mainView
+	 *            the view to bind to
+	 */
+	public MainController(Model model, MainView mainView) {
+		this.model = model;
+		this.mainView = mainView;
+	}
 }

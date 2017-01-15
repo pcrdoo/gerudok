@@ -1,20 +1,39 @@
-/***********************************************************************
- * Module:  DesktopController.java
- * Author:  Ognjen
- * Purpose: Defines the Class DesktopController
- ***********************************************************************/
-
 package controller;
 
 import model.Model;
 import view.DesktopView;
-import java.util.*;
 
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
-import javax.swing.tree.TreePath;
-
+/**
+ * Controller for the desktop.
+ * 
+ * @author Nikola Jovanovic
+ *
+ */
+/**
+ * @author Random
+ *
+ */
 public class DesktopController {
-   private Model model;
-   private DesktopView desktopView;
+
+	/**
+	 * The main model.
+	 */
+	public Model model;
+	/**
+	 * The view to bind to.
+	 */
+	public DesktopView desktopView;
+
+	/**
+	 * @param model
+	 *            the main model
+	 * @param desktopView
+	 *            the view to bind to
+	 */
+	public DesktopController(Model model, DesktopView desktopView) {
+		this.model = model;
+		this.desktopView = desktopView;
+
+	}
+
 }

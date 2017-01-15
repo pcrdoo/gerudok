@@ -16,6 +16,7 @@ import model.tree.GNode;
  * @author Ognjen Djuricic
  *
  */
+@SuppressWarnings("serial")
 public class Workspace extends GNode implements Serializable {
 
 	/**

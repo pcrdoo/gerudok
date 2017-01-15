@@ -2,9 +2,7 @@ package model;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.*;
 
-import gerudok_observer.GObserverList;
 import gerudok_observer.GNotification;
 import model.tree.GNode;
 

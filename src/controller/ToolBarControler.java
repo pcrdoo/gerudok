@@ -151,7 +151,6 @@ public class ToolBarControler {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("123");
 				Invoker.getInstance().executeCommand(new SwitchWorkspaceCommand(model));
 			}
 		};

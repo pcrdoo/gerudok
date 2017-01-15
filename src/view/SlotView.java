@@ -6,59 +6,113 @@
 
 package view;
 
-import model.GeRuDocument;
-import model.Model;
-import model.Page;
-import model.Slot;
-
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Paint;
-import java.util.*;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-import constants.Constants;
-import controller.GeRuDocumentController;
 import controller.SlotController;
-import gerudok_observer.GObserver;
-import gerudok_observer.GNotification;
+import model.Model;
+import model.Slot;
 
+/**
+ * The graphical representation of a slot.
+ * 
+ * @author Nikola Jovanovic
+ *
+ */
+@SuppressWarnings("serial")
 public class SlotView extends ElementContainerView {
+
+	/**
+	 * The slot that this view is based on.
+	 */
+	private Slot slot;
+	/**
+	 * The main model.
+	 */
+	private Model model;
+
+	/**
+	 * The border that contains the slot title.
+	 */
+	private TitledBorder border;
+	/**
+	 * The corresponding controller.
+	 */
 	private SlotController slotController;
 
-	private Model model;
-	
-	private TitledBorder border;
-
+	/**
+	 * Constructor that forwards a reference to the main model and the slot to
+	 * be visualized.
+	 * 
+	 * @param model
+	 *            the main model
+	 * @param slot
+	 *            the slot to be visualized
+	 */
 	public SlotView(Model model, Slot obj) {
 		super(model, obj, true);
+
+		this.model = model;
+		this.model.addObserver(this);
+		this.setSlot(slot);
 
 		setAlignmentY(CENTER_ALIGNMENT);
 		setAlignmentX(CENTER_ALIGNMENT);
 		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.2f));
-	    EmptyBorder innerBorder = new EmptyBorder(3, 3, 3, 3);
+		EmptyBorder innerBorder = new EmptyBorder(3, 3, 3, 3);
 		border = BorderFactory.createTitledBorder(innerBorder, obj.getName());
 		this.setBorder(border);
 	}
-	
-	public Slot getSlot() {
-		return (Slot) getElementContainer();
-	}
-	
-	public void onRenameNotification(Object obj)
-	{
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see view.ElementContainerView#onRenameNotification(java.lang.Object)
+	 */
+	public void onRenameNotification(Object obj) {
 		border.setTitle(this.getSlot().getName());
 		repaint();
 	}
-		
+
+	/**
+	 * Retrieves the slot that this view is based on.
+	 * 
+	 * @return the slot that this view is based on
+	 */
+	public Slot getSlot() {
+		return (Slot) getElementContainer();
+	}
+
+	/**
+	 * Sets the slot that this view is based on.
+	 * 
+	 * @param slot
+	 *            the slot that this view is based on
+	 */
+	public void setSlot(Slot slot) {
+		this.slot = slot;
+	}
+
+	/**
+	 * Retrieves the corresponding controller.
+	 * 
+	 * @return the corresponding controller
+	 */
+	public SlotController getSlotController() {
+		return slotController;
+	}
+
+	/**
+	 * Attaches the controller.
+	 * 
+	 * @param documentController
+	 *            the controller to attach
+	 */
+	public void setSlotController(SlotController slotController) {
+		this.slotController = slotController;
+	}
+
 }

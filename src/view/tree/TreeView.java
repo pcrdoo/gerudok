@@ -103,10 +103,10 @@ public class TreeView extends JPanel implements GObserver {
 
 		JScrollPane freeNodesScrollPane = new JScrollPane(freeNodesList);
 
-		freeNodesScrollPane.setSize(new Dimension(100, 240));
-		freeNodesScrollPane.setMaximumSize(new Dimension(100, 240));
-		freeNodesScrollPane.setMinimumSize(new Dimension(100, 240));
-		freeNodesScrollPane.setPreferredSize(new Dimension(100, 240));
+		freeNodesScrollPane.setSize(new Dimension(100, 230));
+		freeNodesScrollPane.setMaximumSize(new Dimension(100, 230));
+		freeNodesScrollPane.setMinimumSize(new Dimension(100, 230));
+		freeNodesScrollPane.setPreferredSize(new Dimension(100, 230));
 
 		this.reloadFreeNodesList();
 

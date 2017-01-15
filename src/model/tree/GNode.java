@@ -202,7 +202,6 @@ public class GNode implements MutableTreeNode, GObservable, Serializable {
 	 */
 	@Override
 	public Enumeration children() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -213,7 +212,6 @@ public class GNode implements MutableTreeNode, GObservable, Serializable {
 	 */
 	@Override
 	public boolean getAllowsChildren() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
@@ -330,7 +328,6 @@ public class GNode implements MutableTreeNode, GObservable, Serializable {
 	 */
 	@Override
 	public void setUserObject(Object arg0) {
-		// TODO Auto-generated method stub
 
 	}
 

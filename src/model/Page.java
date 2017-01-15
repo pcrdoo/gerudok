@@ -2,7 +2,7 @@ package model;
 
 import java.awt.Color;
 import java.io.Serializable;
-import java.util.*;
+import java.util.Random;
 
 import model.tree.GNode;
 

@@ -1,26 +1,9 @@
-/***********************************************************************
- * Module:  ProjectView.java
- * Author:  Ognjen
- * Purpose: Defines the Class ProjectView
- ***********************************************************************/
 
 package view;
-
-import gerudok_observer.GObserver;
-import gerudok_observer.GNotification;
-import model.GeRuDocument;
-import model.GeRuDocumentLink;
-import model.Model;
-import model.Page;
-import model.Project;
-import model.Slot;
-import model.tree.GLink;
-import model.tree.GNode;
 
 import java.awt.Component;
 import java.awt.Point;
 import java.beans.PropertyVetoException;
-import java.util.*;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JTabbedPane;
@@ -29,40 +12,77 @@ import javax.swing.event.InternalFrameListener;
 
 import constants.Constants;
 import controller.ProjectController;
+import gerudok_observer.GNotification;
+import gerudok_observer.GObserver;
+import model.GeRuDocument;
+import model.GeRuDocumentLink;
+import model.Model;
+import model.Page;
+import model.Project;
+import model.tree.GLink;
+import model.tree.GNode;
 
+/**
+ * The graphical representation of a project.
+ * 
+ * @author Nikola Jovanovic
+ *
+ */
+@SuppressWarnings("serial")
 public class ProjectView extends JInternalFrame implements GObserver {
-	private ProjectController projectController;
+	/**
+	 * The project that this view is based on.
+	 */
 	private Project project;
-	private JTabbedPane documentTabs;
+	/**
+	 * The main model.
+	 */
 	private Model model;
+	/**
+	 * The tabbed pane that holds documents.
+	 */
+	private JTabbedPane documentTabs;
+	/**
+	 * The corresponding controller.
+	 */
+	private ProjectController projectController;
 
-	public ProjectView(Model model, Project project, Point p) {
+	/**
+	 * Constructor that forwards a reference to the main model and the project
+	 * to be visualized.
+	 * 
+	 * @param model
+	 *            the main model
+	 * @param project
+	 *            the project to be visualized
+	 * @param position
+	 *            the expected position of this view
+	 */
+	public ProjectView(Model model, Project project, Point position) {
 		super(project.getName(), true, false, true, true);
 		this.model = model;
 		this.model.addObserver(this);
 		this.setProject(project);
 		this.project.addObserver(this);
 		setSize(Constants.INTERNAL_FRAME_SIZE);
-		setLocation(p);
+		setLocation(position);
 		setVisible(true);
 
-		// Tabbed Pane
+		// Adds the tabbed pane.
 		documentTabs = new JTabbedPane();
 		documentTabs.setAlignmentX(0.0f);
 		add(documentTabs);
 
-		// Listener
+		// Attaches the listeners.
 		projectController = new ProjectController(model, this);
 	}
 
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
-	}
-
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see gerudok_observer.GObserver#update(gerudok_observer.GNotification,
+	 * java.lang.Object)
+	 */
 	@Override
 	public void update(GNotification notification, Object obj) {
 		if (notification == GNotification.ADD) {
@@ -88,14 +108,12 @@ public class ProjectView extends JInternalFrame implements GObserver {
 			try {
 				this.setIcon(true);
 			} catch (PropertyVetoException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else if (notification == GNotification.PROJECT_OPEN) {
 			try {
 				this.setIcon(false);
 			} catch (PropertyVetoException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else if (notification == GNotification.GNODE_RENAME) {
@@ -103,6 +121,12 @@ public class ProjectView extends JInternalFrame implements GObserver {
 		}
 	}
 
+	/**
+	 * Creates and attaches a new child view based on the received document.
+	 * 
+	 * @param document
+	 *            the document to visualize
+	 */
 	public void addNewChildView(GeRuDocument document) {
 		GeRuDocumentView documentView = new GeRuDocumentView(model, document);
 		documentTabs.addTab(documentView.getDocument().getName(), documentView);
@@ -113,6 +137,15 @@ public class ProjectView extends JInternalFrame implements GObserver {
 		}
 	}
 
+	/**
+	 * Updates the selected document after the selection changed in the tree.
+	 * Passes the selection array to the relevant child element afterwards.
+	 * 
+	 * @param path
+	 *            array of nodes that represents the current tree selection
+	 * @param idx
+	 *            the index in the path array this view is interested in
+	 */
 	public void updateSelection(Object[] path, int idx) {
 		if (path.length > idx) {
 			GeRuDocumentView documentView = findDocumentTab(
@@ -130,6 +163,13 @@ public class ProjectView extends JInternalFrame implements GObserver {
 		}
 	}
 
+	/**
+	 * Finds a child tab that represents a document.
+	 * 
+	 * @param document
+	 *            the document to look for
+	 * @return the requested tab
+	 */
 	private GeRuDocumentView findDocumentTab(GeRuDocument document) {
 		int totalTabs = documentTabs.getTabCount();
 		for (int i = 0; i < totalTabs; i++) {
@@ -140,16 +180,66 @@ public class ProjectView extends JInternalFrame implements GObserver {
 					return documentView;
 				}
 			}
-			// other stuff
 		}
 		return null;
 	}
 
+	/**
+	 * Attaches an InternalFrameListener.
+	 * 
+	 * @param frameListener
+	 *            the listener to attach
+	 */
 	public void attachFrameListener(InternalFrameListener frameListener) {
 		this.addInternalFrameListener(frameListener);
 	}
 
+	/**
+	 * Attaches a ChangeListener.
+	 * 
+	 * @param tabChangeListener
+	 *            the listener to attach
+	 */
 	public void attachTabChangeListener(ChangeListener tabChangeListener) {
 		this.documentTabs.addChangeListener(tabChangeListener);
 	}
+
+	/**
+	 * Retrieves the project that this view is based on.
+	 * 
+	 * @return the project that this view is based on
+	 */
+	public Project getProject() {
+		return project;
+	}
+
+	/**
+	 * Sets the project that this view is based on.
+	 * 
+	 * @param project
+	 *            the project that this view is based on
+	 */
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+	/**
+	 * Retrieves the corresponding controller.
+	 * 
+	 * @return the corresponding controller
+	 */
+	public ProjectController ProjectController() {
+		return projectController;
+	}
+
+	/**
+	 * Attaches the controller.
+	 * 
+	 * @param documentController
+	 *            the controller to attach
+	 */
+	public void setProjectController(ProjectController projectController) {
+		this.projectController = projectController;
+	}
+
 }

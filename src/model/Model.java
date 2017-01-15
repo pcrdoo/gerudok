@@ -2,15 +2,16 @@
 package model;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
+import gerudok_observer.GNotification;
 import gerudok_observer.GObservable;
 import gerudok_observer.GObserver;
 import gerudok_observer.GObserverList;
-import gerudok_observer.GNotification;
 import model.tree.GNode;
 
 /**
@@ -90,7 +91,6 @@ public class Model implements GObservable, Serializable {
 	 *            The GNode to be selected.
 	 */
 	public void doTreeSelection(GNode node) {
-		// TODO pitati Davida da presudi dal ovo da bude genericka funkcija
 		this.observerList.notifyObservers(GNotification.TREE_SELECT, node);
 	}
 
