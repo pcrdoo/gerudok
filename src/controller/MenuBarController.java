@@ -8,15 +8,22 @@ package controller;
 
 import model.Model;
 import view.AboutDialog;
+import view.MainView;
 import view.MenuBarView;
+import view.tree.SelectProjectDialog;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
+import command.AddNewChildCommand;
+import command.CloseProjectCommand;
+import command.DeleteCommand;
 import command.Invoker;
 import command.LoadProjectCommand;
+import command.OpenProjectCommand;
+import command.RenameCommand;
 import command.SaveAsProjectCommand;
 import command.SaveProjectCommand;
 
@@ -75,5 +82,65 @@ public class MenuBarController {
 			}
 		};
 	}
-   
+
+	public ActionListener getAddActionListener() {
+		return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Invoker.getInstance().executeCommand(new AddNewChildCommand(model, MainView.getInstance().getTreeView().getSelectedNode()));
+			}
+		};
+	}
+	
+	public ActionListener getOpenProjectActionListener() {
+		return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Invoker.getInstance().executeCommand(new OpenProjectCommand(model, MainView.getInstance().getTreeView().getSelectedProject()));
+			}
+		};
+	}
+
+	public ActionListener getCloseProjectActionListener() {
+		return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Invoker.getInstance().executeCommand(new CloseProjectCommand(model, MainView.getInstance().getTreeView().getSelectedProject()));
+			}
+		};
+	}
+	
+	public ActionListener getRenameActionListener() {
+		return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Invoker.getInstance().executeCommand(new RenameCommand(model, MainView.getInstance().getTreeView().getSelectedNode()));
+			}
+		};
+	}
+	
+	public ActionListener getDeleteActionListener() {
+		return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Invoker.getInstance().executeCommand(new DeleteCommand(model, MainView.getInstance().getTreeView().getSelectedNode()));
+			}
+		};
+	}
+	
+	public ActionListener getShareActionListener() {
+		return new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				SelectProjectDialog sd = new SelectProjectDialog(MainView.getInstance().getTreeView().getSelectedNode(), model);
+				sd.show();
+			}
+		};
+	}
 }

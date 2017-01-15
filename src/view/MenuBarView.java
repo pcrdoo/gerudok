@@ -38,7 +38,6 @@ public class MenuBarView extends JMenuBar{
 	   saveItem.addActionListener(menuBarController.getSaveActionListener());
 	   JMenuItem saveAsItem = new JMenuItem("Save as");
 	   saveAsItem.addActionListener(menuBarController.getSaveAsActionListener());
-	   JMenuItem exitItem = new JMenuItem("Exit GeRuDok");
 	   
 	   fileMenu.add(newWorkspaceItem);
 	   fileMenu.add(switchWorkspaceItem);
@@ -49,15 +48,20 @@ public class MenuBarView extends JMenuBar{
 	   fileMenu.add(saveItem);
 	   fileMenu.add(saveAsItem);
 	   fileMenu.addSeparator();
-	   fileMenu.add(exitItem);
 	   
 	   JMenu editMenu = new JMenu("Edit");
 	   JMenuItem addNewChildItem = new JMenuItem("Add new");
+	   addNewChildItem.addActionListener(menuBarController.getAddActionListener());
 	   JMenuItem openSelectedProjectItem = new JMenuItem("Open project");
+	   openSelectedProjectItem.addActionListener(menuBarController.getOpenProjectActionListener());
 	   JMenuItem closeSelectedProjectItem = new JMenuItem("Close project");
+	   closeSelectedProjectItem.addActionListener(menuBarController.getCloseProjectActionListener());
 	   JMenuItem deleteItem = new JMenuItem("Delete");
+	   deleteItem.addActionListener(menuBarController.getDeleteActionListener());
 	   JMenuItem renameItem = new JMenuItem("Rename");
+	   renameItem.addActionListener(menuBarController.getRenameActionListener());
 	   JMenuItem shareItem = new JMenuItem("Share");
+	   shareItem.addActionListener(menuBarController.getShareActionListener());
 	   
 	   editMenu.add(addNewChildItem);
 	   editMenu.addSeparator();
