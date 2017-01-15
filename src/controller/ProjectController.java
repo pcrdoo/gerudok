@@ -24,41 +24,32 @@ import command.TreeSelectCommand;
 public class ProjectController {
 	private Model model;
 	private ProjectView projectView;
-	
+
 	public ProjectController(Model model, ProjectView view) {
 		this.model = model;
 		this.projectView = view;
 		projectView.attachFrameListener(new FrameListener());
 		projectView.attachTabChangeListener(new TabChangeListener());
 	}
-	      
+
 	class TabChangeListener implements ChangeListener {
 		@Override
 		public void stateChanged(ChangeEvent e) {
-	          if(projectView.isDocumentSelectionFromTree()) {
-					projectView.setDocumentSelectionFromTree(false);
-				} else {
-		          JTabbedPane sourceTabbedPane = (JTabbedPane) e.getSource();
-		          GeRuDocumentView documentView = (GeRuDocumentView)sourceTabbedPane.getSelectedComponent();
-		           if(documentView != null) {
-		        	   //TreeSelectCommand command = new TreeSelectCommand(model, documentView.getDocument());
-					   //Invoker.getInstance().executeCommand(command);
-		           }
-				}
+			JTabbedPane sourceTabbedPane = (JTabbedPane) e.getSource();
+			GeRuDocumentView documentView = (GeRuDocumentView) sourceTabbedPane.getSelectedComponent();
+			if (documentView != null) {
+				TreeSelectCommand command = new TreeSelectCommand(model, documentView.getDocument());
+				Invoker.getInstance().executeCommand(command);
+			}
 		}
-		
+
 	}
-	
+
 	class FrameListener implements InternalFrameListener {
 
 		@Override
 		public void internalFrameActivated(InternalFrameEvent e) {
-			// TODO: Naci lepsi nacin da se ovo popravi nakon sto se refaktorisu komande.
-			if(projectView.isProjectSelectionFromTree()) {
-				projectView.setProjectSelectionFromTree(false);
-			} else {
-				//Invoker.getInstance().executeCommand(new TreeSelectCommand(model, projectView.getProject()));
-			}
+			Invoker.getInstance().executeCommand(new TreeSelectCommand(model, projectView.getProject()));
 		}
 
 		@Override
@@ -69,20 +60,20 @@ public class ProjectController {
 		@Override
 		public void internalFrameClosing(InternalFrameEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void internalFrameDeactivated(InternalFrameEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		public void internalFrameDeiconified(InternalFrameEvent e) {
 			projectView.getProject().setOpened(true);
 			model.getTreeModel().reload();
-			
+
 		}
 
 		@Override
@@ -94,8 +85,8 @@ public class ProjectController {
 		@Override
 		public void internalFrameOpened(InternalFrameEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
 	}
-  
+
 }

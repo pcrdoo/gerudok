@@ -45,6 +45,7 @@ public class LoadProjectCommand extends Command {
                 }
 
                 Workspace.getInstance().addChild(p);
+        		model.getTreeModel().reload();
                 Invoker.getInstance().executeCommand(new TreeSelectCommand(model, p));
 
                 os.close();

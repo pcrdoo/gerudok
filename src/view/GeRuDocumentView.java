@@ -46,9 +46,7 @@ public class GeRuDocumentView extends JPanel implements GObserver {
 	private GeRuDocument document;
 	private Model model;
 	private JPanel pageArea;
-	private boolean pageSelectionFromTree;
-	private boolean treePageSelectionFromDesktop;
-	private PageView selectedPage;
+	private Page selectedPage;
 
 	private JScrollPane scrollBar;
 
@@ -62,7 +60,6 @@ public class GeRuDocumentView extends JPanel implements GObserver {
 		pageArea = new JPanel();
 		pageArea.setLayout(new BoxLayout(pageArea, BoxLayout.PAGE_AXIS));
 		pageArea.setBackground(Color.LIGHT_GRAY);
-		pageSelectionFromTree = false;
 		selectedPage = null;
 
 		// Dodaj skrol bar
@@ -72,7 +69,7 @@ public class GeRuDocumentView extends JPanel implements GObserver {
 		scrollBar.setBorder(BorderFactory.createEmptyBorder());
 		scrollBar.getVerticalScrollBar().setUnitIncrement(20);
 		this.add(scrollBar);
-		
+
 		// Listener
 		documentController = new GeRuDocumentController(model, this);
 	}
@@ -88,8 +85,8 @@ public class GeRuDocumentView extends JPanel implements GObserver {
 	@Override
 	public void update(GNotification notification, Object obj) {
 		if (notification == GNotification.ADD) {
-			if(obj instanceof Page) {
-				Page page = (Page)obj;
+			if (obj instanceof Page) {
+				Page page = (Page) obj;
 				addNewChildView(page);
 			}
 		} else if (notification == GNotification.DELETE) {
@@ -101,11 +98,11 @@ public class GeRuDocumentView extends JPanel implements GObserver {
 				e.printStackTrace();
 			}
 		} else if (notification == GNotification.GNODE_RENAME) {
-			JTabbedPane documentTabs = (JTabbedPane)SwingUtilities.getAncestorOfClass(JTabbedPane.class, this);
-			for(int i = 0; i < documentTabs.getTabCount(); i++) {
-			    if(documentTabs.getComponentAt(i) == this) {
-			    	documentTabs.setTitleAt(i, this.getDocument().getName());
-			    }
+			JTabbedPane documentTabs = (JTabbedPane) SwingUtilities.getAncestorOfClass(JTabbedPane.class, this);
+			for (int i = 0; i < documentTabs.getTabCount(); i++) {
+				if (documentTabs.getComponentAt(i) == this) {
+					documentTabs.setTitleAt(i, this.getDocument().getName());
+				}
 			}
 		}
 	}
@@ -115,21 +112,19 @@ public class GeRuDocumentView extends JPanel implements GObserver {
 		// dno, update selection ne ide na nivo slotova
 		if (path.length > idx) {
 			PageView pageView = findPage((Page) path[idx]);
-			selectedPage = pageView;
-			if(treePageSelectionFromDesktop) {
-				treePageSelectionFromDesktop = false;
-				return;
-			}
-			selectedPage = pageView;
 			if (pageView == null) {
 				return;
 			}
-			try {
-				// TODO: Tree -> Model selekcija dokumenata - popraviti
-				pageSelectionFromTree = true;
-				pageArea.scrollRectToVisible(pageView.getBounds());
-			} catch (NullPointerException e) {
-				e.printStackTrace();
+			if (pageView.getPage() != selectedPage) {
+				System.out.println("From tree " + pageView.getPage().getName());
+				if(selectedPage != null)
+				System.out.println("Mine " + selectedPage.getName());
+				selectedPage = pageView.getPage();
+				try {
+					pageArea.scrollRectToVisible(pageView.getBounds());
+				} catch (NullPointerException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -145,47 +140,32 @@ public class GeRuDocumentView extends JPanel implements GObserver {
 		}
 		return null;
 	}
-	
+
 	public void addNewChildView(Page page) {
 		PageView pageView = new PageView(model, page);
 		pageArea.add(pageView);
 		pageArea.scrollRectToVisible(pageView.getBounds());
 		repaint();
-		for(GNode child : page.getChildren()) {
-			Slot slot = (Slot)child;
+		for (GNode child : page.getChildren()) {
+			Slot slot = (Slot) child;
 			pageView.addNewChildView(slot);
 		}
 	}
-	
+
 	public void attachViewPortChangeListener(ChangeListener viewPortChangeListener) {
 		this.scrollBar.getViewport().addChangeListener(viewPortChangeListener);
 	}
-	
-	
+
 	public JPanel getPageArea() {
 		return pageArea;
 	}
-	
 
-	public boolean isPageSelectionFromTree() {
-		return pageSelectionFromTree;
-	}
-
-	public void setPageSelectionFromTree(boolean pageSelectionFromTree) {
-		this.pageSelectionFromTree = pageSelectionFromTree;
-	}
-	
-	public boolean isTreePageSelectionFromDesktop() {
-		return treePageSelectionFromDesktop;
-	}
-
-	public void setTreePageSelectionFromDesktop(boolean treePageSelectionFromDesktop) {
-		this.treePageSelectionFromDesktop = treePageSelectionFromDesktop;
-	}
-
-	public PageView getSelectedPage() {
+	public Page getSelectedPage() {
 		return selectedPage;
 	}
-	
-	
+
+	public void setSelectedPage(Page selectedPage) {
+		this.selectedPage = selectedPage;
+	}
+
 }

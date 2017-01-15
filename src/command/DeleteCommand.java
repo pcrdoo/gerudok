@@ -26,6 +26,7 @@ public class DeleteCommand extends Command {
 			}
 		}
 		node.removeFromParent();
+		model.getTreeModel().reload();
 		Invoker.getInstance().executeCommand(new TreeSelectCommand(model, parent));
 	}
 }

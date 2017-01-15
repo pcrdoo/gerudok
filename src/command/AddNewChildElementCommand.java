@@ -20,6 +20,7 @@ public class AddNewChildElementCommand extends Command {
 	public void doCommand() {
 		try {
 			Element child = (Element) node.addNewChild(childType);
+			model.getTreeModel().reload();
 			Invoker.getInstance().executeCommand(new TreeSelectCommand(model, child));
 			Invoker.getInstance().executeCommand(new ElementEditInitCommand(model, child));
 		} catch (Exception e) {

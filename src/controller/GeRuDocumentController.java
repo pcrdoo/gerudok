@@ -40,10 +40,6 @@ public class GeRuDocumentController {
 	class ViewPortChangeListener implements ChangeListener {
 		@Override
 		public void stateChanged(ChangeEvent e) {
-			if (documentView.isPageSelectionFromTree()) {
-				documentView.setPageSelectionFromTree(false);
-				return;
-			}
 			Rectangle visibleRect = documentView.getPageArea().getVisibleRect();
 			Point2D.Double visibleRectCenter = new Point2D.Double(visibleRect.getCenterX(), visibleRect.getCenterY());
 			PageView closestChild = null;
@@ -54,10 +50,7 @@ public class GeRuDocumentController {
 					Rectangle childBounds = child.getBounds();
 					Point2D.Double childCenter = new Point2D.Double(childBounds.getCenterX(), childBounds.getCenterY());
 					double currentDistance = childCenter.distance(visibleRectCenter);
-					// pre je bilo samo ako se seku pravougaonici ali for style
-					// points
-					// trazimo stranicu ciji je centar najblizi centru
-					// visibleRect-a
+					// looking for a page with center closest to visibleRect center
 					if (currentDistance < closestChildDistance) {
 						closestChild = child;
 						closestChildDistance = currentDistance;
@@ -65,32 +58,13 @@ public class GeRuDocumentController {
 					child.repaint();
 				}
 			}
-			if (closestChild != null && closestChild != documentView.getSelectedPage()) {
-				// U desktopu je implementirano: "ako je doslo od drveta
-				// ne vracaj mu"
-				// sto radi za slucaj projekata i dokumenata. U slucaju
-				// stranica da bi
-				// Desktop -> Tree cross selection radio neophodno je da
-				// stablo
-				// implementira "ako je doslo od desktopa ne vracaj mu",
-				// jer trenutno
-				// mu vrati pa je scroll prakticno nemoguc.
-				// UPDATE: ovo cemo takodje da radimo iz dokumenta da se
-				// ne narusi
-				// polimorfizam stabla. Ovo ima potencijal da se polomi
-				// zbog nekog
-				// race conditiona, ako krenu da se desavaju cudne
-				// stvari naci lepsi nacin.
-				
-				// TODO: OVO MORA NORMALNO: 1 komanda koja javlja svima
-
-				documentView.setTreePageSelectionFromDesktop(true);
-				//Invoker.getInstance().executeCommand(new TreeSelectCommand(model, closestChild.getPage()));
+			if (closestChild != null && closestChild.getPage() != documentView.getSelectedPage()) {
+				System.out.println("ScrollCandidate " + closestChild.getPage().getName());
+				if(documentView.getSelectedPage() != null)
+				System.out.println("Mine Old " + documentView.getSelectedPage().getName());
+				documentView.setSelectedPage(closestChild.getPage());
+				Invoker.getInstance().executeCommand(new TreeSelectCommand(model, closestChild.getPage()));
 			}
 		}
-	}
-
-	private Point getRectangleCenter(Rectangle rect) {
-		return new Point(rect.x + rect.width / 2, rect.y + rect.height / 2);
 	}
 }

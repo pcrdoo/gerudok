@@ -63,7 +63,11 @@ public class WorkspaceTree extends JTree implements GObserver {
 	public void update(GNotification notification, Object obj) {
 		switch (notification) {
 		case TREE_SELECT:
-			this.setSelectionPath(((GNode) obj).getPath());
+			TreePath path = ((GNode) obj).getPath();
+			if (path != this.getSelectionPath()) {
+				System.out.println("ENFORCED SELECTION ON " + path);
+				this.setSelectionPath(path);
+			}
 			break;
 		case TREE_RENAME:
 			this.startEditingAtPath(((GNode) obj).getPath());

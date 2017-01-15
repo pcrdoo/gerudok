@@ -138,8 +138,9 @@ public class DesktopView extends JDesktopPane implements GObserver {
 				return;
 			}
 			try {
-				projectView.setProjectSelectionFromTree(true);
-				projectView.setSelected(true);
+				if(this.getSelectedFrame() != projectView) {
+					projectView.setSelected(true);
+				}
 				projectView.updateSelection(path, idx + 1);
 			} catch (NullPointerException e) {
 				e.printStackTrace();

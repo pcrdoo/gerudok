@@ -18,6 +18,7 @@ public class AddNewChildCommand extends Command {
 	@Override
 	public void doCommand() {
 		GNode child = this.node.addNewChild();
+		model.getTreeModel().reload();
 		Invoker.getInstance().executeCommand(new TreeSelectCommand(model, child));
 		if (child instanceof Element) {
 			Invoker.getInstance().executeCommand(new ElementEditInitCommand(model, (Element) child));
