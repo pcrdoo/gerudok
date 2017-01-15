@@ -36,10 +36,10 @@ public class ToolBarView extends JToolBar {
 	   this.model = model;
 	   toolBarControler = new ToolBarControler(model, this);
 	   
-	// TODO
 	   JButton btnAdd = new JButton();
 	   btnAdd.setToolTipText("Add");
 	   btnAdd.setIcon(new ImageIcon("src/res/new_toolbar_icon.png"));
+	   btnAdd.addActionListener(toolBarControler.getAddActionListener());
 	   add(btnAdd);
 	   
 	   addSeparator();
@@ -80,12 +80,14 @@ public class ToolBarView extends JToolBar {
 	   JButton btnOpenProject = new JButton();
 	   btnOpenProject.setToolTipText("Open selected project");
 	   btnOpenProject.setIcon(new ImageIcon("src/res/maximize_toolbar_icon.png"));
+	   btnOpenProject.addActionListener(toolBarControler.getOpenProjectActionListener());
 	   add(btnOpenProject);
 	   
 	// TODO
 	   JButton btnCloseProject = new JButton();
 	   btnCloseProject.setToolTipText("Close selected project");
 	   btnCloseProject.setIcon(new ImageIcon("src/res/minimize_toolbar_icon.png"));
+	   btnCloseProject.addActionListener(toolBarControler.getCloseProjectActionListener());
 	   add(btnCloseProject);
 
 	   addSeparator();
@@ -94,18 +96,21 @@ public class ToolBarView extends JToolBar {
 	   JButton btnDelete = new JButton();
 	   btnDelete.setToolTipText("Delete");
 	   btnDelete.setIcon(new ImageIcon("src/res/delete_toolbar_icon.png"));
+	   btnDelete.addActionListener(toolBarControler.getDeleteActionListener());
 	   add(btnDelete);
 		   
 	// TODO
 	   JButton btnRename = new JButton();
 	   btnRename.setToolTipText("Rename");
 	   btnRename.setIcon(new ImageIcon("src/res/rename_toolbar_icon.png"));
+	   btnRename.addActionListener(toolBarControler.getRenameActionListener());
 	   add(btnRename);
 	   
 	   // TODO
 	   JButton btnShare = new JButton();
 	   btnShare.setToolTipText("Share");
 	   btnShare.setIcon(new ImageIcon("src/res/share_toolbar_icon.png"));
+	   btnShare.addActionListener(toolBarControler.getShareActionListener());
 	   add(btnShare);
 	   
 	   setBackground(new Color(255,255,204));
