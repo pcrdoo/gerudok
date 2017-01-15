@@ -40,6 +40,6 @@ public class TreeListener implements TreeSelectionListener {
 	@Override
 	public void valueChanged(TreeSelectionEvent e) {
 		TreePath path = e.getPath();
-		model.doDesktopSelection(path);
+		model.updateSelection(path);
 	}
 }

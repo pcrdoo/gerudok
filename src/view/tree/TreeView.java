@@ -137,19 +137,6 @@ public class TreeView extends JPanel implements GObserver {
 	}
 
 	/**
-	 * Gets selected project if there is one.
-	 * 
-	 * @return The selected project.
-	 */
-	public Project getSelectedProject() {
-		Object o = tree.getLastSelectedPathComponent();
-		if (o instanceof Project) {
-			return (Project) o;
-		}
-		return null;
-	}
-
-	/**
 	 * Adds a listener to the corresponding menu item(option).
 	 * 
 	 * @param l

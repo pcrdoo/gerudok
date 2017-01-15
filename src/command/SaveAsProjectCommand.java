@@ -10,18 +10,19 @@ import javax.swing.JFileChooser;
 
 import constants.Constants;
 import files.ProjectFile;
+import model.Model;
 import model.Project;
 import view.MainView;
 
 public class SaveAsProjectCommand extends Command {
 	
-	public SaveAsProjectCommand() {
-
+	public SaveAsProjectCommand(Model model) {
+		this.model = model;
 	}  
 	
 	@Override
 	public void doCommand() {
-		Project project = MainView.getInstance().getTreeView().getSelectedProject();
+		Project project = model.getSelectedProject();
 		JFileChooser jfc = new JFileChooser();
 		jfc.setFileFilter(new ProjectFile());
 		if (project != null) {

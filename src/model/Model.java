@@ -34,7 +34,10 @@ public class Model implements GObservable, Serializable {
 	 * They are stored here while they wait to be put back in the tree.
 	 */
 	private List<GNode> freeNodes;
-
+	/**
+	 * Stores currently selected path in the tree.
+	 */
+	private TreePath selectedPath;
 	/**
 	 * Default constructor.
 	 */
@@ -102,14 +105,14 @@ public class Model implements GObservable, Serializable {
 	}
 
 	/**
-	 * Notifies the DesktopView to put in focus some of its components.
+	 * Updates the selected tree path and notifies desktop.
 	 * 
 	 * @param path
-	 *            The TreePath that contains the information about the
-	 *            components.
+	 *            The newly selected TreePath.
 	 */
-	public void doDesktopSelection(TreePath path) {
+	public void updateSelection(TreePath path) {
 		this.observerList.notifyObservers(GNotification.DESKTOP_SELECT, path);
+		selectedPath = path;
 	}
 
 	/**
@@ -117,6 +120,19 @@ public class Model implements GObservable, Serializable {
 	 */
 	public void doReloadFreeNodes() {
 		this.observerList.notifyObservers(GNotification.FREE_NODES_CHANGED, null);
+	}
+	
+	/**
+	 * Gets selected project if there is one.
+	 * 
+	 * @return The selected project.
+	 */
+	public Project getSelectedProject() {
+		Object o = selectedPath.getLastPathComponent();
+		if (o instanceof Project) {
+			return (Project) o;
+		}
+		return null;
 	}
 
 	/*

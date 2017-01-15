@@ -245,7 +245,7 @@ public class GPopupMenuController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Invoker.getInstance().executeCommand(new SaveProjectCommand());
+			Invoker.getInstance().executeCommand(new SaveProjectCommand(model));
 		}
 	}
 
@@ -259,7 +259,7 @@ public class GPopupMenuController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Invoker.getInstance().executeCommand(new SaveAsProjectCommand());
+			Invoker.getInstance().executeCommand(new SaveAsProjectCommand(model));
 		}
 	}
 
