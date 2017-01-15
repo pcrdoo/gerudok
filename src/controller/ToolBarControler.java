@@ -77,7 +77,7 @@ public class ToolBarControler {
 
 	public ActionListener getAddActionListener() {
 		return new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				Invoker.getInstance().executeCommand(new AddNewChildCommand(model, MainView.getInstance().getTreeView().getSelectedNode()));
@@ -155,4 +155,35 @@ public class ToolBarControler {
 			}
 		};
 	}
+
+	public ActionListener getCascadeActionListener() {
+		return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				MainView.getInstance().getDesktopView().cascade();
+			}
+		};
+	}
+
+	public ActionListener getTileHorizontalyActionListener() {
+		return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				MainView.getInstance().getDesktopView().tileHorizontally();
+			}
+		};
+	}
+
+	public ActionListener getTileVerticalyActionListener() {
+		return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				MainView.getInstance().getDesktopView().tileVertically();
+			}
+		};
+	}
+
 }

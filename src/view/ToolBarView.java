@@ -78,14 +78,12 @@ public class ToolBarView extends JToolBar {
 	   
 	   addSeparator();
 	   
-	// TODO
 	   JButton btnOpenProject = new JButton();
 	   btnOpenProject.setToolTipText("Open selected project");
 	   btnOpenProject.setIcon(new ImageIcon("src/res/maximize_toolbar_icon.png"));
 	   btnOpenProject.addActionListener(toolBarControler.getOpenProjectActionListener());
 	   add(btnOpenProject);
 	   
-	// TODO
 	   JButton btnCloseProject = new JButton();
 	   btnCloseProject.setToolTipText("Close selected project");
 	   btnCloseProject.setIcon(new ImageIcon("src/res/minimize_toolbar_icon.png"));
@@ -94,26 +92,43 @@ public class ToolBarView extends JToolBar {
 
 	   addSeparator();
 	   
-	// TODO
 	   JButton btnDelete = new JButton();
 	   btnDelete.setToolTipText("Delete");
 	   btnDelete.setIcon(new ImageIcon("src/res/delete_toolbar_icon.png"));
 	   btnDelete.addActionListener(toolBarControler.getDeleteActionListener());
 	   add(btnDelete);
 		   
-	// TODO
 	   JButton btnRename = new JButton();
 	   btnRename.setToolTipText("Rename");
 	   btnRename.setIcon(new ImageIcon("src/res/rename_toolbar_icon.png"));
 	   btnRename.addActionListener(toolBarControler.getRenameActionListener());
 	   add(btnRename);
 	   
-	   // TODO
 	   JButton btnShare = new JButton();
 	   btnShare.setToolTipText("Share");
 	   btnShare.setIcon(new ImageIcon("src/res/share_toolbar_icon.png"));
 	   btnShare.addActionListener(toolBarControler.getShareActionListener());
 	   add(btnShare);
+	   
+	   addSeparator();
+	   
+	   JButton btnCascade = new JButton();
+	   btnCascade.setToolTipText("Cascade");
+	   btnCascade.setIcon(new ImageIcon("src/res/rename_toolbar_icon.png"));
+	   btnCascade.addActionListener(toolBarControler.getCascadeActionListener());
+	   add(btnCascade);
+		   
+	   JButton btnTileHorizontaly = new JButton();
+	   btnTileHorizontaly.setToolTipText("Tile horizontaly");
+	   btnTileHorizontaly.setIcon(new ImageIcon("src/res/rename_toolbar_icon.png"));
+	   btnTileHorizontaly.addActionListener(toolBarControler.getTileHorizontalyActionListener());
+	   add(btnTileHorizontaly);
+	   
+	   JButton btnTileVerticaly = new JButton();
+	   btnTileVerticaly.setToolTipText("Tile verticaly");
+	   btnTileVerticaly.setIcon(new ImageIcon("src/res/rename_toolbar_icon.png"));
+	   btnTileVerticaly.addActionListener(toolBarControler.getTileVerticalyActionListener());
+	   add(btnTileVerticaly);
 	   
 	   setBackground(new Color(255,255,204));
    }
