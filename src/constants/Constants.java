@@ -18,4 +18,5 @@ public final class Constants {
     public static final Dimension PAGE_SIZE = new Dimension(PAGE_WIDTH, PAGE_TOP_MARGIN + PAGE_BOTTOM_MARGIN + PAGE_HEIGHT);
 	public static final int CASCADE_OFFSET = 10;
 	public static final String PROJECT_EXT = ".grdp";
+	public static final String WORKSPACE_EXT = ".grdw";
 }

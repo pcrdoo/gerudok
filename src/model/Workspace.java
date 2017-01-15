@@ -1,5 +1,6 @@
 package model;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.*;
 
@@ -21,6 +22,12 @@ public class Workspace extends GNode implements Serializable {
 	 * Used for generating names for new children.
 	 */
 	private static int newChildCount = 0;
+	
+	/**
+	 * The file of the workspace.
+	 */
+	private File workspaceFile;
+	
 	/**
 	 * The single Workspace object.
 	 */
@@ -39,10 +46,7 @@ public class Workspace extends GNode implements Serializable {
 	 * Default constructor.
 	 */
 	private Workspace() {
-
-		// TODO Bakovic
-		// TEST
-		super("Workspace1");
+		super("Workspace");
 	}
 
 	/**
@@ -53,7 +57,6 @@ public class Workspace extends GNode implements Serializable {
 	public static Workspace getInstance() {
 		if (instance == null) {
 			instance = new Workspace();
-			instance.setName("workspace 1");
 		}
 		return instance;
 	}
@@ -67,5 +70,13 @@ public class Workspace extends GNode implements Serializable {
 		Project child = new Project("Project" + getNewChildCount());
 		this.addChild(child);
 		return child;
+	}
+
+	public File getWorkspaceFile() {
+		return workspaceFile;
+	}
+
+	public void setWorkspaceFile(File workspaceFile) {
+		this.workspaceFile = workspaceFile;
 	}
 }

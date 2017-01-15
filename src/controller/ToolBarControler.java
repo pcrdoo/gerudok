@@ -25,10 +25,12 @@ import command.CloseProjectCommand;
 import command.DeleteCommand;
 import command.Invoker;
 import command.LoadProjectCommand;
+import command.NewWorkspaceCommand;
 import command.OpenProjectCommand;
 import command.RenameCommand;
 import command.SaveAsProjectCommand;
 import command.SaveProjectCommand;
+import command.SwitchWorkspaceCommand;
 
 /** @pdOid 88245b1f-d41c-42ae-be15-48a0717c1585 */
 public class ToolBarControler {
@@ -130,6 +132,27 @@ public class ToolBarControler {
 			public void actionPerformed(ActionEvent arg0) {
 				SelectProjectDialog sd = new SelectProjectDialog(MainView.getInstance().getTreeView().getSelectedNode(), model);
 				sd.show();
+			}
+		};
+	}
+
+	public ActionListener getNewWorkspaceListener() {
+		return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Invoker.getInstance().executeCommand(new NewWorkspaceCommand(model));
+			}
+		};
+	}
+
+	public ActionListener getSwitchWorkspaceListener() {
+		return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("123");
+				Invoker.getInstance().executeCommand(new SwitchWorkspaceCommand(model));
 			}
 		};
 	}

@@ -22,10 +22,13 @@ import command.CloseProjectCommand;
 import command.DeleteCommand;
 import command.Invoker;
 import command.LoadProjectCommand;
+import command.NewWorkspaceCommand;
 import command.OpenProjectCommand;
 import command.RenameCommand;
 import command.SaveAsProjectCommand;
 import command.SaveProjectCommand;
+import command.SaveWorkspaceCommand;
+import command.SwitchWorkspaceCommand;
 
 /** @pdOid 1189e529-58ea-4e27-92c3-a945264c24e8 */
 public class MenuBarController {
@@ -140,6 +143,36 @@ public class MenuBarController {
 			public void actionPerformed(ActionEvent arg0) {
 				SelectProjectDialog sd = new SelectProjectDialog(MainView.getInstance().getTreeView().getSelectedNode(), model);
 				sd.show();
+			}
+		};
+	}
+	
+	public ActionListener getSaveWorkspaceListener() {
+		return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Invoker.getInstance().executeCommand(new SaveWorkspaceCommand(model));
+			}
+		};
+	}
+	
+	public ActionListener getNewWorkspaceListener() {
+		return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Invoker.getInstance().executeCommand(new NewWorkspaceCommand(model));
+			}
+		};
+	}
+
+	public ActionListener getSwitchWorkspaceListener() {
+		return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Invoker.getInstance().executeCommand(new SwitchWorkspaceCommand(model));
 			}
 		};
 	}

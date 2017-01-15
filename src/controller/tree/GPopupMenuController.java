@@ -152,7 +152,7 @@ public class GPopupMenuController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Invoker.getInstance().executeCommand(new SwitchWorkspaceCommand(model, view.getSelectedNode()));
+			Invoker.getInstance().executeCommand(new SwitchWorkspaceCommand(model));
 		}
 	}
 

@@ -30,8 +30,11 @@ public class MenuBarView extends JMenuBar{
 	   JMenu fileMenu = new JMenu("File"); 
 	   
 	   JMenuItem newWorkspaceItem = new JMenuItem("New workspace");
+	   newWorkspaceItem.addActionListener(menuBarController.getNewWorkspaceListener());
 	   JMenuItem switchWorkspaceItem = new JMenuItem("Switch workspace");
+	   switchWorkspaceItem.addActionListener(menuBarController.getSwitchWorkspaceListener());
 	   JMenuItem saveWorkspaceItem = new JMenuItem("Save workspace");
+	   saveWorkspaceItem.addActionListener(menuBarController.getSaveWorkspaceListener());
 	   JMenuItem openItem = new JMenuItem("Open");
 	   openItem.addActionListener(menuBarController.getLoadActionListener());
 	   JMenuItem saveItem = new JMenuItem("Save");

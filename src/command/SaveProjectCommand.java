@@ -15,14 +15,20 @@ import model.Project;
 import view.MainView;
 
 public class SaveProjectCommand extends Command {
-
+	
+	private Project project;
+	
 	public SaveProjectCommand(Model model) {
+		this(model, model.getSelectedProject());
+	}
+
+	public SaveProjectCommand(Model model, Project project) {
 		this.model = model;
+		this.project = project;
 	}  
 	
 	@Override
 	public void doCommand() {
-		Project project = model.getSelectedProject();
 		JFileChooser jfc = new JFileChooser();
 		jfc.setFileFilter(new ProjectFile());
 		if (project != null) {
@@ -46,6 +52,7 @@ public class SaveProjectCommand extends Command {
 				os = new ObjectOutputStream(new FileOutputStream(projectFile));
 				os.writeObject(project);
 				project.setProjectFile(projectFile);
+				os.close();
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
 			} catch (IOException e2) {

@@ -44,6 +44,7 @@ public class SaveAsProjectCommand extends Command {
 				os = new ObjectOutputStream(new FileOutputStream(projectFile));
 				os.writeObject(project);
 				project.setProjectFile(projectFile);
+				os.close();
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
 			} catch (IOException e2) {

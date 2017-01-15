@@ -47,11 +47,13 @@ public class ToolBarView extends JToolBar {
 	   JButton btnNewWorkspace = new JButton();
 	   btnNewWorkspace.setToolTipText("New workspace");
 	   btnNewWorkspace.setIcon(new ImageIcon("src/res/new_workspace_toolbar_icon.png"));
+	   btnNewWorkspace.addActionListener(toolBarControler.getNewWorkspaceListener());
 	   add(btnNewWorkspace);
 	   
 	   JButton btnSwitchWorkspace = new JButton();
 	   btnSwitchWorkspace.setToolTipText("Switch workspace");
 	   btnSwitchWorkspace.setIcon(new ImageIcon("src/res/switch_workspace_toolbar_icon.png"));
+	   btnNewWorkspace.addActionListener(toolBarControler.getSwitchWorkspaceListener());
 	   add(btnSwitchWorkspace);
 	   
 	   addSeparator();
