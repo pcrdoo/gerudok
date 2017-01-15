@@ -12,6 +12,7 @@ import view.MainView;
 import view.MenuBarView;
 import view.ToolBarView;
 import view.tree.GPopupMenu;
+import view.tree.SelectProjectDialog;
 import view.tree.TreeView;
 
 import java.awt.event.ActionEvent;
@@ -125,10 +126,10 @@ public class ToolBarControler {
 	public ActionListener getShareActionListener() {
 		return new ActionListener() {
 			
-			//ovo da se popravi da se pira sa kim se seruje
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Invoker.getInstance().executeCommand(new AddNewLinkChildCommand(model, MainView.getInstance().getTreeView().getSelectedNode(), MainView.getInstance().getTreeView().getSelectedNode()));
+				SelectProjectDialog sd = new SelectProjectDialog(MainView.getInstance().getTreeView().getSelectedNode(), model);
+				sd.show();
 			}
 		};
 	}
