@@ -19,59 +19,75 @@ import java.util.*;
 import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
 
+/**
+ * Controller for the TreeView.
+ * 
+ * @author Ognjen
+ *
+ */
 public class TreeController {
-	
-   public Model model;
-   public TreeView treeView;
-   
-   public TreeController(Model model, TreeView treeView) {
-	   this.model = model;
-	   this.treeView = treeView;
-	   
-	   this.treeView.addTreeListener(new RightClickListener());
-   }
-   
-   class RightClickListener implements MouseListener {
-	   @Override
-	   public void mouseClicked(MouseEvent e) {
-		   if(SwingUtilities.isRightMouseButton(e)) {
-			   //TODO ne znam odakle da pristupim treeu?
-			   
-			   WorkspaceTree tree = treeView.getTree();
-			   TreePath path = tree.getPathForLocation(e.getX(), e.getY());
-			   
-			   if(path == null)
-				   return;
-			   
-			   tree.setSelectionPath(path);
-			   
-			   //TODO open context menu for node
-			   GPopupMenu pm = new GPopupMenu(model, (GNode)tree.getLastSelectedPathComponent());
-			   pm.show(e.getComponent(), e.getX(), e.getY());
-		   }
-	   }
-	   
-	   @Override
-	   public void mouseEntered(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-	   }
-		
+
+	/**
+	 * Reference to the main model.
+	 */
+	public Model model;
+	/**
+	 * Instance of the view for this controller.
+	 */
+	public TreeView treeView;
+
+	/**
+	 * Creates everything and sets view listener.
+	 * 
+	 * @param model
+	 *            The main model.
+	 * @param treeView
+	 *            The view for this controller.
+	 */
+	public TreeController(Model model, TreeView treeView) {
+		this.model = model;
+		this.treeView = treeView;
+
+		this.treeView.addTreeListener(new RightClickListener());
+	}
+
+	/**
+	 * Opens the GPopupMenu on the selected node.
+	 * 
+	 * @author Ognjen Djuricic
+	 *
+	 */
+	class RightClickListener implements MouseListener {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			if (SwingUtilities.isRightMouseButton(e)) {
+				WorkspaceTree tree = treeView.getTree();
+				TreePath path = tree.getPathForLocation(e.getX(), e.getY());
+
+				if (path == null)
+					return;
+
+				tree.setSelectionPath(path);
+
+				GPopupMenu pm = new GPopupMenu(model, (GNode) tree.getLastSelectedPathComponent());
+				pm.show(e.getComponent(), e.getX(), e.getY());
+			}
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {
+		}
+
 		@Override
 		public void mouseExited(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
 		}
-		
+
 		@Override
 		public void mousePressed(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
 		}
-		
+
 		@Override
 		public void mouseReleased(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
 		}
-   }
+	}
 }

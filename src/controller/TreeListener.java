@@ -7,16 +7,39 @@ import javax.swing.tree.TreePath;
 import model.Model;
 import view.DesktopView;
 
+/**
+ * Makes sure that the selection in the WorkspaceTree matches the focus of the
+ * DesktopView.
+ * 
+ * @author Ognjen Djuricic
+ *
+ */
 public class TreeListener implements TreeSelectionListener {
-	   private Model model;
-	   
-	   public TreeListener(Model model) {
-		   this.model = model;
-	   }
-	   
-		@Override
-		public void valueChanged(TreeSelectionEvent e) {
-			TreePath path = e.getPath(); // Strasno...
-			model.doDesktopSelection(path);
-		}
+	/**
+	 * Reference to the main model.
+	 */
+	private Model model;
+
+	/**
+	 * Constructor that sets the model.
+	 * 
+	 * @param model
+	 *            The main model.
+	 */
+	public TreeListener(Model model) {
+		this.model = model;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * javax.swing.event.TreeSelectionListener#valueChanged(javax.swing.event.
+	 * TreeSelectionEvent)
+	 */
+	@Override
+	public void valueChanged(TreeSelectionEvent e) {
+		TreePath path = e.getPath();
+		model.doDesktopSelection(path);
+	}
 }

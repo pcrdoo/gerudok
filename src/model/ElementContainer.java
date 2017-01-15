@@ -56,7 +56,7 @@ public class ElementContainer extends GNode implements Serializable{
 		}
 		
 		Element child = elementFactory.create(childType, elementFactory.createName(childType, getNewChildCount()));
-		this.add(child);
+		this.addChild(child);
 		this.type = childType;
 		
 		return child;

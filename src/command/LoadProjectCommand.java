@@ -44,7 +44,7 @@ public class LoadProjectCommand extends Command {
                     JOptionPane.showMessageDialog(MainView.getInstance(),"Erorr in file.");
                 }
 
-                Workspace.getInstance().addLoadedProject(p);
+                Workspace.getInstance().addChild(p);
                 Invoker.getInstance().executeCommand(new TreeSelectCommand(model, p));
 
                 os.close();

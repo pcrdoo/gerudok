@@ -28,11 +28,31 @@ import view.tree.GPopupMenu;
 import view.tree.SelectDocumentDialog;
 import view.tree.SelectProjectDialog;
 
+/**
+ * Controller for the GPopupMenuDialog, contains all its operations.
+ * 
+ * @author Ognjen Djuricic
+ *
+ */
 public class GPopupMenuController {
-	
+
+	/**
+	 * Reference to the main model.
+	 */
 	Model model;
+	/**
+	 * Instance of the view for this controller.
+	 */
 	GPopupMenu view;
-	
+
+	/**
+	 * Creates everything and sets view listeners.
+	 * 
+	 * @param model
+	 *            The main model.
+	 * @param view
+	 *            The view for this controller.
+	 */
 	public GPopupMenuController(Model model, GPopupMenu view) {
 		this.model = model;
 		this.view = view;
@@ -52,7 +72,13 @@ public class GPopupMenuController {
 		this.view.setSaveAsProjectListener(new SaveAsProjectListener());
 		this.view.setImportProjectListener(new ImportProjectListener());
 	}
-	
+
+	/**
+	 * Executes the AddNewChildCommand.
+	 * 
+	 * @author Ognjen Djuricic
+	 *
+	 */
 	class AddNewListener implements ActionListener {
 
 		@Override
@@ -60,29 +86,55 @@ public class GPopupMenuController {
 			Invoker.getInstance().executeCommand(new AddNewChildCommand(model, view.getSelectedNode()));
 		}
 	}
-	
+
+	/**
+	 * Executes the AddNewChildElementCommand.
+	 * 
+	 * @author Ognjen Djuricic
+	 *
+	 */
 	class AddNewGraphicElementListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Invoker.getInstance().executeCommand(new AddNewChildElementCommand(model, (ElementContainer)view.getSelectedNode(), ElementType.GRAPHIC));
+			Invoker.getInstance().executeCommand(new AddNewChildElementCommand(model,
+					(ElementContainer) view.getSelectedNode(), ElementType.GRAPHIC));
 		}
 	}
-	
+
+	/**
+	 * Executes the AddNewChildElementCommand.
+	 * 
+	 * @author Ognjen Djuricic
+	 *
+	 */
 	class AddNewTextElementListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Invoker.getInstance().executeCommand(new AddNewChildElementCommand(model, (ElementContainer)view.getSelectedNode(), ElementType.TEXT));
+			Invoker.getInstance().executeCommand(
+					new AddNewChildElementCommand(model, (ElementContainer) view.getSelectedNode(), ElementType.TEXT));
 		}
 	}
-	
+
+	/**
+	 * Executes the AddNewChildElementCommand.
+	 * 
+	 * @author Ognjen Djuricic
+	 *
+	 */
 	class AddNewSoundElementListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Invoker.getInstance().executeCommand(new AddNewChildElementCommand(model, (ElementContainer)view.getSelectedNode(), ElementType.SOUND));
+			Invoker.getInstance().executeCommand(
+					new AddNewChildElementCommand(model, (ElementContainer) view.getSelectedNode(), ElementType.SOUND));
 		}
 	}
-	
-	
+
+	/**
+	 * Executes the DeleteCommand.
+	 * 
+	 * @author Ognjen Djuricic
+	 *
+	 */
 	class DeleteListener implements ActionListener {
 
 		@Override
@@ -90,7 +142,13 @@ public class GPopupMenuController {
 			Invoker.getInstance().executeCommand(new DeleteCommand(model, view.getSelectedNode()));
 		}
 	}
-	
+
+	/**
+	 * Executes the RenameCommand.
+	 * 
+	 * @author Ognjen Djuricic
+	 *
+	 */
 	class RenameListener implements ActionListener {
 
 		@Override
@@ -98,7 +156,13 @@ public class GPopupMenuController {
 			Invoker.getInstance().executeCommand(new RenameCommand(model, view.getSelectedNode()));
 		}
 	}
-	
+
+	/**
+	 * Executes the SwitchWorkspaceCommand.
+	 * 
+	 * @author Ognjen Djuricic
+	 *
+	 */
 	class SwitchWorkspaceListener implements ActionListener {
 
 		@Override
@@ -106,13 +170,19 @@ public class GPopupMenuController {
 			Invoker.getInstance().executeCommand(new SwitchWorkspaceCommand(model, view.getSelectedNode()));
 		}
 	}
-	
+
+	/**
+	 * Executes the OpenProjectCommand or CloseProjectCommand.
+	 * 
+	 * @author Ognjen Djuricic
+	 *
+	 */
 	class OpenCloseListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Project project = (Project)view.getSelectedNode();
-			if(project.isOpened()) {
+			Project project = (Project) view.getSelectedNode();
+			if (project.isOpened()) {
 				Invoker.getInstance().executeCommand(new CloseProjectCommand(model, project));
 			} else {
 				Invoker.getInstance().executeCommand(new OpenProjectCommand(model, project));
@@ -120,15 +190,27 @@ public class GPopupMenuController {
 			// model.getTreeModel().reload();
 		}
 	}
-	
+
+	/**
+	 * Executes the ElementEditInitCommand.
+	 * 
+	 * @author Ognjen Djuricic
+	 *
+	 */
 	class ElementEditListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Invoker.getInstance().executeCommand(new ElementEditInitCommand(model, (Element) view.getSelectedNode()));
 
-		}		
+		}
 	}
-	
+
+	/**
+	 * Creates and shows the SelectProjectDialog.
+	 * 
+	 * @author Ognjen Djuricic
+	 *
+	 */
 	class ShareListener implements ActionListener {
 
 		@Override
@@ -137,7 +219,13 @@ public class GPopupMenuController {
 			sd.show();
 		}
 	}
-	
+
+	/**
+	 * Creates and shows the SelectDocumentDialog.
+	 * 
+	 * @author Ognjen Djuricic
+	 *
+	 */
 	class AddFromFreeListener implements ActionListener {
 
 		@Override
@@ -146,7 +234,13 @@ public class GPopupMenuController {
 			sd.show();
 		}
 	}
-	
+
+	/**
+	 * Executes the SaveProjectCommand.
+	 * 
+	 * @author Ognjen Djuricic
+	 *
+	 */
 	class SaveProjectListener implements ActionListener {
 
 		@Override
@@ -154,7 +248,13 @@ public class GPopupMenuController {
 			Invoker.getInstance().executeCommand(new SaveProjectCommand());
 		}
 	}
-	
+
+	/**
+	 * Executes the SaveAsProjectCommand.
+	 * 
+	 * @author Ognjen Djuricic
+	 *
+	 */
 	class SaveAsProjectListener implements ActionListener {
 
 		@Override
@@ -162,7 +262,13 @@ public class GPopupMenuController {
 			Invoker.getInstance().executeCommand(new SaveAsProjectCommand());
 		}
 	}
-	
+
+	/**
+	 * Executes the LoadProjectCommand.
+	 * 
+	 * @author Ognjen Djuricic
+	 *
+	 */
 	class ImportProjectListener implements ActionListener {
 
 		@Override

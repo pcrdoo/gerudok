@@ -15,20 +15,46 @@ import model.Model;
 import model.tree.GNode;
 import view.tree.SelectDocumentDialog;
 
+/**
+ * Controller for the SelectDocumentDialog.
+ * 
+ * @author Ognjen Djuricic
+ *
+ */
 public class SelectDocumentDialogController {
 
+	/**
+	 * Reference to the main model.
+	 */
 	Model model;
+	/**
+	 * Instance of the view for this controller.
+	 */
 	SelectDocumentDialog view;
-	
+
+	/**
+	 * Creates everything and sets view listeners.
+	 * 
+	 * @param model
+	 *            The main model.
+	 * @param view
+	 *            The view for this controller.
+	 */
 	public SelectDocumentDialogController(Model model, SelectDocumentDialog view) {
 		this.model = model;
 		this.view = view;
-		
+
 		this.view.addSelectionChangedListener(new SelectionChangedListener());
 		this.view.addBtnOKListener(new BtnOKListener());
 		this.view.addDoubleClickListener(new DoubleClickListener());
 	}
-	
+
+	/**
+	 * Enables OK button.
+	 * 
+	 * @author Ognjen Djuricic
+	 *
+	 */
 	class SelectionChangedListener implements ListSelectionListener {
 
 		@Override
@@ -36,37 +62,47 @@ public class SelectDocumentDialogController {
 			view.enableBtnOK();
 		}
 	}
-	
+
+	/**
+	 * Finalizes the process and closes the view.
+	 * 
+	 * @author Ognjen Djuricic
+	 *
+	 */
 	class BtnOKListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
-			// TODO mozda u komandu
+
 			List<GNode> selected = view.getSelected();
-			
-			for(GNode node : selected) {
+
+			for (GNode node : selected) {
 				model.getFreeNodes().remove(node);
 				model.doReloadFreeNodes();
-				view.getParentNode().add(node);
+				view.getParentNode().addChild(node);
 				model.getTreeModel().reload();
 			}
-			
+
 			Invoker.getInstance().executeCommand(new TreeSelectCommand(model, selected.get(0)));
 			view.dispose();
 		}
 	}
-	
+
+	/**
+	 * Finalizes the process and closes the view.
+	 * 
+	 * @author Ognjen
+	 *
+	 */
 	class DoubleClickListener implements MouseListener {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			if(e.getClickCount() >= 2) {
-				// TODO mozda u komandu
+			if (e.getClickCount() >= 2) {
 				GNode selected = view.getSelected().get(0);
 				model.getFreeNodes().remove(selected);
 				model.doReloadFreeNodes();
-				view.getParentNode().add(selected);
+				view.getParentNode().addChild(selected);
 				model.getTreeModel().reload();
 				Invoker.getInstance().executeCommand(new TreeSelectCommand(model, selected));
 				view.dispose();
@@ -74,15 +110,19 @@ public class SelectDocumentDialogController {
 		}
 
 		@Override
-		public void mouseEntered(MouseEvent e) {}
+		public void mouseEntered(MouseEvent e) {
+		}
 
 		@Override
-		public void mouseExited(MouseEvent e) {}
+		public void mouseExited(MouseEvent e) {
+		}
 
 		@Override
-		public void mousePressed(MouseEvent e) {}
+		public void mousePressed(MouseEvent e) {
+		}
 
 		@Override
-		public void mouseReleased(MouseEvent e) {}
+		public void mouseReleased(MouseEvent e) {
+		}
 	}
 }

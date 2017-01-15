@@ -19,66 +19,126 @@ import model.Model;
 import model.Workspace;
 import model.tree.GNode;
 
-public class SelectDocumentDialog extends JDialog{
+/**
+ * The dialog that is used for selecting GeRuDocuments for the free ones and
+ * adding them to Projects.
+ * 
+ * @author Ognjen Djuricic
+ *
+ */
+public class SelectDocumentDialog extends JDialog {
+	/**
+	 * Reference to the main model.
+	 */
 	Model model;
-	GNode selected;
+	/**
+	 * The project to witch to add the documents to.
+	 */
 	GNode parent;
+	/**
+	 * Button for finalizing the process.
+	 */
 	JButton btnOK;
+	/**
+	 * List of the free GeRuDocuments.
+	 */
 	JList<GNode> list;
+	/**
+	 * Instance of the controller for this view.
+	 */
 	SelectDocumentDialogController controller;
-	
+
+	/**
+	 * Constructor that creates everything.
+	 * 
+	 * @param parent
+	 *            The parent project.
+	 * @param model
+	 *            The main model.
+	 */
 	public SelectDocumentDialog(GNode parent, Model model) {
 		super();
 		this.model = model;
 		this.parent = parent;
-		
+
 		this.setLayout(new BorderLayout());
-		
+
 		JLabel lbl = new JLabel("Select the free Document to add to the Project:");
 		this.add(lbl, BorderLayout.NORTH);
-		
+
 		DefaultListModel<GNode> listModel = new DefaultListModel<>();
-	    list = new JList<GNode>(listModel);
-	    
-	    this.add(list, BorderLayout.CENTER);
-	    
-	    for(GNode node : this.model.getFreeNodes()) {
-	    	listModel.addElement(node);
-	    }
-		
-	    btnOK = new JButton("OK");
-	    btnOK.setEnabled(false);
-	    
-	    this.add(btnOK, BorderLayout.SOUTH);
-	    
+		list = new JList<GNode>(listModel);
+
+		this.add(list, BorderLayout.CENTER);
+
+		for (GNode node : this.model.getFreeNodes()) {
+			listModel.addElement(node);
+		}
+
+		btnOK = new JButton("OK");
+		btnOK.setEnabled(false);
+
+		this.add(btnOK, BorderLayout.SOUTH);
+
 		setPreferredSize(new Dimension(500, 400));
 		pack();
 		setLocationRelativeTo(null);
-		
+
 		this.controller = new SelectDocumentDialogController(model, this);
 	}
-	
-	public void addSelectionChangedListener(ListSelectionListener l) {
-		this.list.addListSelectionListener(l);
-	}
-	
-	public void addBtnOKListener(ActionListener l) {
-		this.btnOK.addActionListener(l);
-	}
-	
-	public void addDoubleClickListener(MouseListener l) {
-		this.list.addMouseListener(l);
-	}
-	
+
+	/**
+	 * Enables the OK button if anything is selected.
+	 */
 	public void enableBtnOK() {
 		this.btnOK.setEnabled(this.list.getSelectedValuesList().size() != 0);
 	}
-	
+
+	/**
+	 * Gets the selected GeRuDocuments.
+	 * 
+	 * @return The selected GeRuDocuments.
+	 */
 	public List<GNode> getSelected() {
 		return this.list.getSelectedValuesList();
 	}
-	
+
+	/**
+	 * Gets the parent project.
+	 * 
+	 * @return The parent project node.
+	 */
 	public GNode getParentNode() {
 		return this.parent;
+	}
+
+	/**
+	 * Adds a listener to the corresponding menu item(option).
+	 * 
+	 * @param l
+	 *            The listener to be added.
+	 */
+	public void addSelectionChangedListener(ListSelectionListener l) {
+		this.list.addListSelectionListener(l);
+	}
+
+	/**
+	 * Adds a listener to the corresponding menu item(option).
+	 * 
+	 * @param l
+	 *            The listener to be added.
+	 */
+	public void addBtnOKListener(ActionListener l) {
+		this.btnOK.addActionListener(l);
+	}
+
+	/**
+	 * Adds a listener to the corresponding menu item(option).
+	 * 
+	 * @param l
+	 *            The listener to be added.
+	 */
+	public void addDoubleClickListener(MouseListener l) {
+		this.list.addMouseListener(l);
 	}
 }

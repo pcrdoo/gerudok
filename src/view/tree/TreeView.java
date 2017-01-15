@@ -1,16 +1,9 @@
-/***********************************************************************
- * Module:  TreeView.java
- * Author:  Ognjen
- * Purpose: Defines the Class TreeView
- ***********************************************************************/
-
 package view.tree;
 
 import model.Model;
 import model.Project;
 import model.Workspace;
 import model.tree.GNode;
-import model.tree.GTreeModel;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -27,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.event.TreeModelListener;
+import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.DefaultTreeSelectionModel;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeModel;
@@ -38,36 +32,54 @@ import controller.tree.TreeController;
 import gerudok_observer.GNotification;
 import gerudok_observer.GObserver;
 
-public class TreeView extends JPanel implements GObserver{
+/**
+ * The graphic representation of the WorkspaceTree and freeNodesList.
+ * 
+ * @author Ognjen Djuricic
+ *
+ */
+public class TreeView extends JPanel implements GObserver {
 
-	private TreeController treeController;
+	/**
+	 * Reference to the main model.
+	 */
 	private Model model;
+	/**
+	 * Instance of the controller for this view.
+	 */
+	private TreeController treeController;
+	/**
+	 * The graphic representation of all the GNodes.
+	 */
 	private WorkspaceTree tree;
-	private GTreeModel treeModel;
+	/**
+	 * Model for the list of free nodes.
+	 */
 	private DefaultListModel<GNode> freeNodesListModel;
 
+	/**
+	 * Constructor that sets the model.
+	 * 
+	 * @param model
+	 *            The main model.
+	 */
 	public TreeView(Model model) {
 		this.model = model;
 		this.model.addObserver(this);
 		this.initialize();
 	}
 
+	/**
+	 * Creates everything.
+	 */
 	private void initialize() {
 
 		// TODO mock ovo srediti
 		GNode root = Workspace.getInstance();
-
-		// MOCK
-		// for(int i =0;i<5;i++) {
-		// GNode ngn = new GNode("mock_child_" + i);
-		// root.add(ngn);
-		// }
-		//
-
 		this.setPreferredSize(Constants.TREE_SIZE);
 
-		this.treeModel = new GTreeModel();
-		this.treeModel.setRoot(root);
+		DefaultTreeModel treeModel = new DefaultTreeModel(Workspace.getInstance());
+		treeModel.setRoot(root);
 
 		this.tree = new WorkspaceTree(this.model);
 		this.tree.setModel(treeModel);
@@ -88,23 +100,26 @@ public class TreeView extends JPanel implements GObserver{
 
 		freeNodesListModel = new DefaultListModel<>();
 		JList freeNodesList = new JList<GNode>(freeNodesListModel);
-		
+
 		JScrollPane freeNodesScrollPane = new JScrollPane(freeNodesList);
-		
+
 		freeNodesScrollPane.setSize(new Dimension(100, 240));
 		freeNodesScrollPane.setMaximumSize(new Dimension(100, 240));
 		freeNodesScrollPane.setMinimumSize(new Dimension(100, 240));
 		freeNodesScrollPane.setPreferredSize(new Dimension(100, 240));
-		
+
 		this.reloadFreeNodesList();
-		
+
 		this.add(new JLabel("Free GeRuDocuments:"), BorderLayout.CENTER);
 		this.add(freeNodesScrollPane, BorderLayout.SOUTH);
 
-		this.model.setTreeModel(this.treeModel);
+		this.model.setTreeModel(treeModel);
 		this.treeController = new TreeController(this.model, this);
 	}
 
+	/**
+	 * Repopulates the list of free nodes.
+	 */
 	public void reloadFreeNodesList() {
 		this.freeNodesListModel.removeAllElements();
 		for (GNode node : this.model.getFreeNodes()) {
@@ -112,14 +127,20 @@ public class TreeView extends JPanel implements GObserver{
 		}
 	}
 
-	public void addTreeListener(MouseListener l) {
-		this.tree.addMouseListener(l);
-	}
-
+	/**
+	 * Gets the WorkspaceTree.
+	 * 
+	 * @return The WorkspaceTree.
+	 */
 	public WorkspaceTree getTree() {
 		return this.tree;
 	}
 
+	/**
+	 * Gets selected project if there is one.
+	 * 
+	 * @return The selected project.
+	 */
 	public Project getSelectedProject() {
 		Object o = tree.getLastSelectedPathComponent();
 		if (o instanceof Project) {
@@ -128,10 +149,26 @@ public class TreeView extends JPanel implements GObserver{
 		return null;
 	}
 
+	/**
+	 * Adds a listener to the corresponding menu item(option).
+	 * 
+	 * @param l
+	 *            The listener to be added.
+	 */
+	public void addTreeListener(MouseListener l) {
+		this.tree.addMouseListener(l);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see gerudok_observer.GObserver#update(gerudok_observer.GNotification,
+	 * java.lang.Object)
+	 */
 	@Override
 	public void update(GNotification notification, Object obj) {
-		
-		if(notification == GNotification.FREE_NODES_CHANGED) {
+
+		if (notification == GNotification.FREE_NODES_CHANGED) {
 			this.reloadFreeNodesList();
 		}
 	}

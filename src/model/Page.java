@@ -1,9 +1,3 @@
-/***********************************************************************
- * Module:  Page.java
- * Author:  Ognjen
- * Purpose: Defines the Class Page
- ***********************************************************************/
-
 package model;
 
 import java.awt.Color;
@@ -12,31 +6,64 @@ import java.util.*;
 
 import model.tree.GNode;
 
-/** @pdOid a8ab91cf-d20a-4024-a842-190ce1e68bfa */
-public class Page extends GNode implements Serializable{
+/**
+ * Represents a node in the WorkspaceTree that contains and manipulates Slots.
+ * 
+ * @author Ognjen Djuricic
+ *
+ */
+public class Page extends GNode implements Serializable {
 
-	private int newChildCount = 0;
-	
+	/**
+	 * Used for generating names for new children.
+	 */
+	private static int newChildCount = 0;
+
+	/**
+	 * The color of the page's graphic representation.
+	 */
 	private Color color;
-	
+
+	/**
+	 * Constructor that sets the name.
+	 * 
+	 * @param name
+	 *            The name of the page.
+	 */
 	public Page(String name) {
 		super(name);
 		this.newChildCount = 0;
 		Random r = new Random();
 		color = new Color(r.nextFloat(), r.nextFloat(), r.nextFloat());
 	}
-	
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see model.tree.GNode#addNewChild()
+	 */
 	public GNode addNewChild() {
-		Slot child = new Slot("Slot"+newChildCount);
+		Slot child = new Slot("Slot" + newChildCount);
 		newChildCount++;
-		this.add(child);
+		this.addChild(child);
 		return child;
 	}
-	
+
+	/**
+	 * Gets the page color.
+	 * 
+	 * @return The page color.
+	 */
 	public Color getColor() {
 		return color;
 	}
 
+	/**
+	 * Sets the page color.
+	 * 
+	 * @param color
+	 *            The new page color.
+	 */
 	public void setColor(Color color) {
 		this.color = color;
 	}
