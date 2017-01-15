@@ -37,10 +37,22 @@ public class ToolBarView extends JToolBar {
 	   toolBarControler = new ToolBarControler(model, this);
 	   
 	// TODO
-	   JButton btnNew = new JButton();
-	   btnNew.setToolTipText("New");
-	   btnNew.setIcon(new ImageIcon("src/res/new_toolbar_icon.png"));
-	   add(btnNew);
+	   JButton btnAdd = new JButton();
+	   btnAdd.setToolTipText("Add");
+	   btnAdd.setIcon(new ImageIcon("src/res/new_toolbar_icon.png"));
+	   add(btnAdd);
+	   
+	   addSeparator();
+	   
+	   JButton btnNewWorkspace = new JButton();
+	   btnNewWorkspace.setToolTipText("New workspace");
+	   btnNewWorkspace.setIcon(new ImageIcon("src/res/new_toolbar_icon.png"));
+	   add(btnNewWorkspace);
+	   
+	   JButton btnSwitchWorkspace = new JButton();
+	   btnSwitchWorkspace.setToolTipText("Switch workspace");
+	   btnSwitchWorkspace.setIcon(new ImageIcon("src/res/new_toolbar_icon.png"));
+	   add(btnSwitchWorkspace);
 	   
 	   addSeparator();
 	   
@@ -65,47 +77,36 @@ public class ToolBarView extends JToolBar {
 	   addSeparator();
 	   
 	// TODO
-	   JButton btnUndo = new JButton();
-	   btnUndo.setToolTipText("Undo");
-	   btnUndo.setIcon(new ImageIcon("src/res/undo_toolbar_icon.png"));
-	   add(btnUndo);
-
-	   JButton btnRedo = new JButton();
-	   btnRedo.setToolTipText("Redo");
-	   btnRedo.setIcon(new ImageIcon("src/res/redo_toolbar_icon.png"));
-	   add(btnRedo);
-	   
-	   addSeparator();
+	   JButton btnOpenProject = new JButton();
+	   btnOpenProject.setToolTipText("Open selected project");
+	   btnOpenProject.setIcon(new ImageIcon("src/res/maximize_toolbar_icon.png"));
+	   add(btnOpenProject);
 	   
 	// TODO
-	   JButton btnCut = new JButton();
-	   btnCut.setToolTipText("Cut");
-	   btnCut.setIcon(new ImageIcon("src/res/cut_toolbar_icon.png"));
-	   add(btnCut);
-	   
-	   JButton btnCopy = new JButton();
-	   btnCopy.setToolTipText("Copy");
-	   btnCopy.setIcon(new ImageIcon("src/res/copy_toolbar_icon.png"));
-	   add(btnCopy);
-	   
-	   JButton btnPaste = new JButton();
-	   btnPaste.setToolTipText("Paste");
-	   btnPaste.setIcon(new ImageIcon("src/res/paste_toolbar_icon.png"));
-	   add(btnPaste);
-	   
+	   JButton btnCloseProject = new JButton();
+	   btnCloseProject.setToolTipText("Close selected project");
+	   btnCloseProject.setIcon(new ImageIcon("src/res/minimize_toolbar_icon.png"));
+	   add(btnCloseProject);
+
 	   addSeparator();
-	   
-	   // TODO
-	   JButton btnShare = new JButton();
-	   btnShare.setToolTipText("Share");
-	   btnShare.setIcon(new ImageIcon("src/res/share_toolbar_icon.png"));
-	   add(btnShare);
 	   
 	// TODO
 	   JButton btnDelete = new JButton();
 	   btnDelete.setToolTipText("Delete");
 	   btnDelete.setIcon(new ImageIcon("src/res/delete_toolbar_icon.png"));
 	   add(btnDelete);
+		   
+	// TODO
+	   JButton btnRename = new JButton();
+	   btnRename.setToolTipText("Rename");
+	   btnRename.setIcon(new ImageIcon("src/res/share_toolbar_icon.png"));
+	   add(btnRename);
+	   
+	   // TODO
+	   JButton btnShare = new JButton();
+	   btnShare.setToolTipText("Share");
+	   btnShare.setIcon(new ImageIcon("src/res/share_toolbar_icon.png"));
+	   add(btnShare);
 	   
 	   setBackground(new Color(255,255,204));
    }

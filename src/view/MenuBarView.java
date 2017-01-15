@@ -52,22 +52,17 @@ public class MenuBarView extends JMenuBar{
 	   fileMenu.add(exitItem);
 	   
 	   JMenu editMenu = new JMenu("Edit");
-	   
-	   JMenuItem cutItem = new JMenuItem("Cut");
-	   JMenuItem copyItem = new JMenuItem("Copy");
-	   JMenuItem pasteItem = new JMenuItem("Paste");
-	   JMenuItem undoItem = new JMenuItem("Undo");
-	   JMenuItem redoItem = new JMenuItem("Redu");
+	   JMenuItem addNewChildItem = new JMenuItem("Add new");
+	   JMenuItem openSelectedProjectItem = new JMenuItem("Open project");
+	   JMenuItem closeSelectedProjectItem = new JMenuItem("Close project");
 	   JMenuItem deleteItem = new JMenuItem("Delete");
 	   JMenuItem renameItem = new JMenuItem("Rename");
 	   JMenuItem shareItem = new JMenuItem("Share");
 	   
-	   editMenu.add(cutItem);
-	   editMenu.add(copyItem);
-	   editMenu.add(pasteItem);
+	   editMenu.add(addNewChildItem);
 	   editMenu.addSeparator();
-	   editMenu.add(undoItem);
-	   editMenu.add(redoItem);
+	   editMenu.add(openSelectedProjectItem);
+	   editMenu.add(closeSelectedProjectItem);
 	   editMenu.addSeparator();
 	   editMenu.add(shareItem);
 	   editMenu.add(deleteItem);
