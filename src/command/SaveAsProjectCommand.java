@@ -14,12 +14,29 @@ import model.Model;
 import model.Project;
 import view.MainView;
 
+/**
+ * A command that save project as new or existing file with GeRuDok 
+ * 	project extension (grdp).
+ * 
+ * @author Igor Bakovic
+ *
+ */
+
 public class SaveAsProjectCommand extends Command {
 	
+	/**
+	 * @param model
+	 * 		the main model
+	 */
 	public SaveAsProjectCommand(Model model) {
 		this.model = model;
 	}  
 	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see command.Command#doCommand()
+	 */
 	@Override
 	public void doCommand() {
 		Object object = model.getSelectedObject();

@@ -42,7 +42,7 @@ public class LoadProjectCommand extends Command {
 		this.model = model;
 		this.loadFilePath = null;
 	}
-	/**
+	/**		
 	 * @param model
 	 * 		the main model
 	 * @param loadFilePath
@@ -53,6 +53,11 @@ public class LoadProjectCommand extends Command {
 		this.loadFilePath = loadFilePath;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see command.Command#doCommand()
+	 */
 	@Override
 	public void doCommand() {
 		if (loadFilePath == null) {
@@ -70,9 +75,18 @@ public class LoadProjectCommand extends Command {
 		}
 		
 	}
-	
+	/**
+	 * @param file
+	 * 		the project to be imported
+	 * 		
+	 */
 	private void loadProject(File file) {
-		// Check if this project exists
+		/**
+		 * 	Checks if the project allredy exist in the worksace.
+		 * 	In that case show message: "Project already opened!"
+		 * 
+		 * @author Igor Bakovic
+		 */
 		for (GNode p : Workspace.getInstance().getChildren()) {
 			if (file.getAbsolutePath().equals(((Project) p).getProjectFile().getAbsolutePath())) {
 				JOptionPane.showMessageDialog(MainView.getInstance(), "Project already opened!");
@@ -80,6 +94,11 @@ public class LoadProjectCommand extends Command {
 			}
 		}
 		
+		/**
+		 * 	Import project into workspace
+		 * 
+		 *  @author Igor Bakovic
+		 */
 		try {
             ObjectInputStream os = new ObjectInputStream(new FileInputStream(file));
 

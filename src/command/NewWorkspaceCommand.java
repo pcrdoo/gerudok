@@ -16,16 +16,33 @@ import model.Workspace;
 import model.tree.GNode;
 import view.MainView;
 
+/**
+ * A command that create new workspace.
+ * 
+ * @author Igor Bakovic
+ *
+ */
+
 public class NewWorkspaceCommand extends Command {
 
+	/**
+	 * @param model
+	 * 		the main model
+	 */
 	public NewWorkspaceCommand(Model model) {
 		this.model = model;
 	}
 	
+	/** 
+	 * 	Create empty workspace in new or existing file with GeRuDok workspace extension (grdw).  
+	 * 
+	 *  @author Igor Bakovic
+	 */
 	@Override
 	public void doCommand() {
 		JFileChooser jfc = new JFileChooser();
         jfc.setFileFilter(new WorkspaceFile());
+        jfc.setAcceptAllFileFilterUsed(false);
         
         Workspace workspace = Workspace.getInstance();
         if(jfc.showSaveDialog(MainView.getInstance())==JFileChooser.APPROVE_OPTION) {

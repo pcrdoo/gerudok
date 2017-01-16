@@ -32,6 +32,7 @@ public class SaveWorkspaceCommand extends Command {
 		Workspace workspace = Workspace.getInstance();
 		JFileChooser jfc = new JFileChooser();
 		jfc.setFileFilter(new WorkspaceFile());
+		jfc.setAcceptAllFileFilterUsed(false);
 		if (workspace != null) {
 			File workspaceFile = workspace.getWorkspaceFile();
 			if (workspaceFile == null) {

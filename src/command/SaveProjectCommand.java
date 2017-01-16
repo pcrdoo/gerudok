@@ -14,14 +14,32 @@ import model.Model;
 import model.Project;
 import view.MainView;
 
+/**
+ * A command that create new workspace.
+ * 
+ * @author Igor Bakovic
+ *
+ */
+
 public class SaveProjectCommand extends Command {
 	
+	/**
+	 * The project to be saved.
+	 */
 	private Project project;
 	
+	/**
+	 * @param model
+	 *		the main model
+	 */
 	public SaveProjectCommand(Model model) {
 		this(model, model.getSelectedObject());
 	}
-
+	
+	/**
+	 * @param model
+	 * @param object
+	 */
 	public SaveProjectCommand(Model model, Object object) {
 		this.model = model;
 		this.project = (object instanceof Project) ? (Project)object : null;
