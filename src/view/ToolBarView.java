@@ -67,7 +67,7 @@ public class ToolBarView extends JToolBar {
 	   
 	   JButton btnSaveWorkspace = new JButton();
 	   btnSaveWorkspace.setToolTipText("Save workspace");
-	   btnSaveWorkspace.setIcon(new ImageIcon("src/res/save_workspace_toolbar_icon.png"));
+	   btnSaveWorkspace.setIcon(new ImageIcon("src/res/switch_workspace_toolbar_icon.png"));
 	   btnSaveWorkspace.addActionListener(toolBarControler.getSaveWorkspaceListener());
 	   add(btnSaveWorkspace);
 	   
