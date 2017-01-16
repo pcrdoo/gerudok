@@ -1,6 +1,7 @@
 package command;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,6 +9,7 @@ import java.io.InputStreamReader;
 
 import javax.swing.JFileChooser;
 
+import constants.Constants;
 import files.WorkspaceFile;
 import model.Model;
 import model.Workspace;
@@ -26,12 +28,18 @@ public class NewWorkspaceCommand extends Command {
         jfc.setFileFilter(new WorkspaceFile());
         
         Workspace workspace = Workspace.getInstance();
-        if(jfc.showOpenDialog(MainView.getInstance())==JFileChooser.APPROVE_OPTION) {
+        if(jfc.showSaveDialog(MainView.getInstance())==JFileChooser.APPROVE_OPTION) {
             while (workspace.getChildCount() > 0) {
             	Invoker.getInstance().executeCommand(new DeleteCommand(model, (GNode) workspace.getChildAt(0)));
             }
-
-        	workspace.setWorkspaceFile(jfc.getSelectedFile());
+            File workspaceFile = jfc.getSelectedFile();
+			String o = workspaceFile.getPath();
+			if (!o.endsWith(Constants.WORKSPACE_EXT)) {
+				o += Constants.WORKSPACE_EXT;
+				workspaceFile.delete();
+				workspaceFile = new File(o);
+			}
+        	workspace.setWorkspaceFile(workspaceFile);
         }
 	}
 

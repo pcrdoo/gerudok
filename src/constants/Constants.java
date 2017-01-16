@@ -58,5 +58,8 @@ public final class Constants {
 	 * GeRuDok project file extension.
 	 */
 	public static final String PROJECT_EXT = ".grdp";
+	/**
+	 * GeRuDok workspace file extension.
+	 */
 	public static final String WORKSPACE_EXT = ".grdw";
 }

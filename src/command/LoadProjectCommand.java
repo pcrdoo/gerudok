@@ -20,15 +20,34 @@ import view.GeRuDocumentView;
 import view.MainView;
 import view.ProjectView;
 
+/**
+ * A command that improt existing project into workspace.
+ * 
+ * @author Igor Bakovic
+ *
+ */
+
 public class LoadProjectCommand extends Command {
 	
+	/**
+	 * The string reference to location of project to be imported.
+	 */
 	private String loadFilePath;
 	
+	/**
+	 * @param model
+	 * 		the main model
+	 */
 	public LoadProjectCommand(Model model) {
 		this.model = model;
 		this.loadFilePath = null;
 	}
-	
+	/**
+	 * @param model
+	 * 		the main model
+	 * @param loadFilePath
+	 * 		location of project
+	 */
 	public LoadProjectCommand(Model model, String loadFilePath) {
 		this.model = model;
 		this.loadFilePath = loadFilePath;
