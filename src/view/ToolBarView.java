@@ -62,19 +62,19 @@ public class ToolBarView extends JToolBar {
 	   addSeparator();
 	   
 	   JButton btnOpen = new JButton();
-	   btnOpen.setToolTipText("Open");
+	   btnOpen.setToolTipText("Import project");
 	   btnOpen.setIcon(new ImageIcon("src/res/open_toolbar_icon.png"));
 	   btnOpen.addActionListener(toolBarControler.getLoadActionListener());
 	   add(btnOpen);
 	   
 	   JButton btnSave = new JButton();
-	   btnSave.setToolTipText("Save");
+	   btnSave.setToolTipText("Save selected project");
 	   btnSave.setIcon(new ImageIcon("src/res/save_toolbar_icon.png"));
 	   btnSave.addActionListener(toolBarControler.getSaveActionListener());
 	   add(btnSave);
 	   
 	   JButton btnSaveAs = new JButton();
-	   btnSaveAs.setToolTipText("Save As");
+	   btnSaveAs.setToolTipText("Save selected project as");
 	   btnSaveAs.setIcon(new ImageIcon("src/res/save_as_toolbar_icon.png"));
 	   btnSaveAs.addActionListener(toolBarControler.getSaveAsActionListener());
 	   add(btnSaveAs);
