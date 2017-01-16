@@ -6,8 +6,11 @@
 
 package controller;
 
+import model.GeRuDocument;
 import model.Model;
+import model.Project;
 import model.Slot;
+import model.tree.GNode;
 import view.MainView;
 import view.MenuBarView;
 import view.ToolBarView;
@@ -34,38 +37,38 @@ import command.SaveWorkspaceCommand;
 import command.SwitchWorkspaceCommand;
 
 public class ToolBarControler {
-   public Model model;
-   public ToolBarView toolBarView;
-   
-   public ToolBarControler(Model model, ToolBarView ToolBarView) {
+	public Model model;
+	public ToolBarView toolBarView;
+
+	public ToolBarControler(Model model, ToolBarView ToolBarView) {
 		super();
 		this.model = model;
 		this.toolBarView = toolBarView;
 	}
-   
-   public ActionListener getSaveActionListener() {
+
+	public ActionListener getSaveActionListener() {
 		return new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Invoker.getInstance().executeCommand(new SaveProjectCommand(model));
 			}
 		};
 	}
-	
+
 	public ActionListener getSaveAsActionListener() {
 		return new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Invoker.getInstance().executeCommand(new SaveAsProjectCommand(model));
 			}
 		};
 	}
-	
+
 	public ActionListener getLoadActionListener() {
 		return new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Invoker.getInstance().executeCommand(new LoadProjectCommand(model));
@@ -75,10 +78,11 @@ public class ToolBarControler {
 
 	public ActionListener getAddActionListener() {
 		return new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Invoker.getInstance().executeCommand(new AddNewChildCommand(model, MainView.getInstance().getTreeView().getSelectedNode()));
+				Object obj = model.getSelectedObject();
+				Invoker.getInstance().executeCommand(new AddNewChildCommand(model, (GNode) obj));
 			}
 		};
 	}
@@ -88,7 +92,10 @@ public class ToolBarControler {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Invoker.getInstance().executeCommand(new OpenProjectCommand(model, MainView.getInstance().getTreeView().getSelectedProject()));
+				Object obj = model.getSelectedObject();
+				if (obj instanceof Project) {
+					Invoker.getInstance().executeCommand(new OpenProjectCommand(model, (Project) obj));
+				}
 			}
 		};
 	}
@@ -98,38 +105,46 @@ public class ToolBarControler {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Invoker.getInstance().executeCommand(new CloseProjectCommand(model, MainView.getInstance().getTreeView().getSelectedProject()));
+				Object obj = model.getSelectedObject();
+				if (obj instanceof Project) {
+					Invoker.getInstance().executeCommand(new CloseProjectCommand(model, (Project) obj));
+				}
 			}
 		};
 	}
-	
+
 	public ActionListener getRenameActionListener() {
 		return new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Invoker.getInstance().executeCommand(new RenameCommand(model, MainView.getInstance().getTreeView().getSelectedNode()));
+				Object obj = model.getSelectedObject();
+				Invoker.getInstance().executeCommand(new RenameCommand(model, (GNode) obj));
 			}
 		};
 	}
-	
+
 	public ActionListener getDeleteActionListener() {
 		return new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Invoker.getInstance().executeCommand(new DeleteCommand(model, MainView.getInstance().getTreeView().getSelectedNode()));
+				Object obj = model.getSelectedObject();
+				Invoker.getInstance().executeCommand(new DeleteCommand(model, (GNode) obj));
 			}
 		};
 	}
-	
+
 	public ActionListener getShareActionListener() {
 		return new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				SelectProjectDialog sd = new SelectProjectDialog(MainView.getInstance().getTreeView().getSelectedNode(), model);
-				sd.show();
+				Object obj = model.getSelectedObject();
+				if (obj instanceof GeRuDocument) {
+					SelectProjectDialog sd = new SelectProjectDialog((GNode) obj, model);
+					sd.show();
+				}
 			}
 		};
 	}

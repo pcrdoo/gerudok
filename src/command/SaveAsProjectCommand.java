@@ -22,7 +22,8 @@ public class SaveAsProjectCommand extends Command {
 	
 	@Override
 	public void doCommand() {
-		Project project = model.getSelectedProject();
+		Object object = model.getSelectedObject();
+		Project project = (object instanceof Project) ? (Project)object : null;
 		JFileChooser jfc = new JFileChooser();
 		jfc.setFileFilter(new ProjectFile());
 		if (project != null) {

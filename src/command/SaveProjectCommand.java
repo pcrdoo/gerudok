@@ -19,12 +19,12 @@ public class SaveProjectCommand extends Command {
 	private Project project;
 	
 	public SaveProjectCommand(Model model) {
-		this(model, model.getSelectedProject());
+		this(model, model.getSelectedObject());
 	}
 
-	public SaveProjectCommand(Model model, Project project) {
+	public SaveProjectCommand(Model model, Object object) {
 		this.model = model;
-		this.project = project;
+		this.project = (object instanceof Project) ? (Project)object : null;
 	}  
 	
 	@Override

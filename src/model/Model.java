@@ -123,16 +123,12 @@ public class Model implements GObservable, Serializable {
 	}
 	
 	/**
-	 * Gets selected project if there is one.
+	 * Gets currently selected object.
 	 * 
-	 * @return The selected project.
+	 * @return The selected object.
 	 */
-	public Project getSelectedProject() {
-		Object o = selectedPath.getLastPathComponent();
-		if (o instanceof Project) {
-			return (Project) o;
-		}
-		return null;
+	public Object getSelectedObject() {
+		return selectedPath.getLastPathComponent();
 	}
 
 	/*
