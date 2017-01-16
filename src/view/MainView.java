@@ -91,7 +91,7 @@ public class MainView extends JFrame {
 		// Adds the tool bar.
 		this.toolBarView = new ToolBarView(this.model);
 		this.add(this.toolBarView, BorderLayout.PAGE_START);
-
+		
 		// Adds the tree view.
 		this.treeView = new TreeView(this.model);
 		this.add(this.treeView, BorderLayout.LINE_START);

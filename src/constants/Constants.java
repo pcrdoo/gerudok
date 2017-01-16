@@ -26,6 +26,18 @@ public final class Constants {
 	 */
 	public static final Dimension TREE_SIZE = new Dimension(250, 900);
 	/**
+	 * Tree view height.
+	 */
+	public static final int TREE_VIEW_HEIGHT = 900;
+	/**
+	 * Tree pane height factor.
+	 */
+	public static final double TREE_PANE_FACTOR = 0.65;
+	/**
+	 * Free documents list height factor.
+	 */
+	public static final double FREE_DOC_FACTOR = 0.2;
+	/**
 	 * Size of each of the internal frames that represent projects.
 	 */
 	public static final Dimension INTERNAL_FRAME_SIZE = new Dimension(770, 770);

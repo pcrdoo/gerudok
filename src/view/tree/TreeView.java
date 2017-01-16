@@ -96,12 +96,14 @@ public class TreeView extends JPanel implements GObserver {
 		this.setLayout(new BorderLayout());
 		this.setMinimumSize(new Dimension(1000, 1000));
 		
+		int height = Constants.TREE_VIEW_HEIGHT;
+		
 		JScrollPane treeScrollPane  = new JScrollPane(tree);
 		
-		treeScrollPane.setSize(new Dimension(50, 400));
-		treeScrollPane.setMaximumSize(new Dimension(50, 400));
-		treeScrollPane.setMinimumSize(new Dimension(50, 400));
-		treeScrollPane.setPreferredSize(new Dimension(50, 400));
+		treeScrollPane.setSize(new Dimension(50, (int)Math.round(Constants.TREE_PANE_FACTOR * height)));
+		treeScrollPane.setMaximumSize(new Dimension(50, (int)Math.round(Constants.TREE_PANE_FACTOR * height)));
+		treeScrollPane.setMinimumSize(new Dimension(50, (int)Math.round(Constants.TREE_PANE_FACTOR * height)));
+		treeScrollPane.setPreferredSize(new Dimension(50, (int)Math.round(Constants.TREE_PANE_FACTOR * height)));
 		
 		this.add(treeScrollPane, BorderLayout.NORTH);
 
@@ -110,10 +112,10 @@ public class TreeView extends JPanel implements GObserver {
 
 		JScrollPane freeNodesScrollPane = new JScrollPane(freeNodesList);
 
-		freeNodesScrollPane.setSize(new Dimension(100, 200));
-		freeNodesScrollPane.setMaximumSize(new Dimension(100, 200));
-		freeNodesScrollPane.setMinimumSize(new Dimension(100, 200));
-		freeNodesScrollPane.setPreferredSize(new Dimension(100, 200));
+		freeNodesScrollPane.setSize(new Dimension(100,  (int)Math.round(Constants.FREE_DOC_FACTOR * height)));
+		freeNodesScrollPane.setMaximumSize(new Dimension(100,  (int)Math.round(Constants.FREE_DOC_FACTOR * height)));
+		freeNodesScrollPane.setMinimumSize(new Dimension(100, (int)Math.round(Constants.FREE_DOC_FACTOR * height)));
+		freeNodesScrollPane.setPreferredSize(new Dimension(100,  (int)Math.round(Constants.FREE_DOC_FACTOR * height)));
 
 		this.reloadFreeNodesList();
 
