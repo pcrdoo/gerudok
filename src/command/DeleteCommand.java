@@ -3,6 +3,7 @@ package command;
 import model.GeRuDocument;
 import model.Model;
 import model.Project;
+import model.Workspace;
 import model.tree.GNode;
 
 /**
@@ -36,6 +37,11 @@ public class DeleteCommand extends Command {
 	 */
 	@Override
 	public void doCommand() {
+		
+		if(node instanceof Workspace) {
+			return;
+		}
+		
 		GNode parent = (GNode) node.getParent();
 		if (node instanceof Project) {
 			for (GNode child : node.getChildren()) {
