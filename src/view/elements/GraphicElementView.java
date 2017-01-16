@@ -1,11 +1,7 @@
 package view.elements;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseListener;
-
-import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
 
 import model.Model;
 import model.elements.GraphicElement;
@@ -19,9 +15,9 @@ import view.ElementView;
  */
 public class GraphicElementView extends ElementView {
 	/**
-	 * Graphic element being displayed.
+	 * Version UID for serialization.
 	 */
-	private GraphicElement graphicElement;
+	final static long serialVersionUID = 1;
 
 	/**
 	 * Canvas view to use.
@@ -38,8 +34,6 @@ public class GraphicElementView extends ElementView {
 	 */
 	public GraphicElementView(Model model, GraphicElement graphicElement) {
 		super(model, graphicElement);
-
-		this.graphicElement = graphicElement;
 		canvas = new GraphicCanvasView(graphicElement);
 
 		canvas.setMinimumSize(new Dimension(500, 30));

@@ -99,6 +99,7 @@ public class GraphicElementCutCommand extends GraphicElementCommand implements G
 	 * shapes are made non-translucent in the editor view, as this means the cut
 	 * 'n' paste operation was aborted.
 	 */
+	@Override
 	public void onEntryEvicted() {
 		view.clearCutShapes();
 	}
@@ -108,6 +109,7 @@ public class GraphicElementCutCommand extends GraphicElementCommand implements G
 	 * the cut 'n' paste operation was finished successfully, and the shapes are
 	 * physically removed from the graphic element altogether.
 	 */
+	@Override
 	public void onEntryPasted() {
 		ArrayList<GraphicElementRemoveShapeCommand> list = new ArrayList<>();
 		for (GraphicShape s : view.getSelection()) {

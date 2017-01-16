@@ -2,24 +2,20 @@ package view.elements;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Dialog.ModalityType;
-
 import javax.swing.BoxLayout;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 
 import controller.elements.TextElementEditDialogController;
 
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 
-import model.Workspace;
 import model.elements.TextElement;
 import view.MainView;
 import model.Model;
@@ -31,6 +27,11 @@ import model.Model;
  *
  */
 public class TextElementEditDialog extends JDialog {
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
+	
 	/**
 	 * Controller.
 	 */
@@ -80,10 +81,11 @@ public class TextElementEditDialog extends JDialog {
 		add(new JLabel("Enter the text for the text element. HTML is allowed."), BorderLayout.NORTH);
 
 		textArea = new JTextArea(element.getHtml());
-		JScrollPane pane = new JScrollPane();
+		
 		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);
-		pane.add(textArea);
+		JScrollPane pane = new JScrollPane(textArea);
+	    pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		add(pane, BorderLayout.CENTER);
 
 		JPanel buttonPanel = new JPanel();
@@ -137,6 +139,7 @@ public class TextElementEditDialog extends JDialog {
 	 * @param listener
 	 *            Listener to add
 	 */
+	@Override
 	public void addKeyListener(KeyListener listener) {
 		textArea.addKeyListener(listener);
 	}

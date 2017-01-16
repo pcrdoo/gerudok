@@ -24,11 +24,6 @@ import model.Slot;
  */
 @SuppressWarnings("serial")
 public class SlotView extends ElementContainerView {
-
-	/**
-	 * The slot that this view is based on.
-	 */
-	private Slot slot;
 	/**
 	 * The main model.
 	 */
@@ -72,6 +67,7 @@ public class SlotView extends ElementContainerView {
 	 * 
 	 * @see view.ElementContainerView#onRenameNotification(java.lang.Object)
 	 */
+	@Override
 	public void onRenameNotification(Object obj) {
 		border.setTitle(this.getSlot().getName());
 		repaint();
@@ -93,7 +89,7 @@ public class SlotView extends ElementContainerView {
 	 *            the slot that this view is based on
 	 */
 	public void setSlot(Slot slot) {
-		this.slot = slot;
+		this.elementContainer = slot;
 	}
 
 	/**

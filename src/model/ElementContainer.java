@@ -1,11 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-
-import javax.swing.tree.MutableTreeNode;
-
-import gerudok_observer.GObserverList;
 import model.tree.GNode;
 
 /**
@@ -16,6 +11,11 @@ import model.tree.GNode;
  *
  */
 public class ElementContainer extends GNode implements Serializable {
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
+	
 	/**
 	 * Element type.
 	 */

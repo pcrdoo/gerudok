@@ -1,7 +1,6 @@
 package model.tree;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.swing.tree.MutableTreeNode;
@@ -17,6 +16,10 @@ import gerudok_observer.GNotification;
  *
  */
 public class GLink extends GNode implements Serializable {
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
 
 	/**
 	 * The GNode that this link represents.
@@ -48,7 +51,7 @@ public class GLink extends GNode implements Serializable {
 	 * @see model.tree.GNode#children()
 	 */
 	@Override
-	public Enumeration children() {
+	public Enumeration<GNode> children() {
 		return null;
 	}
 

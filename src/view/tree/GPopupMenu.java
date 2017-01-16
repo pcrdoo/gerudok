@@ -1,7 +1,6 @@
 package view.tree;
 
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +28,10 @@ import model.tree.GNode;
  *
  */
 public class GPopupMenu extends JPopupMenu {
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
 
 	/**
 	 * Reference to the main model.
@@ -101,7 +104,7 @@ public class GPopupMenu extends JPopupMenu {
 	/**
 	 * The information witch options are for witch class.
 	 */
-	HashMap<Class, List<JMenuItem>> menuItems;
+	HashMap<Class<? extends Object>, List<JMenuItem>> menuItems;
 
 	/**
 	 * Constructor that sets the selected node.
@@ -147,22 +150,19 @@ public class GPopupMenu extends JPopupMenu {
 		this.saveAsProject = new JMenuItem("Save As");
 		this.importProject = new JMenuItem("Import Project");
 
-		this.menuItems = new HashMap<Class, List<JMenuItem>>() {
-			{
+		this.menuItems = new HashMap<Class<? extends Object>, List<JMenuItem>>();
 
-				put(Workspace.class, Arrays.asList(addNew, importProject, rename, switchWorkspace));
-				put(Project.class,
-						node.getClass() == Project.class && ((Project) node).isOpened() ? Arrays.asList(addNew,
-								addFromFree, delete, rename, openClose, saveProject, saveAsProject)
-								: Arrays.asList(delete, openClose));
-				put(GeRuDocument.class, Arrays.asList(addNew, share, delete, rename));
-				put(GeRuDocumentLink.class, Arrays.asList(delete));
-				put(Page.class, Arrays.asList(addNew, delete, rename));
-				put(Slot.class, Arrays.asList(delete, rename));
-				put(Element.class, Arrays.asList(edit, delete, rename));
+		menuItems.put(Workspace.class, Arrays.asList(addNew, importProject, rename, switchWorkspace));
+		menuItems.put(Project.class,
+				node.getClass() == Project.class && ((Project) node).isOpened() ? Arrays.asList(addNew,
+						addFromFree, delete, rename, openClose, saveProject, saveAsProject)
+						: Arrays.asList(delete, openClose));
+		menuItems.put(GeRuDocument.class, Arrays.asList(addNew, share, delete, rename));
+		menuItems.put(GeRuDocumentLink.class, Arrays.asList(delete));
+		menuItems.put(Page.class, Arrays.asList(addNew, delete, rename));
+		menuItems.put(Slot.class, Arrays.asList(delete, rename));
+		menuItems.put(Element.class, Arrays.asList(edit, delete, rename));
 
-			}
-		};
 
 		if (this.menuItems.containsKey(node.getClass())) {
 			if (node instanceof ElementContainer) {

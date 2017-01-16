@@ -63,7 +63,7 @@ public class TextElementEditDialogController {
 		public void actionPerformed(ActionEvent e) {
 			Invoker.getInstance()
 					.executeCommand(new TextElementEditCommitCommand(model, dialog.getTextElement(), dialog.getHtml()));
-			dialog.hide();
+			dialog.setVisible(false);
 		}
 	}
 
@@ -81,7 +81,7 @@ public class TextElementEditDialogController {
 		public void actionPerformed(ActionEvent e) {
 			Invoker.getInstance()
 					.executeCommand(new TextElementEditCancelCommand(model, dialog.getTextElement(), oldHtml));
-			dialog.hide();
+			dialog.setVisible(false);
 		}
 	}
 

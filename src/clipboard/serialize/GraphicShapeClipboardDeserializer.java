@@ -11,11 +11,14 @@ import model.elements.GraphicShape;
  */
 public interface GraphicShapeClipboardDeserializer {
 	/**
-	 * TODO (David Davidovic): Fix javadoc.
+	 * 
 	 * Deserializes a shape from a string.
 	 * 
 	 * @param serializedString
 	 *            String to deserialize from
+	 * @return Deserialized shape
+	 * @throws SerializationDeserializationException
+	 *             If a data format or other deserialization error occurs.
 	 */
 	public GraphicShape deserialize(String serializedString) throws SerializationDeserializationException;
 }

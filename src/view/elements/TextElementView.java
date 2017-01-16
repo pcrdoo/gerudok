@@ -1,16 +1,13 @@
 package view.elements;
 
-import model.ElementContainer;
 import model.Model;
 import model.elements.TextElement;
 import view.ElementView;
 
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
-import java.awt.Dimension;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.awt.Color;
 
 /**
@@ -20,6 +17,11 @@ import java.awt.Color;
  *
  */
 public class TextElementView extends ElementView {
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
+	
 	/**
 	 * Element being displayed.
 	 */
@@ -66,6 +68,7 @@ public class TextElementView extends ElementView {
 	 * @param obj
 	 *            Custom event data
 	 */
+	@Override
 	public void onEditNotification(Object obj) {
 		setHtml(textElement.getHtml());
 	}

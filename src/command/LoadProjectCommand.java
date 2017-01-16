@@ -10,15 +10,11 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import files.ProjectFile;
-import model.Element;
-import model.GeRuDocument;
 import model.Model;
 import model.Project;
 import model.Workspace;
 import model.tree.GNode;
-import view.GeRuDocumentView;
 import view.MainView;
-import view.ProjectView;
 
 /**
  * A command that improt existing project into workspace.

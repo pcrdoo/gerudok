@@ -23,6 +23,11 @@ import java.util.*;
  */
 public class GraphicElementToolBarView extends JToolBar {
 	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
+	
+	/**
 	 * Controller.
 	 */
 	GraphicElementToolBarController controller;
@@ -93,7 +98,7 @@ public class GraphicElementToolBarView extends JToolBar {
 			}
 		}
 
-		controller = new GraphicElementToolBarController(model, element, this, stateManager, canvas);
+		controller = new GraphicElementToolBarController(element, this, stateManager, canvas);
 	}
 
 	/**

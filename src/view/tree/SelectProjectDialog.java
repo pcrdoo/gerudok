@@ -2,8 +2,6 @@ package view.tree;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Dialog.ModalityType;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.List;
@@ -13,14 +11,11 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.ListModel;
-import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import controller.tree.SelectProjectDialogController;
 import model.Model;
 import model.Workspace;
-import model.tree.GLink;
 import model.tree.GNode;
 import view.MainView;
 
@@ -32,6 +27,10 @@ import view.MainView;
  *
  */
 public class SelectProjectDialog extends JDialog {
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
 
 	/**
 	 * Reference to the main model.

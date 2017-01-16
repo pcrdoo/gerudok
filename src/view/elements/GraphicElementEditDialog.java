@@ -2,26 +2,18 @@ package view.elements;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Window;
-import java.awt.GraphicsConfiguration;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-
 import controller.elements.GraphicElementEditDialogController;
 import model.Model;
 import model.elements.GraphicElement;
-import model.elements.GraphicShape;
 import state.GraphicElementStateManager;
 import view.MainView;
-
-import java.util.*;
 
 /**
  * Dialog for editing a graphic element.
@@ -30,6 +22,11 @@ import java.util.*;
  *
  */
 public class GraphicElementEditDialog extends JDialog {
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
+	
 	/**
 	 * Controller.
 	 */
@@ -155,6 +152,7 @@ public class GraphicElementEditDialog extends JDialog {
 	 * @param listener
 	 *            Listener to add
 	 */
+	@Override
 	public void addMouseListener(MouseListener listener) {
 		canvas.addMouseListener(listener);
 	}

@@ -13,6 +13,10 @@ import model.tree.GNode;
  *
  */
 public class Page extends GNode implements Serializable {
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
 
 	/**
 	 * Used for generating names for new children.
@@ -32,7 +36,7 @@ public class Page extends GNode implements Serializable {
 	 */
 	public Page(String name) {
 		super(name);
-		this.newChildCount = 0;
+		Page.newChildCount = 0;
 		Random r = new Random();
 		color = new Color(r.nextFloat(), r.nextFloat(), r.nextFloat());
 	}
@@ -42,6 +46,7 @@ public class Page extends GNode implements Serializable {
 	 * 
 	 * @see model.tree.GNode#addNewChild()
 	 */
+	@Override
 	public GNode addNewChild() {
 		Slot child = new Slot("Slot" + newChildCount);
 		newChildCount++;

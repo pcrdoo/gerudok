@@ -17,6 +17,7 @@ public class GraphicRectangleShapeClipboardDeserializer implements GraphicShapeC
 	 * @param serializedString
 	 *            String to deserialize from
 	 */
+	@Override
 	public GraphicShape deserialize(String serializedString) throws SerializationDeserializationException {
 		return new GraphicRectangleShape(new RectangleDeserializer().deserialize(serializedString));
 	}

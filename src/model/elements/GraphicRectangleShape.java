@@ -10,6 +10,11 @@ import java.io.Serializable;
  */
 public class GraphicRectangleShape extends GraphicShape implements Serializable {
 	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
+	
+	/**
 	 * Extent of the rectangle.
 	 */
 	Rectangle rectangle;

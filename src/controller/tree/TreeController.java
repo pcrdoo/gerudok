@@ -14,8 +14,6 @@ import view.tree.WorkspaceTree;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.*;
-
 import javax.swing.SwingUtilities;
 import javax.swing.tree.TreePath;
 

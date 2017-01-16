@@ -1,15 +1,12 @@
 package view.tree;
 
 import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.util.EventObject;
 
 import javax.swing.JTextField;
 import javax.swing.JTree;
-import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultTreeCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
@@ -25,11 +22,6 @@ import model.tree.GNode;
  *
  */
 public class GTreeCellEditor extends DefaultTreeCellEditor {
-
-	/**
-	 * Reference to the main model.
-	 */
-	private Model model;
 	/**
 	 * The node to be edited.
 	 */
@@ -38,10 +30,6 @@ public class GTreeCellEditor extends DefaultTreeCellEditor {
 	 * Text field for the new name.
 	 */
 	private JTextField tfName;
-	/**
-	 * Instance of the controller for this view.
-	 */
-	private GTreeCellEditorController controller;
 
 	/**
 	 * Constructor that inits everything.
@@ -55,9 +43,8 @@ public class GTreeCellEditor extends DefaultTreeCellEditor {
 	 */
 	public GTreeCellEditor(JTree tree, DefaultTreeCellRenderer cellRenderer, Model model) {
 		super(tree, cellRenderer);
-		this.model = model;
 		this.tfName = new JTextField();
-		this.controller = new GTreeCellEditorController(this, model);
+		new GTreeCellEditorController(this, model);
 	}
 
 	/*
@@ -67,6 +54,7 @@ public class GTreeCellEditor extends DefaultTreeCellEditor {
 	 * javax.swing.tree.DefaultTreeCellEditor#getTreeCellEditorComponent(javax.
 	 * swing.JTree, java.lang.Object, boolean, boolean, boolean, int)
 	 */
+	@Override
 	public Component getTreeCellEditorComponent(JTree arg0, Object value, boolean isSelected, boolean expanded,
 			boolean leaf, int row) {
 		super.getTreeCellEditorComponent(arg0, value, isSelected, expanded, leaf, row);
@@ -110,6 +98,7 @@ public class GTreeCellEditor extends DefaultTreeCellEditor {
 	 * @see javax.swing.tree.DefaultTreeCellEditor#isCellEditable(java.util.
 	 * EventObject)
 	 */
+	@Override
 	public boolean isCellEditable(EventObject e) {
 		if (e == null)
 			return true;

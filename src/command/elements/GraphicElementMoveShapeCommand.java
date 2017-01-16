@@ -3,7 +3,6 @@ package command.elements;
 import model.elements.GraphicElement;
 import model.elements.GraphicShape;
 
-import java.util.List;
 import model.elements.Point;
 
 /**

@@ -9,10 +9,7 @@ import command.Invoker;
 import command.elements.GraphicElementInvoker;
 import command.elements.GraphicElementEditCancelCommand;
 import command.elements.GraphicElementEditCommitCommand;
-import controller.elements.GraphicElementEditDialogController.CancelListener;
-import controller.elements.GraphicElementEditDialogController.OkListener;
 import model.Model;
-import model.elements.GraphicElement;
 import model.elements.GraphicShape;
 import view.elements.GraphicElementEditDialog;
 
@@ -74,7 +71,7 @@ public class GraphicElementEditDialogController {
 		public void actionPerformed(ActionEvent e) {
 			Invoker.getInstance()
 					.executeCommand(new GraphicElementEditCommitCommand(model, dialog.getGraphicElement()));
-			dialog.hide();
+			dialog.setVisible(false);
 		}
 	}
 
@@ -93,7 +90,7 @@ public class GraphicElementEditDialogController {
 			Invoker.getInstance().executeCommand(
 					new GraphicElementEditCancelCommand(model, dialog.getGraphicElement(), previousShapes));
 			GraphicElementInvoker.getInstance().abortSession();
-			dialog.hide();
+			dialog.setVisible(false);
 		}
 	}
 }

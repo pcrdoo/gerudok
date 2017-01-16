@@ -1,6 +1,5 @@
 package view;
 
-import java.util.List;
 import model.Element;
 import model.Model;
 import model.ElementContainer;
@@ -13,7 +12,6 @@ import javax.swing.Box;
 import model.tree.GNode;
 import javax.swing.JPanel;
 
-import java.awt.Color;
 import java.awt.Component;
 
 /**
@@ -24,6 +22,11 @@ import java.awt.Component;
  *
  */
 public class ElementContainerView extends JPanel implements GObserver {
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
+	
 	/**
 	 * Model.
 	 */

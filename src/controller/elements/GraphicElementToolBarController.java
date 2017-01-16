@@ -1,7 +1,5 @@
 package controller.elements;
 
-import model.Model;
-
 import model.elements.GraphicElement;
 import model.elements.GraphicElementToolBarAction;
 import command.elements.GraphicElementCutCommand;
@@ -35,11 +33,6 @@ import view.elements.GraphicElementToolBarView;
  */
 public class GraphicElementToolBarController {
 	/**
-	 * Model.
-	 */
-	private Model model;
-
-	/**
 	 * Toolbar view.
 	 */
 	private GraphicElementToolBarView view;
@@ -62,8 +55,6 @@ public class GraphicElementToolBarController {
 	/**
 	 * Constructor.
 	 * 
-	 * @param model
-	 *            Model
 	 * @param element
 	 *            Element that is being edited
 	 * @param view
@@ -73,9 +64,8 @@ public class GraphicElementToolBarController {
 	 * @param canvas
 	 *            Editor view
 	 */
-	public GraphicElementToolBarController(Model model, GraphicElement element, GraphicElementToolBarView view,
+	public GraphicElementToolBarController(GraphicElement element, GraphicElementToolBarView view,
 			GraphicElementStateManager stateManager, GraphicCanvasView canvas) {
-		this.model = model;
 		this.view = view;
 		this.stateManager = stateManager;
 		this.canvas = canvas;

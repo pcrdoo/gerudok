@@ -23,6 +23,11 @@ import model.tree.GNode;
  */
 public class Model implements GObservable, Serializable {
 	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
+	
+	/**
 	 * The model of the WorkspaceTree. Used to refresh the tree.
 	 */
 	private DefaultTreeModel treeModel;
@@ -128,7 +133,7 @@ public class Model implements GObservable, Serializable {
 	 * @return The selected object.
 	 */
 	public Object getSelectedObject() {
-		return selectedPath.getLastPathComponent();
+		return selectedPath != null ? selectedPath.getLastPathComponent() : null;
 	}
 
 	/**

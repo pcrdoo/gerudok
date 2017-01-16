@@ -12,6 +12,11 @@ import java.io.Serializable;
  */
 public class GraphicTriangleShape extends GraphicShape implements Serializable {
 	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
+	
+	/**
 	 * Bounds (extent) of the triangle.
 	 */
 	Rectangle bounds;

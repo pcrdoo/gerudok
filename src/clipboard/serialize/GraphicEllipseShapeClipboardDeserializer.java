@@ -17,6 +17,7 @@ public class GraphicEllipseShapeClipboardDeserializer implements GraphicShapeCli
 	 * @param serializedString
 	 *            String to deserialize from
 	 */
+	@Override
 	public GraphicShape deserialize(String serializedString) throws SerializationDeserializationException {
 		return new GraphicEllipseShape(new RectangleDeserializer().deserialize(serializedString));
 	}

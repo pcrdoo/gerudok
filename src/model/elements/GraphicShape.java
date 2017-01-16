@@ -10,6 +10,11 @@ import java.io.Serializable;
  */
 public abstract class GraphicShape implements Serializable {
 	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
+	
+	/**
 	 * Shape type.
 	 */
 	private GraphicShapeType type;
@@ -54,6 +59,7 @@ public abstract class GraphicShape implements Serializable {
 	 * 
 	 * @return Clone of this shape
 	 */
+	@Override
 	public abstract GraphicShape clone();
 
 	/**

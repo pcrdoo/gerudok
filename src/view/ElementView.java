@@ -23,9 +23,9 @@ import controller.ElementController;
  */
 public abstract class ElementView extends ElementContainerView {
 	/**
-	 * Controller.
+	 * Version UID for serialization.
 	 */
-	private ElementController controller;
+	final static long serialVersionUID = 1;
 
 	/**
 	 * Listeners to be added when the construction is finished (added by
@@ -44,7 +44,7 @@ public abstract class ElementView extends ElementContainerView {
 	 */
 	public ElementView(Model model, Element element) {
 		super(model, element, false);
-		controller = new ElementController(model, this);
+		new ElementController(model, this);
 	}
 
 	/**

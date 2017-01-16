@@ -11,6 +11,11 @@ import java.io.Serializable;
  */
 public class Rectangle implements Serializable {
 	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
+	
+	/**
 	 * Origin (top-left) point of the rectangle.
 	 */
 	private Point origin;
@@ -119,6 +124,7 @@ public class Rectangle implements Serializable {
 	 * 
 	 * @return Clone of the rectangle
 	 */
+	@Override
 	public Rectangle clone() {
 		return new Rectangle(origin.clone(), width, height);
 	}

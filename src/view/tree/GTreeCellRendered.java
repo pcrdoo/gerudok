@@ -1,15 +1,10 @@
 package view.tree;
 
-import java.awt.Color;
 import java.awt.Component;
-import java.net.URL;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.TreeCellRenderer;
-
 import model.GeRuDocument;
 import model.GeRuDocumentLink;
 import model.Element;
@@ -17,8 +12,6 @@ import model.Page;
 import model.Project;
 import model.Slot;
 import model.Workspace;
-import model.tree.GNode;
-import view.MainView;
 
 /**
  * The class the renders and sets the icon for GNodes in the WorkspaceTree.
@@ -27,6 +20,10 @@ import view.MainView;
  *
  */
 public class GTreeCellRendered extends DefaultTreeCellRenderer {
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
 
 	/*
 	 * (non-Javadoc)

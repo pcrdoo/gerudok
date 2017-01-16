@@ -2,11 +2,6 @@ package model;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.*;
-
-import gerudok_observer.GObserver;
-import gerudok_observer.GNotification;
-import gerudok_observer.GObserverList;
 import model.tree.GNode;
 
 /**
@@ -67,16 +62,25 @@ public class Workspace extends GNode implements Serializable {
 	 * 
 	 * @see model.tree.GNode#addNewChild()
 	 */
+	@Override
 	public GNode addNewChild() {
 		Project child = new Project("Project" + getNewChildCount());
 		this.addChild(child);
 		return child;
 	}
 
+	/**
+	 * Gets the file representing the workspace.
+	 * @return Workspace file
+	 */
 	public File getWorkspaceFile() {
 		return workspaceFile;
 	}
 
+	/**
+	 * Sets the file representing the workspace.
+	 * @param workspaceFile New workspace file
+	 */
 	public void setWorkspaceFile(File workspaceFile) {
 		this.workspaceFile = workspaceFile;
 	}

@@ -5,7 +5,6 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.TreePath;
 
 import model.Model;
-import view.DesktopView;
 
 /**
  * Makes sure that the selection in the WorkspaceTree matches the focus of the

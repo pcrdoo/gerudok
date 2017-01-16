@@ -1,9 +1,6 @@
 package view.tree;
 
 import javax.swing.JTree;
-import javax.swing.SwingUtilities;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.TreePath;
 
 import controller.TreeListener;
@@ -20,6 +17,10 @@ import model.tree.GNode;
  *
  */
 public class WorkspaceTree extends JTree implements GObserver {
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
 
 	/**
 	 * Reference to the main model.
@@ -70,6 +71,9 @@ public class WorkspaceTree extends JTree implements GObserver {
 			break;
 		case TREE_RENAME:
 			this.startEditingAtPath(((GNode) obj).getPath());
+			break;
+			
+		default:
 			break;
 		}
 	}

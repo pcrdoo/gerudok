@@ -7,7 +7,6 @@ import model.elements.GraphicElement;
 import model.elements.GraphicEllipseShape;
 import model.elements.GraphicRectangleShape;
 import model.elements.GraphicShape;
-import model.elements.GraphicShapeType;
 import model.elements.GraphicTriangleShape;
 import model.elements.Point;
 import model.elements.Rectangle;
@@ -28,6 +27,11 @@ import java.awt.BasicStroke;
  *
  */
 public class GraphicCanvasView extends JComponent implements GObserver {
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
+	
 	/**
 	 * Associated element.
 	 */

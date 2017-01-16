@@ -76,10 +76,10 @@ public class GraphicElementPasteCommand extends GraphicElementCommand {
 			System.out.println("Added " + list.size() + " shapes");
 		} catch (SerializationDeserializationException e) {
 			JOptionPane.showMessageDialog(null,
-					"Nije moguće nalepiti ono što je trenutno na clipboard-u. Proverite da li je prethodno isecen ili kopiran sadržaj iz GeRuDok-a.");
+					"Cannot paste clipboard contents. Please make sure you're pasting GeRuDok shapes.");
 			e.printStackTrace();
 		} catch (ClipboardException e) {
-			JOptionPane.showMessageDialog(null, "Greška prilikom pristupanja clipboard-u.");
+			JOptionPane.showMessageDialog(null, "Error accessing the clipboard.");
 			e.printStackTrace();
 		}
 	}

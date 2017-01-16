@@ -2,8 +2,6 @@ package controller.tree;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
-
 import command.AddNewChildCommand;
 import command.AddNewChildElementCommand;
 import command.CloseProjectCommand;
@@ -16,14 +14,11 @@ import command.RenameCommand;
 import command.SaveAsProjectCommand;
 import command.SaveProjectCommand;
 import command.SwitchWorkspaceCommand;
-import command.TreeSelectCommand;
-import model.GeRuDocument;
 import model.Model;
 import model.Project;
 import model.ElementContainer;
 import model.ElementType;
 import model.Element;
-import model.tree.GNode;
 import view.tree.GPopupMenu;
 import view.tree.SelectDocumentDialog;
 import view.tree.SelectProjectDialog;
@@ -201,7 +196,7 @@ public class GPopupMenuController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			SelectProjectDialog sd = new SelectProjectDialog(view.getSelectedNode(), model);
-			sd.show();
+			sd.setVisible(true);
 		}
 	}
 
@@ -216,7 +211,7 @@ public class GPopupMenuController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			SelectDocumentDialog sd = new SelectDocumentDialog(view.getSelectedNode(), model);
-			sd.show();
+			sd.setVisible(true);
 		}
 	}
 

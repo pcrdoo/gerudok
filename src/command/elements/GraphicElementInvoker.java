@@ -1,8 +1,5 @@
 package command.elements;
 
-import command.Command;
-import command.Invoker;
-
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -78,7 +75,7 @@ public class GraphicElementInvoker {
 			instance = new GraphicElementInvoker();
 			// init
 		}
-		return (GraphicElementInvoker) instance;
+		return instance;
 	}
 
 	/**

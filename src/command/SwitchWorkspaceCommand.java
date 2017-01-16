@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
 
 import javax.swing.JFileChooser;
 
-import files.ProjectFile;
 import files.WorkspaceFile;
 import model.Model;
 import model.Workspace;

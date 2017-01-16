@@ -3,8 +3,6 @@ package command.elements;
 import model.elements.GraphicElement;
 import model.elements.GraphicShape;
 
-import java.util.List;
-
 /**
  * Command which removes a shape from a graphic element.
  * 

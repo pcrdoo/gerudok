@@ -9,6 +9,11 @@ package clipboard;
  */
 public class InvalidDataFormatException extends SerializationDeserializationException {
 	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
+	
+	/**
 	 * Constructor.
 	 * 
 	 * @param message

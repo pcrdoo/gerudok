@@ -6,29 +6,20 @@ import model.Workspace;
 import model.tree.GNode;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.*;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTree;
-import javax.swing.SwingUtilities;
-import javax.swing.event.TreeModelListener;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.DefaultTreeSelectionModel;
-import javax.swing.tree.MutableTreeNode;
-import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
-import constants.Constants;
 import controller.tree.TreeController;
+
+import constants.Constants;
 import gerudok_observer.GNotification;
 import gerudok_observer.GObserver;
 
@@ -39,15 +30,15 @@ import gerudok_observer.GObserver;
  *
  */
 public class TreeView extends JPanel implements GObserver {
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
 
 	/**
 	 * Reference to the main model.
 	 */
 	private Model model;
-	/**
-	 * Instance of the controller for this view.
-	 */
-	private TreeController treeController;
 	/**
 	 * The graphic representation of all the GNodes.
 	 */
@@ -67,6 +58,7 @@ public class TreeView extends JPanel implements GObserver {
 		this.model = model;
 		this.model.addObserver(this);
 		this.initialize();
+		new TreeController(model, this);
 	}
 
 	/**
@@ -108,7 +100,7 @@ public class TreeView extends JPanel implements GObserver {
 		this.add(treeScrollPane, BorderLayout.NORTH);
 
 		freeNodesListModel = new DefaultListModel<>();
-		JList freeNodesList = new JList<GNode>(freeNodesListModel);
+		JList<GNode> freeNodesList = new JList<>(freeNodesListModel);
 
 		JScrollPane freeNodesScrollPane = new JScrollPane(freeNodesList);
 
@@ -123,7 +115,6 @@ public class TreeView extends JPanel implements GObserver {
 		this.add(freeNodesScrollPane, BorderLayout.SOUTH);
 
 		this.model.setTreeModel(treeModel);
-		this.treeController = new TreeController(this.model, this);
 	}
 
 	/**

@@ -6,11 +6,8 @@ import view.MainView;
 import view.MenuBarView;
 import view.tree.SelectProjectDialog;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
-
 import command.AddNewChildCommand;
 import command.CloseProjectCommand;
 import command.DeleteCommand;
@@ -209,7 +206,7 @@ public class MenuBarController {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				SelectProjectDialog sd = new SelectProjectDialog(MainView.getInstance().getTreeView().getSelectedNode(), model);
-				sd.show();
+				sd.setVisible(true);
 			}
 		};
 	}

@@ -16,6 +16,10 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class AboutDialog extends JDialog {
 
+	/**
+	 * Constructor.
+	 * @param parent Parent frame
+	 */
 	public AboutDialog(JFrame parent) {
 		super(parent);
 

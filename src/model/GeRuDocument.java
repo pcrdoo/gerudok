@@ -11,6 +11,10 @@ import model.tree.GNode;
  *
  */
 public class GeRuDocument extends GNode implements Serializable {
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
 
 	/**
 	 * Used for generating names for new children.
@@ -25,7 +29,7 @@ public class GeRuDocument extends GNode implements Serializable {
 	 */
 	public GeRuDocument(String name) {
 		super(name);
-		this.newChildCount = 0;
+		GeRuDocument.newChildCount = 0;
 	}
 
 	/*
@@ -33,6 +37,7 @@ public class GeRuDocument extends GNode implements Serializable {
 	 * 
 	 * @see model.tree.GNode#addNewChild()
 	 */
+	@Override
 	public GNode addNewChild() {
 		Page child = new Page("Page" + newChildCount);
 		newChildCount++;

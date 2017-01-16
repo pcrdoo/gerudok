@@ -14,7 +14,11 @@ import model.tree.GNode;
  *
  */
 public class Project extends GNode implements Serializable {
-
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
+	
 	/**
 	 * Used for generating names for new children.
 	 */
@@ -38,7 +42,7 @@ public class Project extends GNode implements Serializable {
 		super(name);
 		this.opened = true;
 		this.projectFile = null;
-		this.newChildCount = 0;
+		Project.newChildCount = 0;
 	}
 
 	/*
@@ -46,6 +50,7 @@ public class Project extends GNode implements Serializable {
 	 * 
 	 * @see model.tree.GNode#addNewChild()
 	 */
+	@Override
 	public GNode addNewChild() {
 		GeRuDocument child = new GeRuDocument("GeRuDocument" + newChildCount);
 		newChildCount++;

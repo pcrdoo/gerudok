@@ -11,6 +11,10 @@ import javax.swing.tree.MutableTreeNode;
  *
  */
 public class Slot extends ElementContainer implements Serializable {
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
 
 	/**
 	 * Default constructor.

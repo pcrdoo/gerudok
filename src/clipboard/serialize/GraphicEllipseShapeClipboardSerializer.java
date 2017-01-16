@@ -18,6 +18,7 @@ public class GraphicEllipseShapeClipboardSerializer implements GraphicShapeClipb
 	 * @param sb
 	 *            StringBuilder to which to append the result.
 	 */
+	@Override
 	public void serialize(GraphicShape shape, StringBuilder sb) {
 		GraphicEllipseShape s = (GraphicEllipseShape) shape;
 		new RectangleSerializer().serialize(s.getBounds(), sb);

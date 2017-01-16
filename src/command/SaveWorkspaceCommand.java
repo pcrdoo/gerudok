@@ -5,15 +5,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
-import java.util.List;
-
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import constants.Constants;
-import files.ProjectFile;
 import files.WorkspaceFile;
 import model.Model;
 import model.Project;
@@ -70,7 +66,7 @@ public class SaveWorkspaceCommand extends Command {
 				if (((Project) p).getProjectFile() == null) {
 					JOptionPane.showMessageDialog(MainView.getInstance(), "Unsaved project " + p.getName() + ". You must save it first.");
 				}
-				Invoker.getInstance().executeCommand(new SaveProjectCommand(model, (Project) p));
+				Invoker.getInstance().executeCommand(new SaveProjectCommand(model, p));
 			}
 			
 			BufferedWriter os;

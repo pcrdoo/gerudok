@@ -18,6 +18,7 @@ public class GraphicTriangleShapeClipboardSerializer implements GraphicShapeClip
 	 * @param sb
 	 *            StringBuilder to which to append the result.
 	 */
+	@Override
 	public void serialize(GraphicShape shape, StringBuilder sb) {
 		GraphicTriangleShape s = (GraphicTriangleShape) shape;
 		new RectangleSerializer().serialize(s.getBounds(), sb);

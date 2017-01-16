@@ -18,6 +18,7 @@ public class GraphicRectangleShapeClipboardSerializer implements GraphicShapeCli
 	 * @param sb
 	 *            StringBuilder to which to append the result.
 	 */
+	@Override
 	public void serialize(GraphicShape shape, StringBuilder sb) {
 		GraphicRectangleShape s = (GraphicRectangleShape) shape;
 		new RectangleSerializer().serialize(s.getRectangle(), sb);

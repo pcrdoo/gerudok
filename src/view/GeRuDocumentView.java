@@ -10,6 +10,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeListener;
 
@@ -81,8 +82,8 @@ public class GeRuDocumentView extends JPanel implements GObserver {
 
 		// Adds the scroll bar.
 		this.setLayout(new BorderLayout());
-		scrollBar = new JScrollPane(pageArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollBar = new JScrollPane(pageArea, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollBar.setBorder(BorderFactory.createEmptyBorder());
 		scrollBar.getVerticalScrollBar().setUnitIncrement(20);
 		this.add(scrollBar);

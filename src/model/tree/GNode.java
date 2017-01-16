@@ -1,6 +1,5 @@
 package model.tree;
 
-import java.awt.Component;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -14,7 +13,6 @@ import gerudok_observer.GObservable;
 import gerudok_observer.GObserver;
 import gerudok_observer.GNotification;
 import gerudok_observer.GObserverList;
-import model.Project;
 
 /**
  * Represents a node in the WorkspaceTree with all needed functionalities.
@@ -23,6 +21,10 @@ import model.Project;
  *
  */
 public class GNode implements MutableTreeNode, GObservable, Serializable {
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
 
 	/**
 	 * Name of the node.
@@ -201,7 +203,7 @@ public class GNode implements MutableTreeNode, GObservable, Serializable {
 	 * @see javax.swing.tree.TreeNode#children()
 	 */
 	@Override
-	public Enumeration children() {
+	public Enumeration<GNode> children() {
 		return null;
 	}
 
@@ -295,7 +297,7 @@ public class GNode implements MutableTreeNode, GObservable, Serializable {
 	 */
 	@Override
 	public void remove(MutableTreeNode child) {
-		this.children.remove((GNode) child);
+		this.children.remove(child);
 	}
 
 	/*

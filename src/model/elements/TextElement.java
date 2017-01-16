@@ -7,8 +7,6 @@
 package model.elements;
 
 import java.io.Serializable;
-import java.util.*;
-
 import gerudok_observer.GNotification;
 import model.Element;
 import model.ElementType;
@@ -19,6 +17,11 @@ import model.ElementType;
  *
  */
 public class TextElement extends Element implements Serializable {
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
+	
 	/**
 	 * HTML contents of the element.
 	 */

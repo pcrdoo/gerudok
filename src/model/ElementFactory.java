@@ -13,6 +13,11 @@ import model.elements.TextElement;
  */
 public class ElementFactory implements Serializable {
 	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
+	
+	/**
 	 * Creates an element of a given type.
 	 * 
 	 * @param type

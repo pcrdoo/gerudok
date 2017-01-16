@@ -10,6 +10,11 @@ import java.io.Serializable;
  */
 public class Point implements Serializable {
 	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
+	
+	/**
 	 * X coordinate of the point, in pixels.
 	 */
 	private int x;
@@ -75,6 +80,7 @@ public class Point implements Serializable {
 	 * 
 	 * @return Clone of the point
 	 */
+	@Override
 	public Point clone() {
 		return new Point(x, y);
 	}

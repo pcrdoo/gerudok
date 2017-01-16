@@ -7,7 +7,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.*;
 
 /**
  * Abstract element.
@@ -15,6 +14,11 @@ import java.util.*;
  *
  */
 public abstract class Element extends ElementContainer implements Serializable {
+	/**
+	 * Version UID for serialization.
+	 */
+	final static long serialVersionUID = 1;
+	
 	/**
 	 * Default constructor.
 	 */
