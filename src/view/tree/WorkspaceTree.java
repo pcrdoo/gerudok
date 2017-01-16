@@ -64,7 +64,7 @@ public class WorkspaceTree extends JTree implements GObserver {
 		switch (notification) {
 		case TREE_SELECT:
 			TreePath path = ((GNode) obj).getPath();
-			if (path != this.getSelectionPath()) {
+			if (path != model.getSelectedPath()) {
 				this.setSelectionPath(path);
 			}
 			break;

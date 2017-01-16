@@ -136,8 +136,12 @@ public class DesktopView extends JDesktopPane implements GObserver {
 				e.printStackTrace();
 			}
 		} else if (notification == GNotification.DESKTOP_SELECT) {
-			Object[] path = ((TreePath) obj).getPath();
+			TreePath treePath = (TreePath) obj;
+			Object[] path = treePath.getPath();
 			updateSelection(path, 1);
+			if (treePath.getLastPathComponent() instanceof GNode) {
+				model.doTreeSelection((GNode) treePath.getLastPathComponent());
+			}
 		}
 	}
 
@@ -181,6 +185,7 @@ public class DesktopView extends JDesktopPane implements GObserver {
 			}
 			try {
 				if (this.getSelectedFrame() != projectView) {
+					System.out.println("PROJECT ACTIVATED");
 					projectView.setSelected(true);
 				}
 				projectView.updateSelection(path, idx + 1);

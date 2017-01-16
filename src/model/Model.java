@@ -121,7 +121,7 @@ public class Model implements GObservable, Serializable {
 	public void doReloadFreeNodes() {
 		this.observerList.notifyObservers(GNotification.FREE_NODES_CHANGED, null);
 	}
-	
+
 	/**
 	 * Gets currently selected object.
 	 * 
@@ -129,6 +129,15 @@ public class Model implements GObservable, Serializable {
 	 */
 	public Object getSelectedObject() {
 		return selectedPath.getLastPathComponent();
+	}
+
+	/**
+	 * Gets currently selected path
+	 * 
+	 * @return The selected path.
+	 */
+	public TreePath getSelectedPath() {
+		return selectedPath;
 	}
 
 	/*
