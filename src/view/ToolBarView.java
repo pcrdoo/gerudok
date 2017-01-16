@@ -37,6 +37,18 @@ public class ToolBarView extends JToolBar {
 	   btnAdd.setToolTipText("Add");
 	   btnAdd.setIcon(new ImageIcon("src/res/new_toolbar_icon.png"));
 	   btnAdd.addActionListener(toolBarControler.getAddActionListener());
+	   
+	   JButton btnDelete = new JButton();
+	   btnDelete.setToolTipText("Delete");
+	   btnDelete.setIcon(new ImageIcon("src/res/delete_toolbar_icon.png"));
+	   btnDelete.addActionListener(toolBarControler.getDeleteActionListener());
+	   add(btnDelete);
+		   
+	   JButton btnRename = new JButton();
+	   btnRename.setToolTipText("Rename");
+	   btnRename.setIcon(new ImageIcon("src/res/rename_toolbar_icon.png"));
+	   btnRename.addActionListener(toolBarControler.getRenameActionListener());
+	   add(btnRename);
 	   add(btnAdd);
 	   
 	   addSeparator();
@@ -95,20 +107,8 @@ public class ToolBarView extends JToolBar {
 
 	   addSeparator();
 	   
-	   JButton btnDelete = new JButton();
-	   btnDelete.setToolTipText("Delete");
-	   btnDelete.setIcon(new ImageIcon("src/res/delete_toolbar_icon.png"));
-	   btnDelete.addActionListener(toolBarControler.getDeleteActionListener());
-	   add(btnDelete);
-		   
-	   JButton btnRename = new JButton();
-	   btnRename.setToolTipText("Rename");
-	   btnRename.setIcon(new ImageIcon("src/res/rename_toolbar_icon.png"));
-	   btnRename.addActionListener(toolBarControler.getRenameActionListener());
-	   add(btnRename);
-	   
 	   JButton btnShare = new JButton();
-	   btnShare.setToolTipText("Share");
+	   btnShare.setToolTipText("Share selected GeRuDocument");
 	   btnShare.setIcon(new ImageIcon("src/res/share_toolbar_icon.png"));
 	   btnShare.addActionListener(toolBarControler.getShareActionListener());
 	   add(btnShare);
