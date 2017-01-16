@@ -14,13 +14,27 @@ import model.Model;
 import model.Workspace;
 import model.tree.GNode;
 import view.MainView;
-
+/**
+ * A command that switch workspace with other fajl with grdw extension.
+ * 
+ * @author Igor Bakovic
+ *
+ */
 public class SwitchWorkspaceCommand extends Command {
 	
+	/**
+	 * @param model
+	 * 		the main model
+	 */
 	public SwitchWorkspaceCommand(Model model) {
 		this.model = model;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see command.Command#doCommand()
+	 */
 	@Override
 	public void doCommand() {
 		JFileChooser jfc = new JFileChooser();

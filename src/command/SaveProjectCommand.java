@@ -15,7 +15,8 @@ import model.Project;
 import view.MainView;
 
 /**
- * A command that create new workspace.
+ * A command that save project as exsisting project with grdp extension
+ * or create new fajl if we are saving project for the first time.
  * 
  * @author Igor Bakovic
  *
@@ -44,7 +45,12 @@ public class SaveProjectCommand extends Command {
 		this.model = model;
 		this.project = (object instanceof Project) ? (Project)object : null;
 	}  
-	
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see command.Command#doCommand()
+	 */
 	@Override
 	public void doCommand() {
 		JFileChooser jfc = new JFileChooser();

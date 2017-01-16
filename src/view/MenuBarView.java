@@ -1,9 +1,3 @@
-/***********************************************************************
- * Module:  MenuBarView.java
- * Author:  Ognjen
- * Purpose: Defines the Class MenuBarView
- ***********************************************************************/
-
 package view;
 
 import model.Model;
@@ -15,18 +9,37 @@ import javax.swing.JMenuItem;
 
 import controller.MenuBarController;
 import controller.ProjectController;
-
+/**
+ * The menu bar of the application.
+ * 
+ * @author Igor Bakovic
+ *
+ */
 public class MenuBarView extends JMenuBar{
 	
+	/**
+	 * The corresponding controller.
+	 */
    public MenuBarController menuBarController;
+   
+   /**
+	 * The main model.
+	 */
    public Model model;
    
+   /**
+    * 
+    * @param model
+    * 		the main model
+    */
    public MenuBarView(Model model) {
 	   this.model = model;
 	   menuBarController = new MenuBarController(model, this);
 	   
 	   JMenu fileMenu = new JMenu("File"); 
 	   
+	   
+	   //Creates element in menu bar and attach corresponding listener.
 	   JMenuItem newWorkspaceItem = new JMenuItem("New workspace");
 	   newWorkspaceItem.addActionListener(menuBarController.getNewWorkspaceListener());
 	   JMenuItem switchWorkspaceItem = new JMenuItem("Switch workspace");

@@ -8,7 +8,11 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
+/**
+ * View class which contains information about PCR team.
+ * 
+ * @author Igor Bakovic
+ */
 @SuppressWarnings("serial")
 public class AboutDialog extends JDialog {
 

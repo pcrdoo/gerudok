@@ -20,13 +20,28 @@ import model.Project;
 import model.Workspace;
 import model.tree.GNode;
 import view.MainView;
-
+/**
+ * A command that save workspace.
+ * 
+ * @author Igor Bakovic
+ *
+ */
 public class SaveWorkspaceCommand extends Command {
 
+	/**
+	 * @param model
+	 * 		the main model
+	 */
 	public SaveWorkspaceCommand(Model model) {
 		this.model = model;
 	}
 	
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see command.Command#doCommand()
+	 */
 	@Override
 	public void doCommand() {
 		Workspace workspace = Workspace.getInstance();
