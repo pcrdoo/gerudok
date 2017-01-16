@@ -14,7 +14,7 @@ public interface GraphicShapeClipboardSerializer {
 	 * 
 	 * @param shape
 	 *            Shape to serialize
-	 * @param sb
+	 * @param destination
 	 *            StringBuilder to which to append the result.
 	 */
 	public void serialize(GraphicShape shape, StringBuilder destination);

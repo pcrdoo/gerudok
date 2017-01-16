@@ -17,11 +17,8 @@ import command.AddNewLinkChildCommand;
 import command.ElementEditInitCommand;
 import command.Invoker;
 
-/** @pdOid a5685a25-1c1b-492d-9034-be45e4f21053 */
 public class ElementController {
-   /** @pdRoleInfo migr=no name=Model assc=association20 mult=1..1 */
    public Model model;
-   /** @pdRoleInfo migr=no name=ElementView assc=association10 mult=1..1 side=A */
    public ElementView elementView;
    
    public ElementController(Model model, ElementView elementView)

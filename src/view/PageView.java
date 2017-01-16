@@ -142,11 +142,10 @@ public class PageView extends JPanel implements GObserver {
 	 * @param slot
 	 *            the slot to visualize
 	 */
-	public SlotView addNewChildView(Slot slot) {
+	public void addNewChildView(Slot slot) {
 		SlotView slotView = new SlotView(model, slot);
 		content.add(slotView);
 		adjustSlotSizes();
-		return slotView;
 	}
 
 	/**

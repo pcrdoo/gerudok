@@ -16,11 +16,9 @@ import javax.swing.JMenuItem;
 import controller.MenuBarController;
 import controller.ProjectController;
 
-/** @pdOid 90d49140-4eb5-4916-b044-c9f452fdd3a2 */
 public class MenuBarView extends JMenuBar{
-   /** @pdRoleInfo migr=no name=MenuBarController assc=association2 mult=1..1 type=Composition */
+	
    public MenuBarController menuBarController;
-   /** @pdRoleInfo migr=no name=Model assc=association10 mult=1..1 */
    public Model model;
    
    public MenuBarView(Model model) {

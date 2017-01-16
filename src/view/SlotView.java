@@ -52,8 +52,8 @@ public class SlotView extends ElementContainerView {
 	 * @param slot
 	 *            the slot to be visualized
 	 */
-	public SlotView(Model model, Slot obj) {
-		super(model, obj, true);
+	public SlotView(Model model, Slot slot) {
+		super(model, slot, true);
 
 		this.model = model;
 		this.model.addObserver(this);
@@ -63,7 +63,7 @@ public class SlotView extends ElementContainerView {
 		setAlignmentX(CENTER_ALIGNMENT);
 		this.setBackground(new Color(1.0f, 1.0f, 1.0f, 0.2f));
 		EmptyBorder innerBorder = new EmptyBorder(3, 3, 3, 3);
-		border = BorderFactory.createTitledBorder(innerBorder, obj.getName());
+		border = BorderFactory.createTitledBorder(innerBorder, slot.getName());
 		this.setBorder(border);
 	}
 
@@ -108,7 +108,7 @@ public class SlotView extends ElementContainerView {
 	/**
 	 * Attaches the controller.
 	 * 
-	 * @param documentController
+	 * @param slotController
 	 *            the controller to attach
 	 */
 	public void setSlotController(SlotController slotController) {

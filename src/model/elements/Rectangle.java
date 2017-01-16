@@ -183,7 +183,7 @@ public class Rectangle implements Serializable {
 	 * Returns the normalized version of the rectangle, without mutating this
 	 * instance.
 	 * 
-	 * @see model.elements.Rectangle.normalize()
+	 * @see model.elements.Rectangle#normalize
 	 * @return Normalized version of the rectangle
 	 */
 	public Rectangle getNormalized() {

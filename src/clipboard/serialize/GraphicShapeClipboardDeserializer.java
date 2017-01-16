@@ -11,6 +11,7 @@ import model.elements.GraphicShape;
  */
 public interface GraphicShapeClipboardDeserializer {
 	/**
+	 * TODO (David Davidovic): Fix javadoc.
 	 * Deserializes a shape from a string.
 	 * 
 	 * @param serializedString

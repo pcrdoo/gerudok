@@ -101,7 +101,7 @@ public class GraphicElementMoveShapeCommand extends GraphicElementCommand {
 	 * Moves the shape back to the old position, as captured by
 	 * captureCurrentState().
 	 * 
-	 * @see command.elements.GraphicElementMoveShapeCommand.captureCurrentState
+	 * @see command.elements.GraphicElementMoveShapeCommand#captureCurrentState
 	 */
 	@Override
 	public void undoCommand() {

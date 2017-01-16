@@ -235,7 +235,7 @@ public class ProjectView extends JInternalFrame implements GObserver {
 	/**
 	 * Attaches the controller.
 	 * 
-	 * @param documentController
+	 * @param projectController
 	 *            the controller to attach
 	 */
 	public void setProjectController(ProjectController projectController) {

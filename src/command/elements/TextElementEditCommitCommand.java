@@ -28,7 +28,7 @@ public class TextElementEditCommitCommand extends Command {
 	 *            Model
 	 * @param element
 	 *            Element whose contents to revert
-	 * @param oldHtml
+	 * @param newHtml
 	 *            New contents of the text element
 	 */
 	public TextElementEditCommitCommand(Model model, TextElement element, String newHtml) {

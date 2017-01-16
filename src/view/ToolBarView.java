@@ -25,11 +25,8 @@ import javax.swing.SwingConstants;
 import controller.MenuBarController;
 import controller.ToolBarControler;
 
-/** @pdOid 89b60961-0c68-4ad1-8eb4-5a8b8a8dec28 */
 public class ToolBarView extends JToolBar {
-   /** @pdRoleInfo migr=no name=ToolBarControler assc=association1 mult=1..1 type=Composition */
    public ToolBarControler toolBarControler;
-   /** @pdRoleInfo migr=no name=Model assc=association11 mult=1..1 */
    public Model model;
    
    public ToolBarView(Model model) {
@@ -120,19 +117,19 @@ public class ToolBarView extends JToolBar {
 	   
 	   JButton btnCascade = new JButton();
 	   btnCascade.setToolTipText("Cascade");
-	   btnCascade.setIcon(new ImageIcon("src/res/cascade_toolbar_icon.png"));
+	   btnCascade.setIcon(new ImageIcon("src/res/share_toolbar_icon.png"));
 	   btnCascade.addActionListener(toolBarControler.getCascadeActionListener());
 	   add(btnCascade);
 		   
 	   JButton btnTileHorizontaly = new JButton();
 	   btnTileHorizontaly.setToolTipText("Tile horizontaly");
-	   btnTileHorizontaly.setIcon(new ImageIcon("src/res/tile_horizontaly_toolbar_icon.png"));
+	   btnTileHorizontaly.setIcon(new ImageIcon("src/res/share_toolbar_icon.png"));
 	   btnTileHorizontaly.addActionListener(toolBarControler.getTileHorizontalyActionListener());
 	   add(btnTileHorizontaly);
 	   
 	   JButton btnTileVerticaly = new JButton();
 	   btnTileVerticaly.setToolTipText("Tile verticaly");
-	   btnTileVerticaly.setIcon(new ImageIcon("src/res/tile_verticaly_toolbar_icon.png"));
+	   btnTileVerticaly.setIcon(new ImageIcon("src/res/share_toolbar_icon.png"));
 	   btnTileVerticaly.addActionListener(toolBarControler.getTileVerticalyActionListener());
 	   add(btnTileVerticaly);
 	   

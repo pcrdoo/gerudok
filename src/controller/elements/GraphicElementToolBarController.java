@@ -266,7 +266,7 @@ public class GraphicElementToolBarController {
 		 * Called when the redo status has changed. Enabled/disables the redo
 		 * button in the toolbar.
 		 * 
-		 * @param undoStatus
+		 * @param redoStatus
 		 *            Whether redo is now enabled
 		 */
 		@Override
