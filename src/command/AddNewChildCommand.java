@@ -2,6 +2,7 @@ package command;
 
 import model.Element;
 import model.Model;
+import model.Slot;
 import model.tree.GNode;
 
 /**
@@ -35,6 +36,11 @@ public class AddNewChildCommand extends Command {
 	 */
 	@Override
 	public void doCommand() {
+		
+		if(node instanceof Slot) {
+			return;
+		}
+		
 		GNode child = this.node.addNewChild();
 		model.getTreeModel().reload();
 		Invoker.getInstance().executeCommand(new TreeSelectCommand(model, child));
