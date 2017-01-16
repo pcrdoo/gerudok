@@ -74,7 +74,6 @@ public class TreeView extends JPanel implements GObserver {
 	 */
 	private void initialize() {
 
-		// TODO mock ovo srediti
 		GNode root = Workspace.getInstance();
 		this.setPreferredSize(Constants.TREE_SIZE);
 
@@ -96,17 +95,25 @@ public class TreeView extends JPanel implements GObserver {
 
 		this.setLayout(new BorderLayout());
 		this.setMinimumSize(new Dimension(1000, 1000));
-		this.add(new JScrollPane(tree), BorderLayout.NORTH);
+		
+		JScrollPane treeScrollPane  = new JScrollPane(tree);
+		
+		treeScrollPane.setSize(new Dimension(50, 400));
+		treeScrollPane.setMaximumSize(new Dimension(50, 400));
+		treeScrollPane.setMinimumSize(new Dimension(50, 400));
+		treeScrollPane.setPreferredSize(new Dimension(50, 400));
+		
+		this.add(treeScrollPane, BorderLayout.NORTH);
 
 		freeNodesListModel = new DefaultListModel<>();
 		JList freeNodesList = new JList<GNode>(freeNodesListModel);
 
 		JScrollPane freeNodesScrollPane = new JScrollPane(freeNodesList);
 
-		freeNodesScrollPane.setSize(new Dimension(100, 230));
-		freeNodesScrollPane.setMaximumSize(new Dimension(100, 230));
-		freeNodesScrollPane.setMinimumSize(new Dimension(100, 230));
-		freeNodesScrollPane.setPreferredSize(new Dimension(100, 230));
+		freeNodesScrollPane.setSize(new Dimension(100, 200));
+		freeNodesScrollPane.setMaximumSize(new Dimension(100, 200));
+		freeNodesScrollPane.setMinimumSize(new Dimension(100, 200));
+		freeNodesScrollPane.setPreferredSize(new Dimension(100, 200));
 
 		this.reloadFreeNodesList();
 
