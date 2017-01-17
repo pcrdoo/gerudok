@@ -29,7 +29,6 @@ public class GeRuDocument extends GNode implements Serializable {
 	 */
 	public GeRuDocument(String name) {
 		super(name);
-		GeRuDocument.newChildCount = 0;
 	}
 
 	/*

@@ -42,7 +42,6 @@ public class Project extends GNode implements Serializable {
 		super(name);
 		this.opened = true;
 		this.projectFile = null;
-		Project.newChildCount = 0;
 	}
 
 	/*

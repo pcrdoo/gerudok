@@ -36,7 +36,6 @@ public class Page extends GNode implements Serializable {
 	 */
 	public Page(String name) {
 		super(name);
-		Page.newChildCount = 0;
 		Random r = new Random();
 		color = new Color(r.nextFloat(), r.nextFloat(), r.nextFloat());
 	}
