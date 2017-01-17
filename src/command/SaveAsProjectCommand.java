@@ -43,6 +43,7 @@ public class SaveAsProjectCommand extends Command {
 		Project project = (object instanceof Project) ? (Project) object : null;
 		JFileChooser jfc = new JFileChooser();
 		jfc.setFileFilter(new ProjectFile());
+		jfc.setAcceptAllFileFilterUsed(false);
 		if (project != null) {
 			File projectFile;
 			if (jfc.showSaveDialog(MainView.getInstance()) == JFileChooser.APPROVE_OPTION) {

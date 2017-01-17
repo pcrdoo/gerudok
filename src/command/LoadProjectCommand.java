@@ -60,6 +60,7 @@ public class LoadProjectCommand extends Command {
 		if (loadFilePath == null) {
 			JFileChooser jfc = new JFileChooser();
 			jfc.setFileFilter(new ProjectFile());
+			jfc.setAcceptAllFileFilterUsed(false);
 
 			if (jfc.showOpenDialog(MainView.getInstance()) == JFileChooser.APPROVE_OPTION) {
 				loadProject(jfc.getSelectedFile());

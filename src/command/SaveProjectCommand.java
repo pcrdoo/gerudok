@@ -59,6 +59,7 @@ public class SaveProjectCommand extends Command {
 	public void doCommand() {
 		JFileChooser jfc = new JFileChooser();
 		jfc.setFileFilter(new ProjectFile());
+		jfc.setAcceptAllFileFilterUsed(false);
 		if (project != null) {
 			File projectFile = project.getProjectFile();
 			if (projectFile == null) {
