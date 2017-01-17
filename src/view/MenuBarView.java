@@ -62,7 +62,6 @@ public class MenuBarView extends JMenuBar {
 		fileMenu.addSeparator();
 		fileMenu.add(saveItem);
 		fileMenu.add(saveAsItem);
-		fileMenu.addSeparator();
 
 		JMenu editMenu = new JMenu("Edit");
 		JMenuItem addNewChildItem = new JMenuItem("Add new");
