@@ -13,6 +13,7 @@ import model.ElementType;
 
 /**
  * Text element that can hold HTML-formatted text.
+ * 
  * @author geomaster
  *
  */
@@ -21,12 +22,12 @@ public class TextElement extends Element implements Serializable {
 	 * Version UID for serialization.
 	 */
 	final static long serialVersionUID = 1;
-	
+
 	/**
 	 * HTML contents of the element.
 	 */
 	public String html;
-	
+
 	/**
 	 * Default constructor.
 	 */
@@ -35,28 +36,33 @@ public class TextElement extends Element implements Serializable {
 		this.type = ElementType.TEXT;
 		this.html = "";
 	}
-	
+
 	/**
 	 * Constructor.
-	 * @param name Name of the element
+	 * 
+	 * @param name
+	 *            Name of the element
 	 */
 	public TextElement(String name) {
 		super(name);
 		this.type = ElementType.TEXT;
 		this.html = "";
 	}
-	
+
 	/**
 	 * Gets the HTML contents of the element.
+	 * 
 	 * @return HTML contents
 	 */
 	public String getHtml() {
 		return html;
 	}
-	
+
 	/**
 	 * Sets the HTML contents of the element.
-	 * @param html New HTML contents
+	 * 
+	 * @param html
+	 *            New HTML contents
 	 */
 	public void setHtml(String html) {
 		this.html = html;

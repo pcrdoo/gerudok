@@ -18,12 +18,12 @@ public class Workspace extends GNode implements Serializable {
 	 * Used for generating names for new children.
 	 */
 	private static int newChildCount = 0;
-	
+
 	/**
 	 * The file of the workspace.
 	 */
 	private File workspaceFile;
-	
+
 	/**
 	 * The single Workspace object.
 	 */
@@ -71,6 +71,7 @@ public class Workspace extends GNode implements Serializable {
 
 	/**
 	 * Gets the file representing the workspace.
+	 * 
 	 * @return Workspace file
 	 */
 	public File getWorkspaceFile() {
@@ -79,7 +80,9 @@ public class Workspace extends GNode implements Serializable {
 
 	/**
 	 * Sets the file representing the workspace.
-	 * @param workspaceFile New workspace file
+	 * 
+	 * @param workspaceFile
+	 *            New workspace file
 	 */
 	public void setWorkspaceFile(File workspaceFile) {
 		this.workspaceFile = workspaceFile;

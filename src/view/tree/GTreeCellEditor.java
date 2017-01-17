@@ -12,6 +12,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 
 import controller.tree.GTreeCellEditorController;
 import model.Model;
+import model.Workspace;
 import model.tree.GLink;
 import model.tree.GNode;
 
@@ -30,6 +31,10 @@ public class GTreeCellEditor extends DefaultTreeCellEditor {
 	 * Text field for the new name.
 	 */
 	private JTextField tfName;
+	/**
+	 * The main model.
+	 */
+	private Model model;
 
 	/**
 	 * Constructor that inits everything.
@@ -44,6 +49,7 @@ public class GTreeCellEditor extends DefaultTreeCellEditor {
 	public GTreeCellEditor(JTree tree, DefaultTreeCellRenderer cellRenderer, Model model) {
 		super(tree, cellRenderer);
 		this.tfName = new JTextField();
+		this.model = model;
 		new GTreeCellEditorController(this, model);
 	}
 
@@ -100,11 +106,17 @@ public class GTreeCellEditor extends DefaultTreeCellEditor {
 	 */
 	@Override
 	public boolean isCellEditable(EventObject e) {
-		if (e == null)
-			return true;
 
-		if (((WorkspaceTree) e.getSource()).getLastSelectedPathComponent() instanceof GLink) {
-			return false;
+		Object selected = model.getSelectedObject();
+
+		if (selected != null) {
+			if (selected instanceof GLink || selected instanceof Workspace) {
+				return false;
+			}
+		}
+
+		if (e == null) {
+			return true;
 		}
 
 		if (e instanceof MouseEvent)

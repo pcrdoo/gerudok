@@ -15,23 +15,23 @@ import model.Project;
 import view.MainView;
 
 /**
- * A command that save project as new or existing file with GeRuDok 
- * 	project extension (grdp).
+ * A command that save project as new or existing file with GeRuDok project
+ * extension (grdp).
  * 
  * @author Igor Bakovic
  *
  */
 
 public class SaveAsProjectCommand extends Command {
-	
+
 	/**
 	 * @param model
-	 * 		the main model
+	 *            the main model
 	 */
 	public SaveAsProjectCommand(Model model) {
 		this.model = model;
-	}  
-	
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -40,13 +40,12 @@ public class SaveAsProjectCommand extends Command {
 	@Override
 	public void doCommand() {
 		Object object = model.getSelectedObject();
-		Project project = (object instanceof Project) ? (Project)object : null;
+		Project project = (object instanceof Project) ? (Project) object : null;
 		JFileChooser jfc = new JFileChooser();
 		jfc.setFileFilter(new ProjectFile());
 		if (project != null) {
 			File projectFile;
-			if (jfc.showSaveDialog(MainView.getInstance()) == JFileChooser.APPROVE_OPTION)
-			{
+			if (jfc.showSaveDialog(MainView.getInstance()) == JFileChooser.APPROVE_OPTION) {
 				projectFile = jfc.getSelectedFile();
 				String o = projectFile.getPath();
 				if (!o.endsWith(Constants.PROJECT_EXT)) {

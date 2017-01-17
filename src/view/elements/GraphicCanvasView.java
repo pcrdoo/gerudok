@@ -31,7 +31,7 @@ public class GraphicCanvasView extends JComponent implements GObserver {
 	 * Version UID for serialization.
 	 */
 	final static long serialVersionUID = 1;
-	
+
 	/**
 	 * Associated element.
 	 */

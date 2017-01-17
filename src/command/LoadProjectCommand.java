@@ -17,38 +17,39 @@ import model.tree.GNode;
 import view.MainView;
 
 /**
- * A command that improt existing project into workspace.
+ * A command that imports existing project into workspace.
  * 
  * @author Igor Bakovic
  *
  */
 
 public class LoadProjectCommand extends Command {
-	
+
 	/**
 	 * The string reference to location of project to be imported.
 	 */
 	private String loadFilePath;
-	
+
 	/**
 	 * @param model
-	 * 		the main model
+	 *            the main model
 	 */
 	public LoadProjectCommand(Model model) {
 		this.model = model;
 		this.loadFilePath = null;
 	}
-	/**		
+
+	/**
 	 * @param model
-	 * 		the main model
+	 *            the main model
 	 * @param loadFilePath
-	 * 		location of project
+	 *            location of project
 	 */
 	public LoadProjectCommand(Model model, String loadFilePath) {
 		this.model = model;
 		this.loadFilePath = loadFilePath;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -58,28 +59,29 @@ public class LoadProjectCommand extends Command {
 	public void doCommand() {
 		if (loadFilePath == null) {
 			JFileChooser jfc = new JFileChooser();
-	        jfc.setFileFilter(new ProjectFile());
-	        
-	        if(jfc.showOpenDialog(MainView.getInstance())==JFileChooser.APPROVE_OPTION) {
-	            loadProject(jfc.getSelectedFile());
-	        }
+			jfc.setFileFilter(new ProjectFile());
+
+			if (jfc.showOpenDialog(MainView.getInstance()) == JFileChooser.APPROVE_OPTION) {
+				loadProject(jfc.getSelectedFile());
+			}
 		} else {
 			File file = new File(loadFilePath);
 			if (file.exists()) {
 				loadProject(file);
 			}
 		}
-		
+
 	}
+
 	/**
 	 * @param file
-	 * 		the project to be imported
-	 * 		
+	 *            the project to be imported
+	 * 
 	 */
 	private void loadProject(File file) {
 		/**
-		 * 	Checks if the project allredy exist in the worksace.
-		 * 	In that case show message: "Project already opened!"
+		 * Checks if the project allredy exist in the worksace. In that case
+		 * show message: "Project already opened!"
 		 * 
 		 * @author Igor Bakovic
 		 */
@@ -89,36 +91,34 @@ public class LoadProjectCommand extends Command {
 				return;
 			}
 		}
-		
+
 		/**
-		 * 	Import project into workspace
+		 * Import project into workspace
 		 * 
-		 *  @author Igor Bakovic
+		 * @author Igor Bakovic
 		 */
 		try {
-            ObjectInputStream os = new ObjectInputStream(new FileInputStream(file));
+			ObjectInputStream os = new ObjectInputStream(new FileInputStream(file));
 
-            Project p=null;
+			Project p = null;
 
-            try {
-                p = (Project) os.readObject();
-                p.initObserverList();
-                p.setProjectFile(file);
-            } catch (ClassNotFoundException ee) {
-                JOptionPane.showMessageDialog(MainView.getInstance(),"Erorr in file.");
-            }
+			try {
+				p = (Project) os.readObject();
+				p.initObserverList();
+				p.setProjectFile(file);
+			} catch (ClassNotFoundException ee) {
+				JOptionPane.showMessageDialog(MainView.getInstance(), "Erorr in file.");
+			}
 
-            Workspace.getInstance().addChild(p);
-    		model.getTreeModel().reload();
-            Invoker.getInstance().executeCommand(new TreeSelectCommand(model, p));
+			Workspace.getInstance().addChild(p);
+			model.getTreeModel().reload();
+			Invoker.getInstance().executeCommand(new TreeSelectCommand(model, p));
 
-            os.close();
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
+			os.close();
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 }
-
-

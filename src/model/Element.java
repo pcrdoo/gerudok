@@ -10,6 +10,7 @@ import java.io.Serializable;
 
 /**
  * Abstract element.
+ * 
  * @author geomaster
  *
  */
@@ -18,7 +19,7 @@ public abstract class Element extends ElementContainer implements Serializable {
 	 * Version UID for serialization.
 	 */
 	final static long serialVersionUID = 1;
-	
+
 	/**
 	 * Default constructor.
 	 */
@@ -28,7 +29,9 @@ public abstract class Element extends ElementContainer implements Serializable {
 
 	/**
 	 * Constructor.
-	 * @param name Name of the element
+	 * 
+	 * @param name
+	 *            Name of the element
 	 */
 	public Element(String name) {
 		super(name);

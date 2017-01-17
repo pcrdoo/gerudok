@@ -1,5 +1,7 @@
 package command;
 
+import java.util.Arrays;
+
 import model.GeRuDocument;
 import model.Model;
 import model.Project;
@@ -37,11 +39,12 @@ public class DeleteCommand extends Command {
 	 */
 	@Override
 	public void doCommand() {
-		
-		if(node instanceof Workspace) {
+
+		System.out.println("Command " + Arrays.toString(Thread.currentThread().getStackTrace()));
+		if (node instanceof Workspace) {
 			return;
 		}
-		
+
 		GNode parent = (GNode) node.getParent();
 		if (node instanceof Project) {
 			for (GNode child : node.getChildren()) {

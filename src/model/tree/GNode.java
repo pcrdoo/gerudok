@@ -173,7 +173,18 @@ public class GNode implements MutableTreeNode, GObservable, Serializable {
 	}
 
 	/**
-	 * Sends a GNotificatin and an Object to the observers of the node.
+	 * Clears all children.
+	 * 
+	 */
+	public void clearChildren() {
+		for (GNode child : children) {
+			observerList.notifyObservers(GNotification.DELETE, child);
+		}
+		this.children.clear();
+	}
+
+	/**
+	 * Sends a GNotification and an Object to the observers of the node.
 	 * 
 	 * @param notification
 	 *            Notification type.

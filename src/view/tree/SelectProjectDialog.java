@@ -56,11 +56,15 @@ public class SelectProjectDialog extends JDialog {
 	/**
 	 * Constructor that creates everything.
 	 * 
-	 * @param shared The shared document.
-	 * @param model The main model.
+	 * @param shared
+	 *            The shared document.
+	 * @param model
+	 *            The main model.
 	 */
 	public SelectProjectDialog(GNode shared, Model model) {
-		super(MainView.getInstance(), "Project Selection", ModalityType.APPLICATION_MODAL, MainView.getInstance().getGraphicsConfiguration());		this.model = model;
+		super(MainView.getInstance(), "Project Selection", ModalityType.APPLICATION_MODAL,
+				MainView.getInstance().getGraphicsConfiguration());
+		this.model = model;
 		this.shared = shared;
 
 		this.setLayout(new BorderLayout());

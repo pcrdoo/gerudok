@@ -18,7 +18,7 @@ public class Project extends GNode implements Serializable {
 	 * Version UID for serialization.
 	 */
 	final static long serialVersionUID = 1;
-	
+
 	/**
 	 * Used for generating names for new children.
 	 */

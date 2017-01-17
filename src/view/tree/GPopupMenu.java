@@ -152,17 +152,16 @@ public class GPopupMenu extends JPopupMenu {
 
 		this.menuItems = new HashMap<Class<? extends Object>, List<JMenuItem>>();
 
-		menuItems.put(Workspace.class, Arrays.asList(addNew, importProject, rename, switchWorkspace));
+		menuItems.put(Workspace.class, Arrays.asList(addNew, importProject, switchWorkspace));
 		menuItems.put(Project.class,
-				node.getClass() == Project.class && ((Project) node).isOpened() ? Arrays.asList(addNew,
-						addFromFree, delete, rename, openClose, saveProject, saveAsProject)
+				node.getClass() == Project.class && ((Project) node).isOpened()
+						? Arrays.asList(addNew, addFromFree, delete, rename, openClose, saveProject, saveAsProject)
 						: Arrays.asList(delete, openClose));
 		menuItems.put(GeRuDocument.class, Arrays.asList(addNew, share, delete, rename));
 		menuItems.put(GeRuDocumentLink.class, Arrays.asList(delete));
 		menuItems.put(Page.class, Arrays.asList(addNew, delete, rename));
 		menuItems.put(Slot.class, Arrays.asList(delete, rename));
 		menuItems.put(Element.class, Arrays.asList(edit, delete, rename));
-
 
 		if (this.menuItems.containsKey(node.getClass())) {
 			if (node instanceof ElementContainer) {

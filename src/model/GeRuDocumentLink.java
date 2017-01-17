@@ -17,7 +17,7 @@ public class GeRuDocumentLink extends GLink implements Serializable {
 	 * Version UID for serialization.
 	 */
 	final static long serialVersionUID = 1;
-	
+
 	/**
 	 * Constructor.
 	 * 

@@ -16,6 +16,7 @@ import model.Project;
 import model.Workspace;
 import model.tree.GNode;
 import view.MainView;
+
 /**
  * A command that save workspace.
  * 
@@ -26,12 +27,11 @@ public class SaveWorkspaceCommand extends Command {
 
 	/**
 	 * @param model
-	 * 		the main model
+	 *            the main model
 	 */
 	public SaveWorkspaceCommand(Model model) {
 		this.model = model;
 	}
-	
 
 	/*
 	 * (non-Javadoc)
@@ -47,8 +47,7 @@ public class SaveWorkspaceCommand extends Command {
 		if (workspace != null) {
 			File workspaceFile = workspace.getWorkspaceFile();
 			if (workspaceFile == null) {
-				if (jfc.showSaveDialog(MainView.getInstance()) == JFileChooser.APPROVE_OPTION)
-				{
+				if (jfc.showSaveDialog(MainView.getInstance()) == JFileChooser.APPROVE_OPTION) {
 					workspaceFile = jfc.getSelectedFile();
 					String o = workspaceFile.getPath();
 					if (!o.endsWith(Constants.WORKSPACE_EXT)) {
@@ -60,15 +59,16 @@ public class SaveWorkspaceCommand extends Command {
 					return;
 				}
 			}
-			
+
 			// Save all projects
 			for (GNode p : workspace.getChildren()) {
 				if (((Project) p).getProjectFile() == null) {
-					JOptionPane.showMessageDialog(MainView.getInstance(), "Unsaved project " + p.getName() + ". You must save it first.");
+					JOptionPane.showMessageDialog(MainView.getInstance(),
+							"Unsaved project " + p.getName() + ". You must save it first.");
 				}
 				Invoker.getInstance().executeCommand(new SaveProjectCommand(model, p));
 			}
-			
+
 			BufferedWriter os;
 			try {
 				os = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(workspaceFile)));

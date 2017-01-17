@@ -30,7 +30,7 @@ public class SelectDocumentDialog extends JDialog {
 	 * Version UID for serialization.
 	 */
 	final static long serialVersionUID = 1;
-	
+
 	/**
 	 * Reference to the main model.
 	 */
@@ -61,7 +61,8 @@ public class SelectDocumentDialog extends JDialog {
 	 *            The main model.
 	 */
 	public SelectDocumentDialog(GNode parent, Model model) {
-		super(MainView.getInstance(), "Free Document Selection", ModalityType.APPLICATION_MODAL, MainView.getInstance().getGraphicsConfiguration());
+		super(MainView.getInstance(), "Free Document Selection", ModalityType.APPLICATION_MODAL,
+				MainView.getInstance().getGraphicsConfiguration());
 		this.model = model;
 		this.parent = parent;
 

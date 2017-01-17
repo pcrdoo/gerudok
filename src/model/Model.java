@@ -26,7 +26,7 @@ public class Model implements GObservable, Serializable {
 	 * Version UID for serialization.
 	 */
 	final static long serialVersionUID = 1;
-	
+
 	/**
 	 * The model of the WorkspaceTree. Used to refresh the tree.
 	 */
@@ -44,6 +44,7 @@ public class Model implements GObservable, Serializable {
 	 * Stores currently selected path in the tree.
 	 */
 	private TreePath selectedPath;
+
 	/**
 	 * Default constructor.
 	 */

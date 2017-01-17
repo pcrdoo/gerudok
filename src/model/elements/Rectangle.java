@@ -14,7 +14,7 @@ public class Rectangle implements Serializable {
 	 * Version UID for serialization.
 	 */
 	final static long serialVersionUID = 1;
-	
+
 	/**
 	 * Origin (top-left) point of the rectangle.
 	 */

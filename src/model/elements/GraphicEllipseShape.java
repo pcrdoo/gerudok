@@ -13,7 +13,7 @@ public class GraphicEllipseShape extends GraphicShape implements Serializable {
 	 * Version UID for serialization.
 	 */
 	final static long serialVersionUID = 1;
-	
+
 	/**
 	 * Bounds (extent) of the ellipse.
 	 */

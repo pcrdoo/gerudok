@@ -31,7 +31,7 @@ public class TextElementEditDialog extends JDialog {
 	 * Version UID for serialization.
 	 */
 	final static long serialVersionUID = 1;
-	
+
 	/**
 	 * Controller.
 	 */
@@ -81,11 +81,11 @@ public class TextElementEditDialog extends JDialog {
 		add(new JLabel("Enter the text for the text element. HTML is allowed."), BorderLayout.NORTH);
 
 		textArea = new JTextArea(element.getHtml());
-		
+
 		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);
 		JScrollPane pane = new JScrollPane(textArea);
-	    pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		add(pane, BorderLayout.CENTER);
 
 		JPanel buttonPanel = new JPanel();

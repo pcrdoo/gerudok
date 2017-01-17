@@ -72,7 +72,7 @@ public class WorkspaceTree extends JTree implements GObserver {
 		case TREE_RENAME:
 			this.startEditingAtPath(((GNode) obj).getPath());
 			break;
-			
+
 		default:
 			break;
 		}

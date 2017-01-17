@@ -26,7 +26,7 @@ public class ElementContainerView extends JPanel implements GObserver {
 	 * Version UID for serialization.
 	 */
 	final static long serialVersionUID = 1;
-	
+
 	/**
 	 * Model.
 	 */

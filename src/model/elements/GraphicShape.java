@@ -13,7 +13,7 @@ public abstract class GraphicShape implements Serializable {
 	 * Version UID for serialization.
 	 */
 	final static long serialVersionUID = 1;
-	
+
 	/**
 	 * Shape type.
 	 */

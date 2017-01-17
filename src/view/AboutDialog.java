@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
 /**
  * View class which contains information about PCR team.
  * 
@@ -18,7 +19,9 @@ public class AboutDialog extends JDialog {
 
 	/**
 	 * Constructor.
-	 * @param parent Parent frame
+	 * 
+	 * @param parent
+	 *            Parent frame
 	 */
 	public AboutDialog(JFrame parent) {
 		super(parent);

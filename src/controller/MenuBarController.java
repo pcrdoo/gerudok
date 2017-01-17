@@ -20,6 +20,7 @@ import command.SaveAsProjectCommand;
 import command.SaveProjectCommand;
 import command.SaveWorkspaceCommand;
 import command.SwitchWorkspaceCommand;
+
 /**
  * Controller for the <code>MenuBarView</code>.
  * 
@@ -27,29 +28,29 @@ import command.SwitchWorkspaceCommand;
  *
  */
 public class MenuBarController {
-	
+
 	/**
 	 * The main model.
 	 */
-   public Model model;
-   
-   /**
+	public Model model;
+
+	/**
 	 * The view to bind to.
 	 */
-   public MenuBarView menuBarView;
-   
-   /**
-    * AboutDialog view.
-    */
-   public AboutDialog aboutDialog;
-   
-   /**
-    * @param model
-    * 		the main model
-    * @param menuBarView
-    * 		view to bind to
-    * 		
-    */
+	public MenuBarView menuBarView;
+
+	/**
+	 * AboutDialog view.
+	 */
+	public AboutDialog aboutDialog;
+
+	/**
+	 * @param model
+	 *            the main model
+	 * @param menuBarView
+	 *            view to bind to
+	 * 
+	 */
 	public MenuBarController(Model model, MenuBarView menuBarView) {
 		super();
 		this.model = model;
@@ -64,14 +65,14 @@ public class MenuBarController {
 	 */
 	public ActionListener getSaveActionListener() {
 		return new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Invoker.getInstance().executeCommand(new SaveProjectCommand(model));
 			}
 		};
 	}
-	
+
 	/**
 	 * @return ActionListener which executes <code>SaveAsProjectCommand</code>.
 	 * 
@@ -79,14 +80,14 @@ public class MenuBarController {
 	 */
 	public ActionListener getSaveAsActionListener() {
 		return new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Invoker.getInstance().executeCommand(new SaveAsProjectCommand(model));
 			}
 		};
 	}
-	
+
 	/**
 	 * @return ActionListener which executes <code>LoadProjectCommand</code>.
 	 * 
@@ -101,8 +102,7 @@ public class MenuBarController {
 			}
 		};
 	}
-	
-	
+
 	/**
 	 * @return ActionListener which show <code>AboutDialog</code>.
 	 * 
@@ -110,7 +110,7 @@ public class MenuBarController {
 	 */
 	public ActionListener getAboutActionListener() {
 		return new ActionListener() {
-			
+
 			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -129,11 +129,12 @@ public class MenuBarController {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Invoker.getInstance().executeCommand(new AddNewChildCommand(model, MainView.getInstance().getTreeView().getSelectedNode()));
+				Invoker.getInstance().executeCommand(
+						new AddNewChildCommand(model, MainView.getInstance().getTreeView().getSelectedNode()));
 			}
 		};
 	}
-	
+
 	/**
 	 * @return ActionListener which executes <code>OpenProjectCommand</code>.
 	 * 
@@ -144,7 +145,8 @@ public class MenuBarController {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Invoker.getInstance().executeCommand(new OpenProjectCommand(model, MainView.getInstance().getTreeView().getSelectedProject()));
+				Invoker.getInstance().executeCommand(
+						new OpenProjectCommand(model, MainView.getInstance().getTreeView().getSelectedProject()));
 			}
 		};
 	}
@@ -159,12 +161,12 @@ public class MenuBarController {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Invoker.getInstance().executeCommand(new CloseProjectCommand(model, MainView.getInstance().getTreeView().getSelectedProject()));
+				Invoker.getInstance().executeCommand(
+						new CloseProjectCommand(model, MainView.getInstance().getTreeView().getSelectedProject()));
 			}
 		};
 	}
-	
-	
+
 	/**
 	 * @return ActionListener which executes <code>RenameCommand</code>.
 	 * 
@@ -175,11 +177,12 @@ public class MenuBarController {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Invoker.getInstance().executeCommand(new RenameCommand(model, MainView.getInstance().getTreeView().getSelectedNode()));
+				Invoker.getInstance().executeCommand(
+						new RenameCommand(model, MainView.getInstance().getTreeView().getSelectedNode()));
 			}
 		};
 	}
-	
+
 	/**
 	 * @return ActionListener which executes <code>DeleteCommand</code>.
 	 * 
@@ -190,27 +193,30 @@ public class MenuBarController {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Invoker.getInstance().executeCommand(new DeleteCommand(model, MainView.getInstance().getTreeView().getSelectedNode()));
+				Invoker.getInstance().executeCommand(
+						new DeleteCommand(model, MainView.getInstance().getTreeView().getSelectedNode()));
 			}
 		};
 	}
-	
+
 	/**
-	 * @return ActionListener which executes <code>AddNewLinkChildCommand</code>.
+	 * @return ActionListener which executes
+	 *         <code>AddNewLinkChildCommand</code>.
 	 * 
 	 * @author Igor Bakovic
 	 */
 	public ActionListener getShareActionListener() {
 		return new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				SelectProjectDialog sd = new SelectProjectDialog(MainView.getInstance().getTreeView().getSelectedNode(), model);
+				SelectProjectDialog sd = new SelectProjectDialog(MainView.getInstance().getTreeView().getSelectedNode(),
+						model);
 				sd.setVisible(true);
 			}
 		};
 	}
-	
+
 	/**
 	 * @return ActionListener which executes <code>SaveWorkspaceCommand</code>.
 	 * 
@@ -225,7 +231,7 @@ public class MenuBarController {
 			}
 		};
 	}
-	
+
 	/**
 	 * @return ActionListener which executes <code>NewWorkspaceCommand</code>.
 	 * 
@@ -242,7 +248,8 @@ public class MenuBarController {
 	}
 
 	/**
-	 * @return ActionListener which executes <code>SwitchWorkspaceCommand</code>.
+	 * @return ActionListener which executes
+	 *         <code>SwitchWorkspaceCommand</code>.
 	 * 
 	 * @author Igor Bakovic
 	 */

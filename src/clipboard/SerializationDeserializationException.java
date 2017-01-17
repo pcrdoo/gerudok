@@ -11,7 +11,7 @@ public class SerializationDeserializationException extends Exception {
 	 * Version UID for serialization.
 	 */
 	final static long serialVersionUID = 1;
-	
+
 	/**
 	 * Constructor.
 	 * 

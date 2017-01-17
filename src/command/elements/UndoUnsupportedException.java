@@ -11,7 +11,7 @@ public class UndoUnsupportedException extends Exception {
 	 * Version UID for serialization.
 	 */
 	final static long serialVersionUID = 1;
-	
+
 	/**
 	 * Name of the command the exception relates to.
 	 */

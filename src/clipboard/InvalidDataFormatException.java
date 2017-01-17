@@ -12,7 +12,7 @@ public class InvalidDataFormatException extends SerializationDeserializationExce
 	 * Version UID for serialization.
 	 */
 	final static long serialVersionUID = 1;
-	
+
 	/**
 	 * Constructor.
 	 * 

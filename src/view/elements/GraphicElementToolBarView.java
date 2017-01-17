@@ -26,7 +26,7 @@ public class GraphicElementToolBarView extends JToolBar {
 	 * Version UID for serialization.
 	 */
 	final static long serialVersionUID = 1;
-	
+
 	/**
 	 * Controller.
 	 */

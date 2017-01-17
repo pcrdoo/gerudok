@@ -15,7 +15,7 @@ public class ElementContainer extends GNode implements Serializable {
 	 * Version UID for serialization.
 	 */
 	final static long serialVersionUID = 1;
-	
+
 	/**
 	 * Element type.
 	 */

@@ -21,6 +21,7 @@ import command.SaveAsProjectCommand;
 import command.SaveProjectCommand;
 import command.SaveWorkspaceCommand;
 import command.SwitchWorkspaceCommand;
+
 /**
  * Controller for the <code>ToolBarView</code>.
  * 
@@ -28,24 +29,24 @@ import command.SwitchWorkspaceCommand;
  *
  */
 public class ToolBarController {
-	
+
 	/**
 	 * The main model.
 	 */
 	public Model model;
-	
+
 	/**
 	 * The view to bind to.
 	 */
 	public ToolBarView toolBarView;
 
 	/**
-	    * @param model
-	    * 		the main model
-	    * @param toolBarView
-	    * 		view to bind to
-	    * 		
-	    */
+	 * @param model
+	 *            the main model
+	 * @param toolBarView
+	 *            view to bind to
+	 * 
+	 */
 	public ToolBarController(Model model, ToolBarView toolBarView) {
 		super();
 		this.model = model;
@@ -150,7 +151,7 @@ public class ToolBarController {
 			}
 		};
 	}
-	
+
 	/**
 	 * @return ActionListener which executes <code>RenameCommand</code>.
 	 * 
@@ -184,7 +185,8 @@ public class ToolBarController {
 	}
 
 	/**
-	 * @return ActionListener which executes <code>AddNewLinkChildCommand</code>.
+	 * @return ActionListener which executes
+	 *         <code>AddNewLinkChildCommand</code>.
 	 * 
 	 * @author Igor Bakovic
 	 */
@@ -216,9 +218,10 @@ public class ToolBarController {
 			}
 		};
 	}
-	
+
 	/**
-	 * @return ActionListener which executes <code>SwitchWorkspaceCommand</code>.
+	 * @return ActionListener which executes
+	 *         <code>SwitchWorkspaceCommand</code>.
 	 * 
 	 * @author Igor Bakovic
 	 */
@@ -231,10 +234,11 @@ public class ToolBarController {
 			}
 		};
 	}
-	
+
 	/**
 	 * 
-	 * @return ActionListener which executes cascade function from <code>DesktopView</code>.
+	 * @return ActionListener which executes cascade function from
+	 *         <code>DesktopView</code>.
 	 * 
 	 * @author Igor Bakovic
 	 */
@@ -250,7 +254,8 @@ public class ToolBarController {
 
 	/**
 	 * 
-	 * @return ActionListener which executes tile horizontally function from <code>DesktopView</code>.
+	 * @return ActionListener which executes tile horizontally function from
+	 *         <code>DesktopView</code>.
 	 * 
 	 * @author Igor Bakovic
 	 */
@@ -266,7 +271,8 @@ public class ToolBarController {
 
 	/**
 	 * 
-	 * @return ActionListener which executes tile vertically function from <code>DesktopView</code>.
+	 * @return ActionListener which executes tile vertically function from
+	 *         <code>DesktopView</code>.
 	 * 
 	 * @author Igor Bakovic
 	 */
@@ -279,7 +285,7 @@ public class ToolBarController {
 			}
 		};
 	}
-	
+
 	/**
 	 * @return ActionListener which executes <code>SaveWorkspaceCommand</code>.
 	 * 

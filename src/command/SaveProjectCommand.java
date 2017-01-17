@@ -43,7 +43,7 @@ public class SaveProjectCommand extends Command {
 	 * @param model
 	 *            Model
 	 * @param object
-	 * 			Project to save
+	 *            Project to save
 	 */
 	public SaveProjectCommand(Model model, Object object) {
 		this.model = model;

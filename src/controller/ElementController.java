@@ -54,7 +54,9 @@ public class ElementController {
 	public class DoubleClickListener implements MouseListener {
 		/**
 		 * Called when the mouse is clicked.
-		 * @param e Mouse event
+		 * 
+		 * @param e
+		 *            Mouse event
 		 */
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -62,34 +64,42 @@ public class ElementController {
 				Invoker.getInstance().executeCommand(new ElementEditInitCommand(model, elementView.getElement()));
 			}
 		}
-		
+
 		/**
 		 * Called when the mouse has entered the element.
-		 * @param e Mouse event
+		 * 
+		 * @param e
+		 *            Mouse event
 		 */
 		@Override
 		public void mouseEntered(MouseEvent e) {
 		}
-		
+
 		/**
 		 * Called when the mouse has exited the element.
-		 * @param e Mouse event
+		 * 
+		 * @param e
+		 *            Mouse event
 		 */
 		@Override
 		public void mouseExited(MouseEvent e) {
 		}
-		
+
 		/**
 		 * Called when the mouse button is held over the element.
-		 * @param e Mouse event
+		 * 
+		 * @param e
+		 *            Mouse event
 		 */
 		@Override
 		public void mousePressed(MouseEvent e) {
 		}
-		
+
 		/**
 		 * Called when the mouse is released over the element.
-		 * @param e Mouse event
+		 * 
+		 * @param e
+		 *            Mouse event
 		 */
 		@Override
 		public void mouseReleased(MouseEvent e) {

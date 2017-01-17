@@ -24,7 +24,7 @@ public class GraphicElement extends Element implements Serializable {
 	 * Version UID for serialization.
 	 */
 	final static long serialVersionUID = 1;
-	
+
 	/**
 	 * Shapes contained in the element.
 	 */
