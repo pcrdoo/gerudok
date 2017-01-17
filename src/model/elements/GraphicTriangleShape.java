@@ -41,7 +41,7 @@ public class GraphicTriangleShape extends GraphicShape implements Serializable {
 	 */
 	@Override
 	public boolean pointInside(Point p) {
-		// TODO: Write a legitimate algorithm for this
+		// TODO: Write a legitimate algorithm for this.
 		return bounds.pointInside(p);
 	}
 

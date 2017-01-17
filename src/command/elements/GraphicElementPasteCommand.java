@@ -73,7 +73,6 @@ public class GraphicElementPasteCommand extends GraphicElementCommand {
 			for (GraphicElementAddShapeCommand cmd : list) {
 				view.select(cmd.getShape());
 			}
-			System.out.println("Added " + list.size() + " shapes");
 		} catch (SerializationDeserializationException e) {
 			JOptionPane.showMessageDialog(null,
 					"Cannot paste clipboard contents. Please make sure you're pasting GeRuDok shapes.");

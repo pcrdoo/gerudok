@@ -67,7 +67,6 @@ public class DesktopView extends JDesktopPane implements GObserver {
 	 * Cascades the internal panels that represent projects.
 	 */
 	public void cascade() {
-		// TODO (Igor Bakovic): Call this method from the tool bar
 		int sz = getAllFrames().length;
 		for (int i = 0; i < sz; i++) {
 			getAllFrames()[i].setLocation(20 + i * 30, 20 + i * 30);
@@ -84,7 +83,6 @@ public class DesktopView extends JDesktopPane implements GObserver {
 	 * Tiles the internal panels that represent projects vertically.
 	 */
 	public void tileVertically() {
-		// TODO (Igor Bakovic): Call this method from the tool bar
 		Dimension d = getSize();
 		int sz = getAllFrames().length;
 		int unitHeight = (int) (d.getHeight() / sz);
@@ -98,7 +96,6 @@ public class DesktopView extends JDesktopPane implements GObserver {
 	 * Tiles the internal panels that represent projects horizontally.
 	 */
 	public void tileHorizontally() {
-		// TODO (Igor Bakovic): Call this method from the tool bar
 		Dimension d = getSize();
 		int sz = getAllFrames().length;
 		int unitWidth = (int) (d.getWidth() / sz);

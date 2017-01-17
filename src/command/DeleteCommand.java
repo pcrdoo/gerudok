@@ -1,7 +1,5 @@
 package command;
 
-import java.util.Arrays;
-
 import model.GeRuDocument;
 import model.Model;
 import model.Project;
@@ -40,7 +38,6 @@ public class DeleteCommand extends Command {
 	@Override
 	public void doCommand() {
 
-		System.out.println("Command " + Arrays.toString(Thread.currentThread().getStackTrace()));
 		if (node instanceof Workspace) {
 			return;
 		}
